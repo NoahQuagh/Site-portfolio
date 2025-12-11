@@ -1,0 +1,45 @@
+┌─────────────────────────────────────────────────────────────────┐
+│                    1. LOGIN (Première connexion)                 │
+└─────────────────────────────────────────────────────────────────┘
+
+Client envoie : { email: "admin@...", password: "Admin123!" }
+        ↓
+Serveur vérifie le mot de passe avec bcrypt
+        ↓
+Si OK → Serveur crée un JWT avec jwt.sign()
+        ↓
+Serveur renvoie : { token: "eyJhbGciOi..." }
+        ↓
+Client stocke le token (localStorage)
+
+
+┌─────────────────────────────────────────────────────────────────┐
+│           2. REQUÊTES SUIVANTES (Routes protégées)               │
+└─────────────────────────────────────────────────────────────────┘
+
+Client envoie requête avec :
+Headers: { Authorization: "Bearer eyJhbGciOi..." }
+        ↓
+Middleware verifyToken() récupère le token
+        ↓
+jwt.verify() vérifie le token
+        ↓
+┌─ Si token valide ──────────┐    ┌─ Si token invalide ─────┐
+│                             │    │                          │
+│ req.user = données user     │    │ Renvoie erreur 401       │
+│ next() → Route suivante     │    │ "Token invalide"         │
+│                             │    │                          │
+└─────────────────────────────┘    └──────────────────────────┘
+        ↓
+Middleware isAdmin() (si route admin)
+        ↓
+┌─ Si role === 'admin' ──────┐    ┌─ Si role !== 'admin' ───┐
+│                             │    │                          │
+│ next() → Route suivante     │    │ Renvoie erreur 403       │
+│                             │    │ "Droits admin requis"    │
+│                             │    │                          │
+└─────────────────────────────┘    └──────────────────────────┘
+        ↓
+Route s'exécute (createProjet, updateProjet, etc.)
+        ↓
+Réponse au client
