@@ -1,0 +1,137 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to bottom right,#1A1A1A, #252525);
+    height: 100vh;
+    font-family: 'Yu Gothic UI Semibold',Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    text-shadow: 0 4px 30px rgba(255, 255, 255, 0.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ConnexionDiv{
+    background-color: #252525;
+    border:none;
+    border-radius: 15px;
+    width: 450px;
+    box-shadow: 0 4px 30px rgba(255, 255, 255, 0.35);
+}
+
+.login-container {
+    padding: 40px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+h2 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+#username,
+#password {
+    background: #656565;
+    width: 100%;
+    padding: 12px;
+    border:1px solid #000000;
+    border-radius: 5px;
+    font-size: 16px;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+}
+#username:focus,
+#password:focus {
+    outline: none;
+    box-shadow: 0 4px 30px rgba(255,255,255,0.2);
+}
+#username:hover,
+#password:hover{
+    scale:1.02;
+}
+
+.bouton{
+    display: flex;
+    justify-content: center;
+    gap:15px;
+}
+
+
+.connexion {
+    width: 50%;
+    text-align: center;
+    padding: 12px;
+    background-color: #303030;
+    color: white;
+    text-shadow: 0 4px 30px rgba(255, 255, 255, 0.45);
+    border:none;
+    border-radius: 28px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.connexion:hover {
+    transform: translateY(-1px);
+    background-color: #6a0505;
+}
+
+.Retour {
+    width: 50%;
+    text-align: center;
+    padding: 12px;
+    background-color: #303030;
+    color: white;
+    text-shadow: 0 4px 30px rgba(255, 255, 255, 0.45);
+    border:none;
+    border-radius: 28px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.Retour:hover {
+    transform: translateY(-1px);
+    background-color: #6a0505;
+}
+
+.RetourImg{
+    padding-right: 8px;
+    padding-bottom: 4px;
+}
+
+.ConnexionImg{
+    padding-left: 8px;
+}
+
+
+.message{
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 3px solid #721c24;
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 15px;
+    text-align: center;
+    display: none;
+}

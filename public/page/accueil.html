@@ -2,16 +2,52 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Mon Portfolio</title>
+    <title>Portfolio de Noah Quaghebeur | Développeur Web </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style/styleAccueil.css">
 </head>
 <body>
+<header>
+    <div class="head-barre">
+        <img src="../img/house.svg" alt="logo NQ Webmaster">
+        <nav class="sliding-nav-container">
+            <ul class="nav-pills-custom" id="customNav">
 
-<nav>
-    <ul id="menu-list">
-        <li>Chargement des menus...</li>
-    </ul>
-</nav>
+                <span class="indicator"></span>
 
+                <li class="nav-item">
+                    <button class="nav-link active" data-name="home" onclick="accueil()">ACCUEIL</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-name="profile" onclick="profile()" >PROFILE</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-name="contact" onclick="contact()">CONTACT</button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div>
+        <div class="connexionBoite">
+            <nav class="sliding-nav-container">
+                <ul class="nav-pills-custom">
+                    <li class="nav-item">
+                        <button class="nav-link" data-name="home" onclick="GoConnexion()">
+                            <img class="personne" src="../img/person-circle.svg">
+                            CONNEXION
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+<section class="body-accueil" id="body-accueil">
+</section>
+<footer>
+
+</footer>
 <script src="../script/accueil.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>

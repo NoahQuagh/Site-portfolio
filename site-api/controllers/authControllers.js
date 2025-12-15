@@ -204,7 +204,6 @@ exports.login = async (req, res) => {
         // ==============================================
         // ÉTAPE 1 : RÉCUPÉRER LES DONNÉES
         // ==============================================
-
         const {username,password } = req.body;
 
         // Vérifier que tous les champs sont présents
@@ -278,7 +277,7 @@ exports.login = async (req, res) => {
         if (!isPasswordValid) {
             return res.status(401).json({
                 success: false,
-                message: 'identifiants incorrect'
+                message: 'identifiants ou mot de passe incorrect'
             });
         }
 

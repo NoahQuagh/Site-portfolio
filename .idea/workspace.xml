@@ -5,9 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7b35f7e-a0e7-4de5-a2f3-21974461f02d" name="Changes" comment="depot site portfolio">
-      <change afterPath="$PROJECT_DIR$/scriptTable/site_nq_db_portfolio_menu_admin.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scriptTable/site_nq_db_users.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/imagePC.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/person-circle.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/page/connexion.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/script/connexion.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/style/styleAccueil.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/style/styleConnexion.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/page/accueil.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/page/accueil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/script/accueil.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/script/accueil.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site-api/controllers/authControllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/site-api/controllers/authControllers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-Controllers.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-auth.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testConnection.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,90 +27,105 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="tsconfig.json" />
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "NoahQuagh"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;NoahQuagh&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/NoahQuagh/Site-portfolio.git",
-    "accountId": "492f3cdc-357a-4f6a-9582-a2f84b219c77"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/NoahQuagh/Site-portfolio.git&quot;,
+    &quot;accountId&quot;: &quot;492f3cdc-357a-4f6a-9582-a2f84b219c77&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="36LjfJ0QOp732ZYl7YjeC9Z013Z" />
   <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "JavaScript Debug.accueil.html.executor": "Run",
-    "JavaScript Debug.index.html.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/noahq/PycharmProjects/Site Portfolio/scriptTable",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2025.2.5\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JavaScript Debug.accueil.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.accueilAdmin.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Node.js.server.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/noahq/PycharmProjects/Site Portfolio/scriptTable&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2025.2.5\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.LRUPopupBuilder$1/Change SQL Dialect": [
-      "GenericSQL",
-      "Oracle"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/Change SQL Dialect&quot;: [
+      &quot;GenericSQL&quot;,
+      &quot;Oracle&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\noahq\PycharmProjects\Site Portfolio\scriptTable" />
       <recent name="C:\Users\noahq\PycharmProjects\Site Portfolio\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\noahq\PycharmProjects\Site Portfolio\public\img" />
+      <recent name="C:\Users\noahq\PycharmProjects\Site Portfolio\public\script" />
+      <recent name="C:\Users\noahq\PycharmProjects\Site Portfolio\public\style" />
+      <recent name="C:\Users\noahq\PycharmProjects\Site Portfolio\public\page" />
       <recent name="C:\Users\noahq\PycharmProjects\Site Portfolio\scriptTable" />
-      <recent name="C:\Users\noahq\PycharmProjects\Site Portfolio\public" />
-      <recent name="C:\Users\noahq\PycharmProjects\Site Portfolio\site-api" />
-      <recent name="C:\Users\noahq\PycharmProjects\Site Portfolio" />
-      <recent name="C:\Users\noahq\PycharmProjects\Site Portfolio\site-api\database" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html">
+  <component name="RunManager" selected="Node.js.server.js">
     <configuration name="database.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/site-api/database.sql" />
       <script-mode>FILE</script-mode>
       <method v="2" />
     </configuration>
+    <configuration name="accueilAdmin.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Site Portfolio/public/page/accueilAdmin.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="accueil.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Site Portfolio/public/page/accueil.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Site Portfolio/public/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="server.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/server.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.server.js" />
+        <item itemvalue="JavaScript Debug.accueil.html" />
+        <item itemvalue="JavaScript Debug.accueilAdmin.html" />
         <item itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
@@ -138,7 +163,20 @@
       <workItem from="1765304192118" duration="4261000" />
       <workItem from="1765388704662" duration="7873000" />
       <workItem from="1765444416779" duration="6017000" />
-      <workItem from="1765458057269" duration="12529000" />
+      <workItem from="1765458057269" duration="12630000" />
+      <workItem from="1765729852963" duration="1744000" />
+      <workItem from="1765731643972" duration="2018000" />
+      <workItem from="1765733721098" duration="1396000" />
+      <workItem from="1765735193238" duration="6795000" />
+      <workItem from="1765745709295" duration="583000" />
+      <workItem from="1765746338513" duration="480000" />
+      <workItem from="1765746850003" duration="528000" />
+      <workItem from="1765747454200" duration="116000" />
+      <workItem from="1765747607237" duration="2355000" />
+      <workItem from="1765750096293" duration="382000" />
+      <workItem from="1765750501258" duration="1913000" />
+      <workItem from="1765800459157" duration="2466000" />
+      <workItem from="1765802971179" duration="2116000" />
     </task>
     <task id="LOCAL-00001" summary="depot site portfolio">
       <option name="closed" value="true" />
@@ -148,7 +186,23 @@
       <option name="project" value="LOCAL" />
       <updated>1765469155671</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="depot site portfolio">
+      <option name="closed" value="true" />
+      <created>1765472147991</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1765472147991</updated>
+    </task>
+    <task id="LOCAL-00003" summary="depot site portfolio">
+      <option name="closed" value="true" />
+      <created>1765472210352</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1765472210353</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
