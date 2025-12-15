@@ -5,19 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7b35f7e-a0e7-4de5-a2f3-21974461f02d" name="Changes" comment="depot site portfolio">
-      <change afterPath="$PROJECT_DIR$/public/img/imagePC.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/person-circle.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/page/connexion.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/script/connexion.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/style/styleAccueil.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/style/styleConnexion.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/page/accueil.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/page/accueil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/page/accueilAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/page/accueilAdmin.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/script/accueil.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/script/accueil.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site-api/controllers/authControllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/site-api/controllers/authControllers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-Controllers.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-auth.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testConnection.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/style/styleAccueil.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/styleAccueil.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site-api/database/shema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/site-api/database/shema.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,8 +117,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Node.js.server.js" />
-        <item itemvalue="JavaScript Debug.accueil.html" />
         <item itemvalue="JavaScript Debug.accueilAdmin.html" />
+        <item itemvalue="JavaScript Debug.accueil.html" />
         <item itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
@@ -177,6 +170,9 @@
       <workItem from="1765750501258" duration="1913000" />
       <workItem from="1765800459157" duration="2466000" />
       <workItem from="1765802971179" duration="2116000" />
+      <workItem from="1765806350139" duration="60000" />
+      <workItem from="1765814512559" duration="2222000" />
+      <workItem from="1765831972344" duration="2651000" />
     </task>
     <task id="LOCAL-00001" summary="depot site portfolio">
       <option name="closed" value="true" />
@@ -202,7 +198,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765472210353</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="depot site portfolio">
+      <option name="closed" value="true" />
+      <created>1765806373090</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1765806373090</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

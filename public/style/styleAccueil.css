@@ -22,8 +22,11 @@ header {
 .head-barre{
     display: flex;
     justify-content: flex-start;
-    gap: 40px;
+
     margin-left: 20px;
+}
+
+.logoSite{
 }
 
 :root {
@@ -177,6 +180,7 @@ header {
     width: 50%;
     display: flex;
     align-items: flex-end;
+    justify-content: center;
 }
 
 .body-accueil-2{

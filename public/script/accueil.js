@@ -187,8 +187,76 @@ function profile() {
 }
 
 function contact(){
+    const content = `
+        <div class="body-accueil-2">
+            <h2>Mon Conctact</h2>
+            <p>Contenu du profil...</p>
+        </div>
+    `;
 
+    changeContent('body-accueil', content);
 }
+
+function parcours(){
+    const content = `
+        <div class="body-accueil-2">
+            <h2>Mon parcours</h2>
+            <p>Contenu du profil...</p>
+        </div>
+    `;
+
+    changeContent('body-accueil', content);
+}
+
+function projet(){
+    const content = `
+        <div class="body-accueil-2">
+            <h2>Mes projets</h2>
+            <p>Contenu du profil...</p>
+        </div>
+    `;
+
+    changeContent('body-accueil', content);
+}
+
+function service(){
+    const content = `
+        <div class="body-accueil-2">
+            <h2>Mes services</h2>
+            <p>Contenu du profil...</p>
+        </div>
+    `;
+
+    changeContent('body-accueil', content);
+}
+
+function comptence(){
+    const content = `
+        <div class="body-accueil-2">
+            <h2>Mes competence</h2>
+            <p>Contenu du profil...</p>
+        </div>
+    `;
+
+    changeContent('body-accueil', content);
+}
+
+function experience(){
+    const content = `
+        <div class="body-accueil-2">
+            <h2>Mon experience</h2>
+            <p>Contenu du profil...</p>
+        </div>
+    `;
+
+    changeContent('body-accueil', content);
+}
+
+
+
+
+
+
 
 function GoConnexion(){
     window.location.href = '../page/connexion.html';
