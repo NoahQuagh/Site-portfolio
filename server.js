@@ -67,7 +67,7 @@ app.use('/api/v1/auth', authRoutes); // Pour les routes /login, /register, etc.
 app.use((req, res) => {
     res.status(404).json({
         success: false,
-        message: `Route non trouvée: ${req.method} ${req.originalUrl}`
+        message: `[ \x1b[31mERROR\x1b[0m ] Route non trouvée: ${req.method} ${req.originalUrl}`
     });
 });
 
@@ -78,12 +78,11 @@ app.use((req, res) => {
 
 // Vérifie si la connexion BDD est OK avant de démarrer le serveur (bonne pratique)
 db.query('SELECT 1').then(() => {
-    console.log('🔗 Connexion MySQL OK');
+    console.log('[ \x1b[32mOK\x1b[0m ] Connexion MySQL');
     app.listen(PORT, () => {
-        console.log(`🚀 Serveur démarré sur le port http://localhost:${PORT}`);
+        console.log(`[ \x1b[36mINFO\x1b[0m ] Serveur démarré sur le port http://localhost:${PORT}`);
     });
 }).catch(err => {
-    console.error('❌ Impossible de démarrer le serveur : Erreur de connexion MySQL');
-    console.error(err);
+    console.error('[ \x1b[31mERROR\x1b[0m ] Impossible de démarrer le serveur : Erreur de connexion MySQL');
     process.exit(1); // Arrête le processus en cas d'erreur BDD
 });

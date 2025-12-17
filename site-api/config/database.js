@@ -29,16 +29,11 @@ module.exports = promisePool;
 
 promisePool.query('SELECT 1')
     .then(() => {
-        console.log('✅ Connexion à MySQL réussie');
+        console.log('[ \x1b[32mOK\x1b[0m ] Connexion à MySQL réussie');
     })
     .catch((error) => {
-        console.error('❌ Erreur de connexion à MySQL:', error.message);
-        console.error('\n💡 Vérifications :');
-        console.error('   1. MySQL est-il démarré ? (XAMPP Control Panel)');
-        console.error('   2. Les identifiants dans .env sont-ils corrects ?');
-        console.error('      DB_HOST=' + process.env.DB_HOST);
-        console.error('      DB_USER=' + process.env.DB_USER);
-        console.error('      DB_NAME=' + process.env.DB_NAME);
+        console.error('Erreur de connexion à MySQL:', error.message);
+        console.error('[ \x1b[36mINFO\x1b[0m ] MySQL est-il démarré ? (XAMPP Control Panel)');
     });
 
 

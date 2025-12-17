@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio de Noah Quaghebeur | Développeur Web </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="../style/styleAccueil.css">
@@ -12,35 +13,29 @@
 <body>
 <header>
     <div class="head-barre">
-        <img class="logoSite" src="../img/house.svg" alt="logo NQ Webmaster">
+        <h3>>_</h3>
         <nav class="sliding-nav-container">
             <ul class="nav-pills-custom" id="customNav">
 
                 <span class="indicator"></span>
 
                 <li class="nav-item">
-                    <button class="nav-link active" data-name="home" onclick="accueil()">ACCUEIL</button>
+                    <button class="nav-link active" data-name="home" onclick="accueil()">\ACCUEIL</button>
                 </li>
                 <li class="nav-item">
-                    <button class="nav-link" data-name="profile" onclick="profile()" >PROFILE</button>
+                    <button class="nav-link" data-name="parcours" onclick="parcours()">\PARCOURS</button>
                 </li>
                 <li class="nav-item">
-                    <button class="nav-link" data-name="contact" onclick="contact()">CONTACT</button>
+                    <button class="nav-link" data-name="projet" onclick="projet()">\PROJET</button>
                 </li>
                 <li class="nav-item">
-                    <button class="nav-link" data-name="parcours" onclick="parcours()">PARCOURS</button>
+                    <button class="nav-link" data-name="service" onclick="service()">\SERVICE</button>
                 </li>
                 <li class="nav-item">
-                    <button class="nav-link" data-name="projet" onclick="projet()">PROJET</button>
+                    <button class="nav-link" data-name="comptence" onclick="comptence()">\COMPETENCE</button>
                 </li>
                 <li class="nav-item">
-                    <button class="nav-link" data-name="service" onclick="service()">SERVICE</button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link" data-name="comptence" onclick="comptence()">COMPETENCE</button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link" data-name="experience" onclick="experience()">EXPÉRIENCE</button>
+                    <button class="nav-link" data-name="experience" onclick="experience()">\EXPÉRIENCE</button>
                 </li>
             </ul>
         </nav>
@@ -52,7 +47,7 @@
                     <li class="nav-item">
                         <button class="nav-link" data-name="home" onclick="GoConnexion()">
                             <img class="personne" src="../img/person-circle.svg">
-                            CONNEXION
+                            \CONNEXION
                         </button>
                     </li>
                 </ul>
@@ -63,7 +58,7 @@
 <section class="body-accueil" id="body-accueil">
 </section>
 <footer>
-    <p>&copy; 2025 Portfolio de Noah Quaghebeur | Développeur Web . Tous droits réservés. | <a href="#" style="color: #515151;">Mentions légales</a> | <a href="#" style="color: #515151;">Politique de confidentialité</a></p>
+    <p>< &copy; 2025 Portfolio de Noah <span onclick="toggleDivBorders()">Quaghebeur</span> | Développeur Web . Tous droits réservés. | <a href="#" style="color: #b3b3b3;">Mentions légales</a> | <a href="#" style="color: #b3b3b3;">Politique de confidentialité</a> ></p>
 </footer>
 <script src="../script/accueil.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>

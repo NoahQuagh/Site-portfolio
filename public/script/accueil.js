@@ -4,6 +4,8 @@
 
 const API_MENU_URL = 'http://localhost:3000/api/v1/menus';
 
+
+
 document.addEventListener('DOMContentLoaded', function() {
     const navPills = document.getElementById('customNav');
     if (!navPills) return;
@@ -156,44 +158,81 @@ function changeContent(elementId, newContent, duration = 500) {
     }, duration);
 }
 
+
 // Utilisation
 function accueil() {
     const content = `
-        <div class="body-accueil-2">
-            <div class="titre">
-                <h2>NOAH</h2>
-                <h1>QUAGHEBEUR</h1>
-                <p>Développeur Web et d'Application et gestion de base de données</p>
+     
+        <div class="titre">
+            <div class="topBarre">
+                <div class="titreTerminal">
+                    <img class="terminal" src="../img/terminal.svg">
+                    Terminal
+                </div>
+                <div>
+                    <img class="terminal" src="../img/x-lg.svg">
+                </div>
             </div>
-            <div class="boiteCercle">
+            <div class="titre-content">
+                <p class="terminal-line">
+                    <span class="prompt">PS C:\\Users\\Noah></span>
+                    <span class="command">./moi</span>
+                </p>
+                <p class="terminal-line">
+                    <div class="ascii-container">
+                        <pre class="ascii-art">
+ /$$   /$$  /$$$$$$   /$$$$$$  /$$   /$$
+| $$$ | $$ /$$__  $$ /$$__  $$| $$  | $$
+| $$$$| $$| $$  \\ $$| $$  \\ $$| $$  | $$
+| $$ $$ $$| $$  | $$| $$$$$$$$| $$$$$$$$      
+| $$  $$$$| $$  | $$| $$__  $$| $$__  $$      
+| $$\\  $$$| $$  | $$| $$  | $$| $$  | $$      
+| $$ \\  $$|  $$$$$$/| $$  | $$| $$  | $$      
+|__/  \\__/ \\______/ |__/  |__/|__/  |__/       
+                                              
+                        </pre>
+                    </div>
+                </p>
+                <p class="terminal-line">
+                    <div class="ascii-container">
+                        <pre class="ascii-art">
+  /$$$$$$  /$$   /$$  /$$$$$$   /$$$$$$  /$$   /$$ /$$$$$$$$ /$$$$$$$  /$$$$$$$$ /$$   /$$ /$$$$$$$
+ /$$__  $$| $$  | $$ /$$__  $$ /$$__  $$| $$  | $$| $$_____/| $$__  $$| $$_____/| $$  | $$| $$__  $$
+| $$  \\ $$| $$  | $$| $$  \\ $$| $$  \\__/| $$  | $$| $$      | $$  \\ $$| $$      | $$  | $$| $$  \\ $$
+| $$  | $$| $$  | $$| $$$$$$$$| $$ /$$$$| $$$$$$$$| $$$$$   | $$$$$$$ | $$$$$   | $$  | $$| $$$$$$$/
+| $$  | $$| $$  | $$| $$__  $$| $$|_  $$| $$__  $$| $$__/   | $$__  $$| $$__/   | $$  | $$| $$__  $$
+| $$/$$ $$| $$  | $$| $$  | $$| $$  \\ $$| $$  | $$| $$      | $$  \\ $$| $$      | $$  | $$| $$  \\ $$
+|  $$$$$$/|  $$$$$$/| $$  | $$|  $$$$$$/| $$  | $$| $$$$$$$$| $$$$$$$/| $$$$$$$$|  $$$$$$/| $$  | $$
+ \\____ $$$ \\______/ |__/  |__/ \\______/ |__/  |__/|________/|_______/ |________/ \\______/ |__/  |__/
+  \\__/
+                        </pre>
+                    </div>
+                </p>
+                <p class="terminal-line">
+                    <span class="command">[ <span class="prompt" style="color:#096300">INFO</span> ]</span>
+                    <span class="command" style="margin-left: 7px">Développeur Web et d'Application et gestion de base de données</span>
+                </p>
+                <p class="terminal-line">
+                    <div class="ligneEntrez">
+                        <span class="promptFin">PS C:\\Users\\Noah></span>
+                        <form id="terminal-form">
+                            <input type="text" id="command-input" placeholder="" autocomplete="off" autofocus>
+                        </form>                      
+                    </div>
+                </p>
             </div>
         </div>
-    `;
-
-    changeContent('body-accueil', content);
-}
-
-function profile() {
-    const content = `
-        <div class="body-accueil-2">
-            <h2>Mon Profil</h2>
-            <p>Contenu du profil...</p>
+        <div class="navTitre">
+            
         </div>
+       
     `;
 
     changeContent('body-accueil', content);
+
 }
 
-function contact(){
-    const content = `
-        <div class="body-accueil-2">
-            <h2>Mon Conctact</h2>
-            <p>Contenu du profil...</p>
-        </div>
-    `;
 
-    changeContent('body-accueil', content);
-}
 
 function parcours(){
     const content = `
@@ -251,14 +290,41 @@ function experience(){
 }
 
 
-
-
-
-
-
 function GoConnexion(){
     window.location.href = '../page/connexion.html';
 }
+
+function activeDiv(){
+    const toutesLesDivs = document.querySelectorAll('*');
+
+    toutesLesDivs.forEach(div => {
+
+        div.style.border = '1px solid red';
+        div.style.boxSizing = 'border-box';
+    });
+}
+function desactiveDiv() {
+    const toutesLesDivs = document.querySelectorAll('*');
+
+    toutesLesDivs.forEach(div => {
+        div.style.border = '';
+    });
+}
+
+function toggleDivBorders() {
+    const premiereDiv = document.querySelector('*');
+
+    const estActive = premiereDiv && premiereDiv.style.border.includes('red');
+
+    if (estActive) {
+        desactiveDiv();
+    } else {
+        activeDiv();
+    }
+}
+
+
+
 
 
 // Lancer le chargement des menus au démarrage de la page
