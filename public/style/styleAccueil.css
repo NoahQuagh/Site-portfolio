@@ -5,12 +5,13 @@
 }
 
 body {
-    background: linear-gradient(to bottom right,#1A1A1A, #252525);
+    background: #0e0e0e;
     height: 100vh;
-    font-family: 'Yu Gothic UI Semibold',Tahoma, Geneva, Verdana, sans-serif;
-    color: white;
+    font-family: 'JetBrains Mono', sans-serif;
+    color: #ffffff;
+    overflow-x: hidden;
 }
-
+/*'Yu Gothic UI Semibold',Tahoma, Geneva, Verdana*/
 header {
     margin-right: 10px;
     margin-left: 10px;
@@ -30,8 +31,8 @@ header {
 }
 
 :root {
-    --primary-color: #ffffff;
-    --white-color: #bdbdbd;
+    --primary-color: #000000;
+    --white-color: #ffffff;
     --text-inactive-color: var(--white-color);
     --text-active-color: var(--primary-color);
     --nav-padding-vertical: 10px;
@@ -76,12 +77,14 @@ header {
     gap: 10px;
     width: 100%;
     cursor: pointer;
-    text-shadow:  0 4px 30px rgba(255, 255, 255, 0.45);
+    color: #b3b3b3;
     transition: all 0.3s ease;
 }
 
 .nav-link:hover {
-    transform: scale(1.1);
+    transform: scale(1.15);
+    color: white;
+    text-shadow:  0 4px 40px rgba(255, 255, 255, 0.95);
 }
 
 
@@ -103,8 +106,8 @@ header {
     -webkit-backdrop-filter: blur(100px);
     border: none;
     color: rgba(255, 255, 255, 0.9);
-    background-color: #6a0505;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+
 
     display: flex;
     align-items: center;
@@ -122,19 +125,6 @@ header {
 
 .indicator:active {}
 
-.cercle{
-    background:linear-gradient(to bottom, #7c0606, #500404);
-    border-radius:50%;
-    width:700px;
-    height:700px;
-    border:none;
-    box-shadow: 0 0px 800px rgb(90, 9, 9);
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    scale:1.1;
-
-}
 
 
 .connexionBoite .nav-link{
@@ -146,13 +136,15 @@ header {
 
 .connexionBoite:hover .nav-link{
     transform: scale(1.1);
-    background-color: #6a0505;
+    background-color: #ffffff;
+    color: #000000;
 }
+
 
 .body-accueil-2{
     padding: 50px;
     margin: 50px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 .titre{
@@ -163,17 +155,18 @@ header {
 
 .titre h2{
     font-size:50px;
-    color:#bdbdbd;
+    color: #b3b3b3;
 }
 
 .titre h1{
     font-size:100px;
+    font-weight: 900;
 }
 
 .titre p{
     margin-top: 30px;
     margin-left: 5px;
-    color: #bdbdbd;
+    color: #b3b3b3;
 }
 
 .boiteCercle{
@@ -184,7 +177,7 @@ header {
 }
 
 .body-accueil-2{
-    background-color: #252525;
+    background-color: transparent;
     display: flex;
     justify-content: space-around;
     border:none;
@@ -212,6 +205,8 @@ header {
 }
 
 footer{
-    background-color: #151515;
-    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
 }

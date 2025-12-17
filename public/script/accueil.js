@@ -166,8 +166,6 @@ function accueil() {
                 <p>Développeur Web et d'Application et gestion de base de données</p>
             </div>
             <div class="boiteCercle">
-                <img class="logoText" src="../img/body-text.svg">
-                <div class="cercle"></div>
             </div>
         </div>
     `;
