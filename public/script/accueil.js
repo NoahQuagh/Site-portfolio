@@ -370,8 +370,8 @@ function accueil() {
         </section>
         <section id="body-contact">
             <div id="corpContact">
+                <h2 class="titreForme">Contactez-moi</h2>
                 <form class="contactMoi">
-                    <h2 class="titreForme">Contactez-moi</h2>
                     <div class="input1">
                         <label>Nom *</label>
                         <br>
