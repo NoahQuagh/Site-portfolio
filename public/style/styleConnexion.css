@@ -5,10 +5,10 @@
 }
 
 body {
-    background: linear-gradient(to bottom right,#1A1A1A, #252525);
     height: 100vh;
-    font-family: 'Yu Gothic UI Semibold',Tahoma, Geneva, Verdana, sans-serif;
-    color: white;
+    background: #111111;
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    color: #ffffff;
     text-shadow: 0 4px 30px rgba(255, 255, 255, 0.45);
     display: flex;
     justify-content: center;
@@ -16,11 +16,10 @@ body {
 }
 
 .ConnexionDiv{
-    background-color: #252525;
-    border:none;
+    background-color: transparent;
+    border: 1px solid #b3b3b3;
     border-radius: 15px;
     width: 450px;
-    box-shadow: 0 4px 30px rgba(255, 255, 255, 0.35);
 }
 
 .login-container {
@@ -49,10 +48,10 @@ label {
 
 #username,
 #password {
-    background: #656565;
+    background: transparent;
     width: 100%;
     padding: 12px;
-    border:1px solid #000000;
+    border:1px solid #b3b3b3;
     border-radius: 5px;
     font-size: 16px;
     transition-duration: 0.3s;
@@ -79,7 +78,7 @@ label {
     width: 50%;
     text-align: center;
     padding: 12px;
-    background-color: #303030;
+    background-color: transparent;
     color: white;
     text-shadow: 0 4px 30px rgba(255, 255, 255, 0.45);
     border:none;
@@ -92,7 +91,8 @@ label {
 
 .connexion:hover {
     transform: translateY(-1px);
-    background-color: #6a0505;
+    background-color: #cccccc;
+    color: #111111;
 }
 
 .Retour {

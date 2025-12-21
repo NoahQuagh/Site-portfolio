@@ -4,19 +4,68 @@
 
 }
 
-body {
-    background: #0e0e0e;
-    font-family: 'JetBrains Mono', 'Consolas', monospace;
-    color: #ffffff;
-    overflow-x: hidden;
+header, main, footer, aside {
+    width: 100%;
 }
-/*'Yu Gothic UI Semibold',Tahoma, Geneva, Verdana*/
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #111111;
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    color: #efede3;
+    overflow-x: hidden;
+    min-height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns:1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+    "navbar navbar"
+    "main main"
+    "footer footer";
+    transition: grid-template-columns 0.3s ease;
+}
+
 header {
-    margin-right: 10px;
-    margin-left: 10px;
     padding: 20px;
     display:flex;
     justify-content: space-between;
+    position: sticky;
+    top:0;
+    z-index: 1000;
+    background-color: #111111;
+    border-bottom: 1px solid transparent;
+    grid-area: navbar;
+}
+
+
+main{
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+}
+
+footer{
+    grid-area: footer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+}
+
+
+
+header.is-pinned {
+    border-bottom: 1px solid #656565;
+}
+
+.contenuHeader{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .head-barre{
@@ -29,15 +78,16 @@ header {
 .logoSite{
 }
 
+
+
 :root {
     --primary-color: #000000;
-    --white-color: #ffffff;
+    --white-color: #efede3;
     --text-inactive-color: var(--white-color);
     --text-active-color: var(--primary-color);
     --nav-padding-vertical: 10px;
     --nav-padding-horizontal: 20px;
 }
-
 
 .nav-pills-custom {
     display: flex;
@@ -61,7 +111,6 @@ header {
     z-index: 1;
 }
 
-
 .nav-link {
     padding: 15px 30px;
     border: none;
@@ -82,21 +131,17 @@ header {
 
 .nav-link:hover {
     transform: scale(1.15);
-    color: white;
+    color: #efede3;
     text-shadow:  0 4px 40px rgba(255, 255, 255, 0.25);
 }
-
-
 
 .nav-link.active {
     color: var(--text-active-color);
 }
 
-
 .nav-link::before {
     content: none;
 }
-
 
 .indicator {
     border-radius: 28px;
@@ -105,7 +150,7 @@ header {
     -webkit-backdrop-filter: blur(100px);
     border: none;
     color: rgba(255, 255, 255, 0.9);
-    background-color: #ffffff;
+    background-color: #efede3;
 
 
     display: flex;
@@ -120,61 +165,70 @@ header {
     transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55), width 0.3s ease-out;
 }
 
-.indicator:hover {}
-
-.indicator:active {}
-
-
-
 .connexionBoite .nav-link{
     display: flex;
     justify-content:space-evenly;
     transition: all 0.3s ease;
 }
 
-
 .connexionBoite:hover .nav-link{
     transform: scale(1.1);
-    background-color: #ffffff;
+    background-color: #efede3;
     color: #000000;
 }
 
-#body-accueil {
-    background-color: transparent;
+
+
+#accueil{
     opacity: 1;
     transform: translateX(0);
     transition: opacity 0.5s ease, transform 0.5s ease;
-    height: auto;
-    width: 100%;
-    padding: 40px;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 2px solid #656565;
-
 }
 
-#body-accueil.transitioning {
+#accueil.transitioning{
     opacity: 0;
     transform: translateX(20px);
 }
 
-
-footer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 4rem;
+#body-accueil {
+    background-color: transparent;
+    padding: 60px;
+    border-bottom: 2px solid #656565;
+    display: grid;
+    width: 100%;
+    box-sizing: border-box;
+    gap: 5em;
+    height: 100vh;
 }
 
-.titre{
-    text-align: left;
-    position: relative;
-    width: auto;
-    height: 700px;
-    margin: 20px;
-    border: 2px solid #656565;
-    border-radius: 15px;
+@media(max-width:1400px) {
+    #body-accueil {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        "terminal"
+        "boiteCentre";
+    }
 }
+
+@media(min-width:1400px) {
+    #body-accueil {
+        grid-template-columns: 1.5fr 2fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+        "terminal boiteCentre";
+    }
+}
+
+@media(max-width:790px) {
+    .terminal{
+        display: none;
+    }
+}
+
+
+
+
+
 
 
 .terminal-line {
@@ -185,58 +239,17 @@ footer{
     font-size: 1.1em;
 }
 
-.prompt {
-    color: #4ec9b0;
-    font-weight: bold;
-    margin-right: 5px;
-}
-
-
-.command {
-    color: #d4d4d4;
-    font-weight: 600;
-}
-
-.promptFin{
-    color: #4ec9b0;
-    font-weight: bold;
-    margin-right: 5px;
-}
-
-
-#command-input{
-    background: transparent;
-    border: none;
-    outline: none;
-    font-family: inherit;
-    font-size: inherit;
-    color: inherit;
-    width: 500px;
-    padding: 0;
-    margin: 0;
-}
-
-#terminal-form{
-    display: inline-block;
-    padding: 0;
-    margin: 0;
-}
-
-.ligneEntrez{
-    display: flex;
-    justify-content: flex-start;
-    font-size: 1.1em;
-}
-
 .ascii-art {
     font-family: 'Consolas', 'Courier New', monospace;
     white-space: pre;
-    font-size: 0.8em;
+    font-size: 0.6em;
     line-height: 1;
-    color: #ffffff;
+    color: #efede3;
     margin: 0;
     padding: 0;
     overflow: hidden;
+    display: block;
+    width: min-content;
 }
 
 .ascii-container {
@@ -244,34 +257,426 @@ footer{
     width: 100%;
 }
 
-.titre-content {
-    padding: 10px;
-    margin: 10px;
+.terminal {
+    grid-area: terminal;
+    background: #1a1a1a;
+    border: 2px solid #333;
+    border-radius: 8px;
+    height: 600px;
+    max-width: 800px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
-.topBarre{
-    border-bottom:2px solid #656565;
-    height: 8%;
-    font-size: 2em;
-    color:#656565 ;
+.terminal-header {
+    background: #2a2a2a;
+    padding: 10px 15px;
+    border-bottom: 1px solid #333;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px 6px 0 0;
 }
 
-.terminal{
-    padding: 10px;
+.terminal-icon {
+    color: #4ade80;
+    margin-right: 10px;
+    font-size: 18px;
 }
 
-.titreTerminal{
+.terminal-title {
+    color: #efede3;
+    font-size: 20px;
+}
+
+.terminal-close {
+    margin-left: auto;
+    color: #efede3;
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.2s ease;
+}
+
+.terminal-close:hover {
+    transform: scale(1.3);
+}
+
+.terminal-close:active{
+    color: #e12525;
+}
+
+.terminal-body {
+    padding: 20px;
+    height: 500px;
+    overflow-y: auto;
+    color: #efede3;
+    text-align: left;
+}
+
+.terminal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+
+.output-line {
+    margin-bottom: 5px ;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.prompt {
+    color: #efede3;
+    margin-right: 5px;
+}
+
+.command {
+    color: #efede3;
+}
+
+.input-line {
     display: flex;
+    align-items: center;
+}
+
+#terminal-input {
+    background: transparent;
+    border: none;
+    color: #efede3;
+    font-size: 16px;
+    outline: none;
+    flex: 1;
+    height: 24px;
+}
+
+.info {
+    color: #efede3;
+}
+
+.success {
+    color: #4ade80;
+}
+
+.error {
+    color: #ff5555;
+}
+
+.cyan {
+    color: darkcyan;
+}
+
+.warning {
+    color: #baab01;
+}
+
+
+.boiteCentre{
+    grid-area: boiteCentre;
+    display: flex;
+    align-content: center;
+}
+
+.navTitre{
+    width: 100%;
+    margin: 20px;
+}
+
+.titre1,.titre2{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.navTitre h1 {
+    font-weight: bold;
+    /* Taille fluide : s'adapte entre 40px et 100px selon l'écran */
+    font-size: clamp(40px, 10vw, 100px);
+    line-height: 1.1;
+}
+
+.boutonTitre{
+    padding:30px;
+    height: 0.5rem;
+    font-size: 1.2rem;
+    border: 1px solid #efede3;
+    border-radius: 28px;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    cursor: pointer;
+    color: #d5d5d5;
+    transition: all 0.3s ease;
+}
+
+.boutonArrow{
+    padding:30px;
+    height: 0.5em;
+    width: 0.5em;
+    border: 1px solid #efede3;
+    border-radius: 100%;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #efede3;
+    transition: all 0.3s ease;
+}
+
+.boutonArrow:hover{
+    transform: scale(1.15);
+    background-color: #f1f1f1;
+}
+
+.boutonDirec .boiteDirec{
+    height: 100%;
+    width: 100%;
+    margin: 35px;
+    display: flex;
+    justify-content: start;
+    gap:10px;
+}
+
+.boutonDirec .boiteDirec2{
+    height: 100%;
+    width: 100%;
+    margin: 35px;
+    display: flex;
+    justify-content: end;
+    gap:10px;
+}
+
+.st{
+    font-size: 3.2em;
+}
+
+.cursor {
+    /* Le curseur doit être aligné avec le texte */
+    display: inline-block;
+    font-weight: bold;
+    font-size: clamp(40px, 8vw, 100px);
+    /* Applique l'animation de clignotement */
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    from, to {
+        color: transparent;
+    }
+    50% {
+        /* Utilisez la même couleur que le texte tapé */
+        color: #efede3;
+    }
+}
+
+.cursor{
+    font-weight: bold;
+    font-size: 100px;
+}
+
+.boutonDirec{
+    display: flex;
+    justify-content: space-around;
+}
+
+
+
+
+
+
+
+
+#body-profil,#body-contact{
+    height: 100vh;
+    border-bottom: 2px solid #656565;
+    padding:150px 400px 100px 400px;
+
+}
+
+.corpProfil{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 300px 200px 100px;
+    gap:3em;
+    grid-template-areas:
+    "profile profile bio bio bio"
+    "profile profile actu actu actu"
+    "Boutoncontact Boutoncontact Boutoncontact Boutoncontact Boutoncontact";
+}
+
+.corpProfil div{
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+    border-radius: 28px;
+}
+
+
+.profile{
+    grid-area: profile;
+    content: url("../img/person-circle.svg");
+    border: 1px solid #efede3;
+
+}
+
+.bio{
+    grid-area: bio;
+    padding: 40px;
+    border: 1px solid #efede3;
+}
+
+.bio p{
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.bio h2,.actu h2{
+    font-weight: bold;
+}
+
+.Boutoncontact{
+    grid-area: Boutoncontact;
+    display: flex;
+    justify-content: center;
+    border:none;
+    gap:10px;
+}
+
+.actu{
+    grid-area: actu;
+    padding: 40px;
+    border: 1px solid #efede3;
+}
+
+.actu p{
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+
+
+.corpContact{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3fr 1fr;
+    gap:3em;
+    grid-template-areas:
+    "contactMoi"
+    "monContact";
+}
+
+
+.contactMoi{
+    grid-area: contactMoi;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows:1fr 1fr 1fr 1fr 1fr;
+    gap:1em;
+    grid-template-areas:
+    "titreForme titreForme titreForme"
+    "input1 input5 input5"
+    "input2 input6 input6"
+    "input3 input6 input6"
+    "input4 check envoyer";
+}
+
+.input1,.input2,.input3,.input4,.input5,.input6{
     justify-content: left;
 }
 
-.cercle{
-    position:absolute;
-    height: 500px;
-    width: 500px;
-    border: 1px solid #656565;
-    border-radius: 100%;
-    z-index: -1;
+#nomContact,#prenomContact,#emailContact,#telContact,#objetContact,#messageContact{
+    background: #292929;
+    border: 1px solid #373737;
+    border-radius: 5px;
+    color: #efede3;
+    height: 2em;
+    padding: 0.5em;
+    justify-content: start;
+}
+
+#messageContact::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+#messageContact::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+
+.titreForme{
+    grid-area: titreForme;
+}
+
+.input1{
+    grid-area: input1;
+}
+.input2{
+    grid-area: input2;
+}
+.input3{
+    grid-area: input3;
+}
+.input4{
+    grid-area: input4;
+}
+.input5{
+    grid-area: input5;
+}
+.input6{
+    grid-area: input6;
+}
+
+
+
+.envoyez{
+    grid-area: envoyer;
+    width: 100%;
+    height: 100%;
+}
+.forme-check{
+    grid-area: check;
+}
+
+#messageContact{
+    width: 100%;
+    height: 8em;
+}
+#objetContact{
+    width: 100%;
+}
+.boutonEnvoyer{
+    padding:30px;
+    height: 0.1em;
+    width: 100%;
+    border: 1px solid #efede3;
+    border-radius: 45px;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #efede3;
+    transition: all 0.3s ease;
+}
+
+
+.monContact{
+    grid-area: monContact;
+    width: 100%;
+    height: 100%;
+}
+
+p{
+    color: #aaaaaa;
 }
