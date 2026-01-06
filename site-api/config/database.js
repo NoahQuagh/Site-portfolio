@@ -36,13 +36,4 @@ promisePool.query('SELECT 1')
         console.error('[ \x1b[36mINFO\x1b[0m ] MySQL est-il démarré ? (XAMPP Control Panel)');
     });
 
-
-/*
-module.exports permet d'utiliser ce pool dans d'autres fichiers
-
-Dans un autre fichier, on pourra faire :
-const db = require('./config/database');
-const [results] = await db.query('SELECT * FROM projets');
-*/
-
 module.exports = promisePool;

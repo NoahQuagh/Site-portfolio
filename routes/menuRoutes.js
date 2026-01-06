@@ -1,15 +1,16 @@
-// ==============================================
+
 // FICHIER routes/menuRoutes.js
-// ==============================================
+
 
 const express = require('express');
 const router = express.Router();
-const menuController = require('../site-api/controllers/MenuController'); // Assurez-vous du chemin
+const menuController = require('../site-api/controllers/MenuController');
 const authMiddleware = require('../site-api/middleware/auth');
 
-// ==============================================
-// DÉFINITION DES ROUTES MENUS
-// ==============================================
+
+// DÉFINITION DES ROUTES MENUS DESACTIVER POUR REMONTAGE
+// COMMENTAIRE UTILE POUR REMONTAGE
+
 
 // 1. PUBLIC : Récupérer uniquement les menus de type 'public' (pour l'invité)
 // Route : GET /api/v1/menus

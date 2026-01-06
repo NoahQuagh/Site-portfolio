@@ -13,9 +13,9 @@ html {
 }
 
 body {
-    background: #111111;
+    background: var(--couleurPrincipale);
     font-family: 'JetBrains Mono', 'Consolas', monospace;
-    color: #efede3;
+    color: var(--couleurTexte);
     overflow-x: hidden;
     min-height: 100vh;
     width: 100%;
@@ -29,6 +29,18 @@ body {
     transition: grid-template-columns 0.3s ease;
 }
 
+.cercle{
+    background-color: transparent;
+    width: clamp(10rem, 30vw, 30rem);
+    aspect-ratio: 1 / 1;
+    border: 1px solid var(--couleurTexte);
+    border-radius: 100%;
+    position: absolute;
+    top:0;
+    left: -15em;
+    overflow: hidden;
+}
+
 header {
     padding: 20px;
     display:flex;
@@ -36,7 +48,7 @@ header {
     position: sticky;
     top:0;
     z-index: 1000;
-    background-color: #111111;
+    background-color: var(--couleurPrincipale);
     border-bottom: 1px solid transparent;
     grid-area: navbar;
 }
@@ -48,18 +60,26 @@ main{
     flex-direction: column;
 }
 
+
+
 footer{
     grid-area: footer;
+    height: 100%;
+    padding: 3em;
+    border-top: 2px solid var(--couleurBordure);
+}
+
+.textFooter{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 4rem;
+    border-top: 1px solid var(--couleurBordure);
+    padding-top: 2em;
 }
 
 
-
 header.is-pinned {
-    border-bottom: 1px solid #656565;
+    border-bottom: 1px solid var(--couleurBordure);
 }
 
 .contenuHeader{
@@ -75,14 +95,18 @@ header.is-pinned {
     margin-left: 20px;
 }
 
-.logoSite{
-}
 
 
 
 :root {
     --primary-color: #000000;
     --white-color: #efede3;
+
+    --couleurPrincipale: #111111;
+    --couleurTexte: #efede3;
+    --couleurSecondaire: #5dd62c;
+    --couleurBordure:#656565;
+
     --text-inactive-color: var(--white-color);
     --text-active-color: var(--primary-color);
     --nav-padding-vertical: 10px;
@@ -131,7 +155,7 @@ header.is-pinned {
 
 .nav-link:hover {
     transform: scale(1.15);
-    color: #efede3;
+    color: var(--couleurTexte);
     text-shadow:  0 4px 40px rgba(255, 255, 255, 0.25);
 }
 
@@ -150,7 +174,7 @@ header.is-pinned {
     -webkit-backdrop-filter: blur(100px);
     border: none;
     color: rgba(255, 255, 255, 0.9);
-    background-color: #efede3;
+    background-color: var(--couleurTexte);
 
 
     display: flex;
@@ -173,13 +197,14 @@ header.is-pinned {
 
 .connexionBoite:hover .nav-link{
     transform: scale(1.1);
-    background-color: #efede3;
-    color: #000000;
+    background-color: var(--couleurTexte);
+    color: var(--couleurPrincipale);
 }
 
 
 
 #accueil{
+    background-color: transparent;
     opacity: 1;
     transform: translateX(0);
     transition: opacity 0.5s ease, transform 0.5s ease;
@@ -192,34 +217,69 @@ header.is-pinned {
 
 #body-accueil {
     background-color: transparent;
-    padding: 60px;
-    border-bottom: 2px solid #656565;
+    padding:
+        clamp(1.5rem, 4vw, 3.75rem)
+        clamp(1rem, 4vw, 3.75rem)
+        clamp(3rem, 8vw, 7.5rem)
+        clamp(1rem, 4vw, 3.75rem);
+    border-bottom: 2px solid var(--couleurBordure);
     display: grid;
     width: 100%;
     box-sizing: border-box;
-    gap: 5em;
-    height: 100vh;
+    gap: 0;
+    height: auto;
+}
+
+@media(max-width:1700px) {
+    #body-accueil {
+        grid-template-columns: 700px 1fr;
+        grid-template-rows: 1fr 600px;
+        grid-template-areas:
+        "titre titre"
+        "terminal boutonDirec";
+    }
+    .boutonDirec{
+        grid-template-columns: 1fr;
+        grid-template-rows: 300px 300px;
+        grid-template-areas:
+            "quisuisje"
+            "contact";
+    }
+}
+
+@media(min-width:1700px) {
+    #body-accueil {
+        grid-template-columns: 40vw 2fr;
+        grid-template-rows: 200px 200px 200px;
+        grid-template-areas:
+        "terminal titre"
+        "terminal titre"
+        "terminal boutonDirec";
+    }
+    .boutonDirec{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas:
+            "quisuisje contact";
+    }
+
 }
 
 @media(max-width:1400px) {
     #body-accueil {
         grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
         grid-template-areas:
-        "terminal"
-        "boiteCentre";
+        "titre"
+        "boutonDirec";
     }
-}
-
-@media(min-width:1400px) {
-    #body-accueil {
-        grid-template-columns: 1.5fr 2fr;
-        grid-template-rows: auto;
+    .boutonDirec{
+        grid-template-columns: 1fr;
+        grid-template-rows: 100px 100px;
         grid-template-areas:
-        "terminal boiteCentre";
+            "quisuisje"
+            "contact";
     }
-}
-
-@media(max-width:790px) {
     .terminal{
         display: none;
     }
@@ -237,6 +297,7 @@ header.is-pinned {
     margin: 0;
     line-height: 3em;
     font-size: 1.1em;
+
 }
 
 .ascii-art {
@@ -244,7 +305,7 @@ header.is-pinned {
     white-space: pre;
     font-size: 0.6em;
     line-height: 1;
-    color: #efede3;
+    color: var(--couleurTexte);
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -283,13 +344,13 @@ header.is-pinned {
 }
 
 .terminal-title {
-    color: #efede3;
+    color: var(--couleurTexte);
     font-size: 20px;
 }
 
 .terminal-close {
     margin-left: auto;
-    color: #efede3;
+    color: var(--couleurTexte);
     cursor: pointer;
     font-size: 20px;
     transition: all 0.2s ease;
@@ -307,7 +368,7 @@ header.is-pinned {
     padding: 20px;
     height: 500px;
     overflow-y: auto;
-    color: #efede3;
+    color: var(--couleurTexte);
     text-align: left;
 }
 
@@ -331,12 +392,12 @@ header.is-pinned {
 }
 
 .prompt {
-    color: #efede3;
+    color: var(--couleurTexte);
     margin-right: 5px;
 }
 
 .command {
-    color: #efede3;
+    color: var(--couleurTexte);
 }
 
 .input-line {
@@ -347,7 +408,7 @@ header.is-pinned {
 #terminal-input {
     background: transparent;
     border: none;
-    color: #efede3;
+    color: var(--couleurTexte);
     font-size: 16px;
     outline: none;
     flex: 1;
@@ -355,11 +416,11 @@ header.is-pinned {
 }
 
 .info {
-    color: #efede3;
+    color: var(--couleurTexte);
 }
 
 .success {
-    color: #4ade80;
+    color: var(--couleurSecondaire);
 }
 
 .error {
@@ -375,15 +436,11 @@ header.is-pinned {
 }
 
 
-.boiteCentre{
-    grid-area: boiteCentre;
-    display: flex;
-    align-content: center;
-}
 
-.navTitre{
+.Titre{
+    grid-area: titre;
     width: 100%;
-    margin: 20px;
+    padding: 0 clamp(2rem, 5vw, 5rem) clamp(2rem, 5vw, 5rem) clamp(2rem, 5vw, 5rem);
 }
 
 .titre1,.titre2{
@@ -391,10 +448,9 @@ header.is-pinned {
     justify-content: flex-start;
 }
 
-.navTitre h1 {
+.titre1 h1, .titre2 h1{
     font-weight: bold;
-    /* Taille fluide : s'adapte entre 40px et 100px selon l'écran */
-    font-size: clamp(40px, 10vw, 100px);
+    font-size: clamp(3rem, 7vw, 10rem);
     line-height: 1.1;
 }
 
@@ -402,7 +458,7 @@ header.is-pinned {
     padding:30px;
     height: 0.5rem;
     font-size: 1.2rem;
-    border: 1px solid #efede3;
+    border: 1px solid var(--couleurTexte);
     border-radius: 28px;
     background-color: transparent;
     display: flex;
@@ -410,7 +466,7 @@ header.is-pinned {
     align-items: center;
     width: 50%;
     cursor: pointer;
-    color: #d5d5d5;
+    color: var(--couleurTexte);
     transition: all 0.3s ease;
 }
 
@@ -418,43 +474,40 @@ header.is-pinned {
     padding:30px;
     height: 0.5em;
     width: 0.5em;
-    border: 1px solid #efede3;
+    border: 1px solid var(--couleurTexte);
     border-radius: 100%;
     background-color: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    color: #efede3;
+    color: var(--couleurTexte);
     transition: all 0.3s ease;
 }
 
 .boutonArrow:hover{
     transform: scale(1.15);
-    background-color: #f1f1f1;
+    background-color: var(--couleurTexte);
 }
 
 .boutonDirec .boiteDirec{
-    height: 100%;
-    width: 100%;
-    margin: 35px;
+    grid-area: quisuisje;
     display: flex;
     justify-content: start;
     gap:10px;
+    width: 100%;
+    font-size: 1.2em;
 }
 
 .boutonDirec .boiteDirec2{
-    height: 100%;
-    width: 100%;
-    margin: 35px;
+    grid-area: contact;
     display: flex;
     justify-content: end;
     gap:10px;
+    width: 100%;
+    font-size: 1.2em;
 }
 
-.st{
-    font-size: 3.2em;
-}
 
 .cursor {
     /* Le curseur doit être aligné avec le texte */
@@ -471,18 +524,18 @@ header.is-pinned {
     }
     50% {
         /* Utilisez la même couleur que le texte tapé */
-        color: #efede3;
+        color: var(--couleurTexte);
     }
 }
 
 .cursor{
     font-weight: bold;
-    font-size: 100px;
+    font-size: clamp(3rem, 5vw, 10rem);
 }
 
 .boutonDirec{
-    display: flex;
-    justify-content: space-around;
+    grid-area: boutonDirec;
+    display: grid;
 }
 
 
@@ -494,7 +547,7 @@ header.is-pinned {
 
 #body-profil{
     height: 100vh;
-    border-bottom: 2px solid #656565;
+    border-bottom: 2px solid var(--couleurBordure);
     padding:150px 400px 100px 400px;
 
 }
@@ -504,7 +557,7 @@ header.is-pinned {
     height: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 300px 200px 100px;
+    grid-template-rows: auto auto auto;
     gap:3em;
     grid-template-areas:
     "profile profile bio bio bio"
@@ -512,7 +565,7 @@ header.is-pinned {
     "Boutoncontact Boutoncontact Boutoncontact Boutoncontact Boutoncontact";
 }
 
-.corpProfil div{
+.profile,.bio,.actu{
     background-color: transparent;
     height: 100%;
     width: 100%;
@@ -522,20 +575,18 @@ header.is-pinned {
 
 .profile{
     grid-area: profile;
-    content: url("../img/person-circle.svg");
-    border: 1px solid #efede3;
-
 }
 
 .bio{
     grid-area: bio;
     padding: 40px;
-    border: 1px solid #efede3;
+    border: 1px solid var(--couleurTexte);
 }
 
 .bio p{
     padding-top: 20px;
     padding-bottom: 40px;
+    font-size: 1em;
 }
 
 .bio h2,.actu h2{
@@ -553,7 +604,7 @@ header.is-pinned {
 .actu{
     grid-area: actu;
     padding: 40px;
-    border: 1px solid #efede3;
+    border: 1px solid var(--couleurTexte);
 }
 
 .actu p{
@@ -564,7 +615,6 @@ header.is-pinned {
 
 #body-contact{
     height: 100vh;
-    border-bottom: 2px solid #656565;
     padding:200px 400px 100px 400px;
 }
 
@@ -578,6 +628,7 @@ header.is-pinned {
     grid-template-areas:
     "contactMoi"
     "monContact";
+    text-align: center;
 }
 
 
@@ -596,18 +647,28 @@ header.is-pinned {
     "input4 check envoyer";
 }
 
-.input1,.input2,.input3,.input4,.input5,.input6{
-    justify-content: left;
-}
 
 #nomContact,#prenomContact,#emailContact,#telContact,#objetContact,#messageContact{
-    background: #292929;
-    border: 1px solid #373737;
-    border-radius: 5px;
-    color: #efede3;
+    background: transparent;
+    border:none;
+    border-bottom: 2px solid var(--couleurBordure);
+    color: var(--couleurTexte);
     height: 2em;
     padding: 0.5em;
     justify-content: start;
+    transition: all 0.3s ease;
+}
+
+
+#nomContact:hover,#prenomContact:hover,#emailContact:hover,#telContact:hover,#objetContact:hover,#messageContact:hover{
+    border:none;
+    border-bottom: 2px solid #b8b8b8;
+}
+
+#nomContact:focus,#prenomContact:focus,#emailContact:focus,#telContact:focus,#objetContact:focus,#messageContact:focus{
+    outline: none;
+    box-shadow: none;
+    border-bottom: 2px solid var(--couleurSecondaire);
 }
 
 #messageContact::-webkit-scrollbar-track {
@@ -618,8 +679,15 @@ header.is-pinned {
     border-radius: 4px;
 }
 
+.boiteTitre{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 80px;
+}
+
 .titreForme{
     grid-area: titreForme;
+    font-size: 3em;
 }
 
 .input1{
@@ -663,24 +731,88 @@ header.is-pinned {
     padding:30px;
     height: 0.1em;
     width: 100%;
-    border: 1px solid #efede3;
+    border: 1px solid var(--couleurTexte);
     border-radius: 45px;
     background-color: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    color: #efede3;
+    color: var(--couleurTexte);
     transition: all 0.3s ease;
 }
 
-
-.monContact{
-    grid-area: monContact;
-    width: 100%;
-    height: 100%;
+.boutonEnvoyer:hover{
+    transform: scale(1.05);
+    background-color: var(--couleurTexte);
+    color: var(--couleurPrincipale);
 }
 
-p{
-    color: #aaaaaa;
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    max-width: 600px;
+}
+
+
+
+
+
+.profile-card {
+    background: #2a2a2a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.profile-image-container {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.profile-image {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    border: 2px solid var(--couleurSecondaire);
+    object-fit: cover;
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.2);
+}
+
+
+.profile-name {
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.profile-title {
+    color: var(--couleurSecondaire);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.profile-stats {
+    border-top: 1px solid #333;
+    padding-top: 20px;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 0.85rem;
+}
+
+.stat-label {
+    color: #888;
+}
+
+.stat-value {
+    color: var(--couleurSecondaire);
+    font-weight: 500;
 }

@@ -5,8 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7b35f7e-a0e7-4de5-a2f3-21974461f02d" name="Changes" comment="depot site portfolio2">
+      <change afterPath="$PROJECT_DIR$/public/img/photoMoi.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/teste.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/page/accueil.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/page/accueil.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/script/accueil.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/script/accueil.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/style/styleAccueil.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/styleAccueil.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/authRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/authRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/menuRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/menuRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site-api/config/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/site-api/config/database.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site-api/controllers/authControllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/site-api/controllers/authControllers.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +66,7 @@
     &quot;JavaScript Debug.accueilAdmin.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.terminal.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.teste.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.testeJeu.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.testgrid.html.executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
@@ -64,7 +74,9 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/noahq/PycharmProjects/Site Portfolio/public/img&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -72,6 +84,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2025.2.5\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -90,11 +103,11 @@
       <recent name="C:\Users\noahq\PycharmProjects\Site Portfolio\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\PC\WebstormProjects\Site portfolio\public\img" />
       <recent name="C:\Users\noahq\PycharmProjects\Site Portfolio\public\page" />
       <recent name="C:\Users\noahq\PycharmProjects\Site Portfolio\public\img" />
       <recent name="C:\Users\noahq\PycharmProjects\Site Portfolio\public\script" />
       <recent name="C:\Users\noahq\PycharmProjects\Site Portfolio\public\style" />
-      <recent name="C:\Users\noahq\PycharmProjects\Site Portfolio\scriptTable" />
     </key>
   </component>
   <component name="RunManager" selected="Node.js.server.js">
@@ -103,13 +116,13 @@
       <script-mode>FILE</script-mode>
       <method v="2" />
     </configuration>
-    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Site Portfolio/public/index.html" useBuiltInWebServerPort="true">
+    <configuration name="accueil.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Site portfolio/public/page/accueil.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="jeu.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Site Portfolio/public/page/jeu.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="terminal.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Site Portfolio/public/terminal.html" useBuiltInWebServerPort="true">
+    <configuration name="teste.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Site Portfolio/public/teste.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="testgrid.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Site Portfolio/testgrid.html" useBuiltInWebServerPort="true">
@@ -121,10 +134,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Node.js.server.js" />
+        <item itemvalue="JavaScript Debug.teste.html" />
+        <item itemvalue="JavaScript Debug.accueil.html" />
         <item itemvalue="JavaScript Debug.jeu.html" />
         <item itemvalue="JavaScript Debug.testgrid.html" />
-        <item itemvalue="JavaScript Debug.index.html" />
-        <item itemvalue="JavaScript Debug.terminal.html" />
       </list>
     </recent_temporary>
   </component>
@@ -186,7 +199,16 @@
       <workItem from="1766146479420" duration="33397000" />
       <workItem from="1766243915315" duration="541000" />
       <workItem from="1766324153703" duration="5255000" />
-      <workItem from="1766330134478" duration="3448000" />
+      <workItem from="1766330134478" duration="3707000" />
+      <workItem from="1766416904654" duration="4743000" />
+      <workItem from="1766506446911" duration="1621000" />
+      <workItem from="1766599621289" duration="1102000" />
+      <workItem from="1766600755483" duration="4694000" />
+      <workItem from="1766670823226" duration="558000" />
+      <workItem from="1766672432060" duration="1000" />
+      <workItem from="1767551306821" duration="365000" />
+      <workItem from="1767558264557" duration="6250000" />
+      <workItem from="1767713957516" duration="10385000" />
     </task>
     <task id="LOCAL-00001" summary="depot site portfolio">
       <option name="closed" value="true" />
@@ -276,7 +298,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766333341290</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="depot site portfolio2">
+      <option name="closed" value="true" />
+      <created>1766333882712</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1766333882712</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

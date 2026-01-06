@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=JetBrains Mono:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="cercle"></div>
     <header>
         <div class="contenuHeader">
             <div class="head-barre">
@@ -37,6 +38,17 @@
                     </ul>
                 </nav>
             </div>
+            <div class="connexionBoite">
+                <nav class="sliding-nav-container">
+                    <ul class="nav-pills-custom">
+                        <li class="nav-item">
+                            <button class="nav-link" data-name="home" onclick="toggleDivBorders()">
+                                DEBUG
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
             <div>
                 <div class="connexionBoite">
                     <nav class="sliding-nav-container">
@@ -56,9 +68,11 @@
     </header>
     <main id="accueil">
 
-        </main>
+    </main>
     <footer>
-        <p>< &copy; 2025 Portfolio de Noah <span onclick="toggleDivBorders()">Quaghebeur</span> | Développeur Web . Tous droits réservés. | <a href="#" style="color: #b3b3b3;">Mentions légales</a> | <a href="#" style="color: #b3b3b3;">Politique de confidentialité</a> ></p>
+        <div class="textFooter">
+            <p>< &copy; 2025 Portfolio de Noah <span onclick="toggleDivBorders()">Quaghebeur</span> | Développeur Web . Tous droits réservés. | <a href="#" style="color: #b3b3b3;">Plan du site</a> | <a href="#" style="color: #b3b3b3;">Mentions légales</a> | <a href="#" style="color: #b3b3b3;">Politique de confidentialité</a> ></p>
+        </div>
     </footer>
     <script src="../script/accueil.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
