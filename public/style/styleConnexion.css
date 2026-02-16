@@ -1,3 +1,10 @@
+:root {
+    --couleurPrincipale: #111111;
+    --couleurTexte: #efede3;
+    --couleurSecondaire: #5dd62c;
+    --couleurBordure: #656565;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -5,10 +12,15 @@
 }
 
 body {
-    height: 100vh;
-    background: #111111;
+    background: #0a0a0a;
     font-family: 'JetBrains Mono', 'Consolas', monospace;
-    color: #ffffff;
+    color: var(--couleurTexte);
+    background-image:
+            linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 100px 100px;
+    background-attachment: fixed;
+    height: 100vh;
     text-shadow: 0 4px 30px rgba(255, 255, 255, 0.45);
     display: flex;
     justify-content: center;
@@ -16,7 +28,7 @@ body {
 }
 
 .ConnexionDiv{
-    background-color: transparent;
+    background-color: #191919;
     border: 1px solid #b3b3b3;
     border-radius: 15px;
     width: 450px;
@@ -51,8 +63,8 @@ label {
     background: transparent;
     width: 100%;
     padding: 12px;
-    border:1px solid #b3b3b3;
-    border-radius: 5px;
+    border: none;
+    border-bottom:3px solid var(--couleurBordure);
     font-size: 16px;
     transition-duration: 0.3s;
     transition-timing-function: ease;
@@ -60,12 +72,22 @@ label {
 #username:focus,
 #password:focus {
     outline: none;
-    box-shadow: 0 4px 30px rgba(255,255,255,0.2);
+    border-bottom:3px solid var(--couleurTexte);
 }
 #username:hover,
 #password:hover{
-    scale:1.02;
+    border-bottom:3px solid var(--couleurTexte);
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #191919 inset;
+    box-shadow: 0 0 0px 1000px #191919 inset;
+
+    -webkit-text-fill-color: var(--couleurTexte) !important;
+}
+
 
 .bouton{
     display: flex;

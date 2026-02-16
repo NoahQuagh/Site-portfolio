@@ -370,7 +370,7 @@ function accueil() {
                     </div>
                 </div>
                 <div class="bio">
-                    <h2><span class="success">A propos de moi </span></h2>
+                    <h2><span class="success">A PROPOS DE MOI_</span></h2>
                     <p>iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfsyshviyshivhs
                     iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfsyshviyshivhs
                     iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfsyshviyshivhs
@@ -378,14 +378,8 @@ function accueil() {
                     iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfsyshviyshivhs
                     iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfsyshviyshivhs</p>
                 </div>
-                <div class="Boutoncontact">
-                    <h2 class="st">.../ </h2>
-                    <button class="boutonTitre"><i>Contactez moi</i></button>
-                    <button class="boutonArrow" onclick="scrollToSection('body-contact')"><img src="../img/arrow-down.svg"></button>
-                    <h2 class="st"> \\...</h2>
-                </div>
                 <div class="actu">
-                    <h2>Actuellement :</h2>
+                    <h2><span class="success">ACTUELLEMENT_</span></h2>
                     <p>Étudiant en première années de BUT informatique à l'Université Caen Normandie</p>
                 </div>
             </div>
@@ -450,10 +444,60 @@ function accueil() {
 
 function parcours() {
     const content = `
-        <div class="body-accueil-2">
-            <h2>Mon parcours</h2>
-            <p>Contenu du profil...</p>
-        </div>
+        <section id="parcours">
+            <div class="BoiteTitre">
+                <h1>Mon Parcours</h1>
+            </div>
+            <div class="container">
+                <div class="timeline" id="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2023-2024</span>
+                            <h3 class="timeline-title">Lycée - Première</h3>
+                            <p class="timeline-description">Première étape de mon parcours avec une formation en développement web et découverte des technologies modernes.</p>
+                        </div>
+                    </div>
+            
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2024-2025</span>
+                            <h3 class="timeline-title">Lycée - Terminale</h3>
+                            <p class="timeline-description">Réalisation de mon premier projet professionnel complet, application web avec React et Node.js.</p>
+                        </div>
+                    </div>
+            
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2025-2026</span>
+                            <h3 class="timeline-title">BUT Informatique - 1<sup>ère</sup> année</h3>
+                            <p class="timeline-description">Obtention de certifications en développement full-stack et spécialisation en JavaScript avancé.</p>
+                        </div>
+                    </div>
+            
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2026-2027</span>
+                            <h3 class="timeline-title">BUT Informatique - 2<sup>ème</sup> année</h3>
+                            <p class="timeline-description">Obtention de certifications en développement full-stack et spécialisation en JavaScript avancé.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2027-2028</span>
+                            <h3 class="timeline-title">BUT Informatique - 3<sup>ème</sup> année</h3>
+                            <p class="timeline-description">Obtention de certifications en développement full-stack et spécialisation en JavaScript avancé.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="selection"></div>
+        </section>
     `;
 
     changeContent('accueil', content);
@@ -563,3 +607,29 @@ function scrollToSection(sectionId) {
     }
 }
 
+//GESTION TIMELINE
+
+const timelineItems = document.querySelectorAll('.timeline-item');
+
+const observerOptions = {
+    threshold: 0.2,
+    rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        }
+    });
+}, observerOptions);
+
+timelineItems.forEach(item => {
+    observer.observe(item);
+});
+
+document.querySelectorAll('.timeline-content').forEach(content => {
+    content.addEventListener('click', function() {
+        this.style.background = this.style.background === 'rgb(246, 246, 246)' ? 'white' : '#f6f6f6';
+    });
+});

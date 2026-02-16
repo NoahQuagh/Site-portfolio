@@ -4,18 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7b35f7e-a0e7-4de5-a2f3-21974461f02d" name="Changes" comment="depot site portfolio2">
-      <change afterPath="$PROJECT_DIR$/public/img/photoMoi.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/teste.html" afterDir="false" />
+    <list default="true" id="d7b35f7e-a0e7-4de5-a2f3-21974461f02d" name="Changes" comment="depot site portfolio 1.2.0 modif responsive">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Site Portfolio.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Site Portfolio.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code type message" beforeDir="false" afterPath="$PROJECT_DIR$/code type message" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/semver.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/semver.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/page/accueil.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/page/accueil.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/page/accueilAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/page/accueilAdmin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/page/connexion.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/page/connexion.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/page/jeu.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/page/jeu.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/script/accueil.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/script/accueil.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/script/connexion.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/script/connexion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/style/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/style/styleAccueil.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/styleAccueil.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/style/styleConnexion.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/styleConnexion.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/teste.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/teste.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/authRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/authRoutes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/menuRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/menuRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scriptTable/site_nq_db_portfolio_menu_admin.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scriptTable/site_nq_db_portfolio_menu_admin.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scriptTable/site_nq_db_users.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scriptTable/site_nq_db_users.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shema flux authentification" beforeDir="false" afterPath="$PROJECT_DIR$/shema flux authentification" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site-api/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/site-api/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/site-api/config/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/site-api/config/database.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site-api/controllers/MenuController.js" beforeDir="false" afterPath="$PROJECT_DIR$/site-api/controllers/MenuController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/site-api/controllers/authControllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/site-api/controllers/authControllers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site-api/middleware/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/site-api/middleware/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site-api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/site-api/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,42 +82,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;JavaScript Debug.accueil.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.accueilAdmin.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.terminal.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.teste.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.testeJeu.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.testgrid.html.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Node.js.server.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/noahq/PycharmProjects/Site Portfolio/public/img&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2025.2.5\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JavaScript Debug.accueil.html.executor": "Run",
+    "JavaScript Debug.accueilAdmin.html.executor": "Run",
+    "JavaScript Debug.index.html.executor": "Run",
+    "JavaScript Debug.terminal.html.executor": "Run",
+    "JavaScript Debug.teste.html.executor": "Run",
+    "JavaScript Debug.testeJeu.html.executor": "Run",
+    "JavaScript Debug.testgrid.html.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Node.js.accueil.js.executor": "Run",
+    "Node.js.server.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "C:/Users/noahq/PycharmProjects/Site Portfolio/public/img",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2025.2.5\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/Change SQL Dialect&quot;: [
-      &quot;GenericSQL&quot;,
-      &quot;Oracle&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.LRUPopupBuilder$1/Change SQL Dialect": [
+      "GenericSQL",
+      "Oracle"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\noahq\PycharmProjects\Site Portfolio\public\img" />
@@ -119,13 +143,13 @@
     <configuration name="accueil.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Site portfolio/public/page/accueil.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="jeu.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Site Portfolio/public/page/jeu.html" useBuiltInWebServerPort="true">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Site Portfolio/public/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="teste.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Site Portfolio/public/teste.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="testgrid.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Site Portfolio/testgrid.html" useBuiltInWebServerPort="true">
+    <configuration name="accueil.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/public/script/accueil.js" working-dir="$PROJECT_DIR$/public/script">
       <method v="2" />
     </configuration>
     <configuration name="server.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/server.js" working-dir="$PROJECT_DIR$">
@@ -134,10 +158,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Node.js.server.js" />
-        <item itemvalue="JavaScript Debug.teste.html" />
+        <item itemvalue="Node.js.accueil.js" />
+        <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="JavaScript Debug.accueil.html" />
-        <item itemvalue="JavaScript Debug.jeu.html" />
-        <item itemvalue="JavaScript Debug.testgrid.html" />
+        <item itemvalue="JavaScript Debug.teste.html" />
       </list>
     </recent_temporary>
   </component>
@@ -208,7 +232,13 @@
       <workItem from="1766672432060" duration="1000" />
       <workItem from="1767551306821" duration="365000" />
       <workItem from="1767558264557" duration="6250000" />
-      <workItem from="1767713957516" duration="10385000" />
+      <workItem from="1767713957516" duration="11978000" />
+      <workItem from="1767792185245" duration="630000" />
+      <workItem from="1767970532578" duration="664000" />
+      <workItem from="1767997715796" duration="1064000" />
+      <workItem from="1770759534468" duration="619000" />
+      <workItem from="1771275022995" duration="198000" />
+      <workItem from="1771275226184" duration="2828000" />
     </task>
     <task id="LOCAL-00001" summary="depot site portfolio">
       <option name="closed" value="true" />
@@ -306,7 +336,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766333882712</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="depot site portfolio 1.2.0 modif responsive">
+      <option name="closed" value="true" />
+      <created>1767724497142</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1767724497142</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -326,6 +364,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="depot site portfolio" />
     <MESSAGE value="depot site portfolio2" />
-    <option name="LAST_COMMIT_MESSAGE" value="depot site portfolio2" />
+    <MESSAGE value="depot site portfolio 1.2.0 modif responsive" />
+    <option name="LAST_COMMIT_MESSAGE" value="depot site portfolio 1.2.0 modif responsive" />
   </component>
 </project>

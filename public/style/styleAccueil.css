@@ -4,6 +4,20 @@
 
 }
 
+:root{
+    --couleurPrincipale: #111111;
+    --couleurTexte: #efede3;
+
+    --couleurSecondaire: #4a148c;
+    --couleurSecondaireVar:#8129ee;
+
+    --couleurBordure:#656565;
+    --couleurBordureVar:#8c8b8b;
+
+    --couleurVert:#5dd62c;
+
+}
+
 header, main, footer, aside {
     width: 100%;
 }
@@ -13,7 +27,8 @@ html {
 }
 
 body {
-    background: var(--couleurPrincipale);
+    background: #000000;
+    background-image: radial-gradient(ellipse 400px 500px at left top, #8129ee -76%, transparent 141%),radial-gradient(ellipse 400px 500px at right 550px, #8129ee -76%, transparent 141%);
     font-family: 'JetBrains Mono', 'Consolas', monospace;
     color: var(--couleurTexte);
     overflow-x: hidden;
@@ -27,19 +42,9 @@ body {
     "main main"
     "footer footer";
     transition: grid-template-columns 0.3s ease;
+    /*qefuqbfnf*/
 }
 
-.cercle{
-    background-color: transparent;
-    width: clamp(10rem, 30vw, 30rem);
-    aspect-ratio: 1 / 1;
-    border: 1px solid var(--couleurTexte);
-    border-radius: 100%;
-    position: absolute;
-    top:0;
-    left: -15em;
-    overflow: hidden;
-}
 
 header {
     padding: 20px;
@@ -48,7 +53,7 @@ header {
     position: sticky;
     top:0;
     z-index: 1000;
-    background-color: var(--couleurPrincipale);
+    background-color: var(--primary-color);
     border-bottom: 1px solid transparent;
     grid-area: navbar;
 }
@@ -99,19 +104,15 @@ header.is-pinned {
 
 
 :root {
-    --primary-color: #000000;
+    --primary-color: #191919;
     --white-color: #efede3;
-
-    --couleurPrincipale: #111111;
-    --couleurTexte: #efede3;
-    --couleurSecondaire: #5dd62c;
-    --couleurBordure:#656565;
 
     --text-inactive-color: var(--white-color);
     --text-active-color: var(--primary-color);
     --nav-padding-vertical: 10px;
     --nav-padding-horizontal: 20px;
 }
+
 
 .nav-pills-custom {
     display: flex;
@@ -216,13 +217,13 @@ header.is-pinned {
 }
 
 #body-accueil {
+    margin-top: 50px;
     background-color: transparent;
     padding:
         clamp(1.5rem, 4vw, 3.75rem)
         clamp(1rem, 4vw, 3.75rem)
         clamp(3rem, 8vw, 7.5rem)
         clamp(1rem, 4vw, 3.75rem);
-    border-bottom: 2px solid var(--couleurBordure);
     display: grid;
     width: 100%;
     box-sizing: border-box;
@@ -325,7 +326,6 @@ header.is-pinned {
     border-radius: 8px;
     height: 600px;
     max-width: 800px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
 .terminal-header {
@@ -420,7 +420,7 @@ header.is-pinned {
 }
 
 .success {
-    color: var(--couleurSecondaire);
+    color: #5dd62c;
 }
 
 .error {
@@ -464,8 +464,7 @@ header.is-pinned {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50%;
-    cursor: pointer;
+    width: 100%;
     color: var(--couleurTexte);
     transition: all 0.3s ease;
 }
@@ -490,24 +489,37 @@ header.is-pinned {
     background-color: var(--couleurTexte);
 }
 
-.boutonDirec .boiteDirec{
+.boiteDirec{
     grid-area: quisuisje;
+
+}
+
+.boiteDirec2{
+    grid-area: contact;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.boiteDirec div{
     display: flex;
     justify-content: start;
     gap:10px;
-    width: 100%;
     font-size: 1.2em;
+    padding: 1em;
+    width: 50%;
 }
 
-.boutonDirec .boiteDirec2{
-    grid-area: contact;
+.boiteDirec2 div{
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     gap:10px;
-    width: 100%;
     font-size: 1.2em;
-}
+    padding: 1em;
+    width: 50%;
 
+}
 
 .cursor {
     /* Le curseur doit être aligné avec le texte */
@@ -546,30 +558,52 @@ header.is-pinned {
 
 
 #body-profil{
-    height: 100vh;
-    border-bottom: 2px solid var(--couleurBordure);
-    padding:150px 400px 100px 400px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 
 }
 
 .corpProfil{
-    width: 100%;
-    height: 100%;
+    border: 2px solid transparent;
+    border-radius: 40px;
+    margin-top: 30px;
+
+    background-image: linear-gradient(to bottom, #1B093F, #0b041e);
+
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+
+    padding: 50px 100px 50px 100px;
+    width: 65vw;
+    height: auto;
+
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: auto auto;
     gap:3em;
     grid-template-areas:
     "profile profile bio bio bio"
     "profile profile actu actu actu"
-    "Boutoncontact Boutoncontact Boutoncontact Boutoncontact Boutoncontact";
 }
 
 .profile,.bio,.actu{
-    background-color: transparent;
     height: 100%;
     width: 100%;
     border-radius: 28px;
+}
+
+.bio,.actu{
+    border: 1px solid transparent;
+    border-radius: 40px;
+
+    background-image: linear-gradient(to right bottom, #4718A5, #341278),
+    linear-gradient(to right, #7A60FE, #7A60FE);
+
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
 }
 
 
@@ -580,7 +614,6 @@ header.is-pinned {
 .bio{
     grid-area: bio;
     padding: 40px;
-    border: 1px solid var(--couleurTexte);
 }
 
 .bio p{
@@ -604,7 +637,6 @@ header.is-pinned {
 .actu{
     grid-area: actu;
     padding: 40px;
-    border: 1px solid var(--couleurTexte);
 }
 
 .actu p{
@@ -761,9 +793,16 @@ header.is-pinned {
 
 
 .profile-card {
-    background: #2a2a2a;
-    border: 1px solid #333;
-    border-radius: 8px;
+
+    border: 1px solid transparent;
+    border-radius: 40px;
+
+    background-image: linear-gradient(to right bottom, #4718A5, #341278),
+    linear-gradient(to right, #7A60FE, #7A60FE);
+
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+
     padding: 30px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
@@ -777,7 +816,7 @@ header.is-pinned {
     width: 100%;
     aspect-ratio: 1;
     border-radius: 8px;
-    border: 2px solid var(--couleurSecondaire);
+    border: 2px solid var(--couleurVert);
     object-fit: cover;
     box-shadow: 0 0 20px rgba(74, 222, 128, 0.2);
 }
@@ -791,7 +830,7 @@ header.is-pinned {
 }
 
 .profile-title {
-    color: var(--couleurSecondaire);
+    color: var(--couleurVert);
     font-size: 0.9rem;
     margin-bottom: 20px;
 }
@@ -813,6 +852,6 @@ header.is-pinned {
 }
 
 .stat-value {
-    color: var(--couleurSecondaire);
+    color: var(--couleurVert);
     font-weight: 500;
 }
