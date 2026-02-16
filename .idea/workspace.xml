@@ -4,42 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7b35f7e-a0e7-4de5-a2f3-21974461f02d" name="Changes" comment="depot site portfolio 1.2.0 modif responsive">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Site Portfolio.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Site Portfolio.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code type message" beforeDir="false" afterPath="$PROJECT_DIR$/code type message" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/semver.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/semver.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/page/accueil.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/page/accueil.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/page/accueilAdmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/page/accueilAdmin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/page/connexion.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/page/connexion.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/page/jeu.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/page/jeu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/script/accueil.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/script/accueil.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/script/connexion.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/script/connexion.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/style/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/style/styleAccueil.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/styleAccueil.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/style/styleConnexion.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/style/styleConnexion.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/teste.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/teste.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/authRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/authRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/menuRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/menuRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scriptTable/site_nq_db_portfolio_menu_admin.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scriptTable/site_nq_db_portfolio_menu_admin.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scriptTable/site_nq_db_users.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scriptTable/site_nq_db_users.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shema flux authentification" beforeDir="false" afterPath="$PROJECT_DIR$/shema flux authentification" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site-api/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/site-api/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site-api/config/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/site-api/config/database.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site-api/controllers/MenuController.js" beforeDir="false" afterPath="$PROJECT_DIR$/site-api/controllers/MenuController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site-api/controllers/authControllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/site-api/controllers/authControllers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site-api/middleware/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/site-api/middleware/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site-api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/site-api/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="d7b35f7e-a0e7-4de5-a2f3-21974461f02d" name="Changes" comment="depot site portfolio 1.2.0 modif responsive" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -238,7 +203,7 @@
       <workItem from="1767997715796" duration="1064000" />
       <workItem from="1770759534468" duration="619000" />
       <workItem from="1771275022995" duration="198000" />
-      <workItem from="1771275226184" duration="2828000" />
+      <workItem from="1771275226184" duration="3186000" />
     </task>
     <task id="LOCAL-00001" summary="depot site portfolio">
       <option name="closed" value="true" />
