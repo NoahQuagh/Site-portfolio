@@ -460,7 +460,7 @@ header.is-pinned {
     font-size: 1.2rem;
     border: 1px solid var(--couleurTexte);
     border-radius: 28px;
-    background-color: transparent;
+    background-color: var(--couleurPrincipale);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -475,7 +475,7 @@ header.is-pinned {
     width: 0.5em;
     border: 1px solid var(--couleurTexte);
     border-radius: 100%;
-    background-color: transparent;
+    background-color: var(--couleurPrincipale);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -491,7 +491,8 @@ header.is-pinned {
 
 .boiteDirec{
     grid-area: quisuisje;
-
+    width: 100%;
+    display: flex;
 }
 
 .boiteDirec2{
@@ -499,26 +500,36 @@ header.is-pinned {
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    bottom: 0;
 
 }
 
-.boiteDirec div{
+.boiteDirec{
     display: flex;
     justify-content: start;
     gap:10px;
     font-size: 1.2em;
     padding: 1em;
-    width: 50%;
+    width: 100%;
+}
+
+.boiteDirec2{
+    display: flex;
+    align-items: flex-end;
+    gap:10px;
+    font-size: 1.2em;
+    padding: 1em;
+    width: 100%;
+
 }
 
 .boiteDirec2 div{
+    height: 50%;
     display: flex;
     justify-content: flex-end;
     gap:10px;
     font-size: 1.2em;
-    padding: 1em;
-    width: 50%;
-
+    width: 100%;
 }
 
 .cursor {
@@ -577,8 +588,8 @@ header.is-pinned {
     background-clip: padding-box, border-box;
 
     padding: 50px 100px 50px 100px;
-    width: 65vw;
-    height: auto;
+    width: 75vw;
+    height: 40em;
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -592,11 +603,11 @@ header.is-pinned {
 .profile,.bio,.actu{
     height: 100%;
     width: 100%;
-    border-radius: 28px;
+    border-radius: 40px;
 }
 
 .bio,.actu{
-    border: 1px solid transparent;
+    border: 2px solid transparent;
     border-radius: 40px;
 
     background-image: linear-gradient(to right bottom, #4718A5, #341278),
@@ -609,6 +620,9 @@ header.is-pinned {
 
 .profile{
     grid-area: profile;
+    border: 2px solid #6853dc;
+    background-color: #2b0e63;
+    border-radius: 48px;
 }
 
 .bio{
@@ -643,6 +657,11 @@ header.is-pinned {
     padding-top: 20px;
     padding-bottom: 40px;
 }
+
+
+
+
+
 
 
 #body-contact{
@@ -794,8 +813,10 @@ header.is-pinned {
 
 .profile-card {
 
-    border: 1px solid transparent;
+    border: 2px solid transparent;
     border-radius: 40px;
+
+    height: 100%;
 
     background-image: linear-gradient(to right bottom, #4718A5, #341278),
     linear-gradient(to right, #7A60FE, #7A60FE);
@@ -805,7 +826,9 @@ header.is-pinned {
 
     padding: 30px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
 }
+
 
 .profile-image-container {
     position: relative;

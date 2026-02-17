@@ -109,7 +109,8 @@ function LigneSuivante(){
 }
 
 
-function validerSaisie(event) {
+function validerSaisie(event)
+{
     if (event.key === "Enter") {
         const valeur = event.target.value.toLowerCase().trim();
         const fenetre = document.getElementById('terminal-output');
@@ -193,15 +194,15 @@ function validerSaisie(event) {
 
                     fenetre.innerHTML += `
                     <div class="output-line info"><br>LISTE DES COMMANDES DISPONIBLES</div>
-                    <div class="output-line info" style="color:var(--couleurSecondaire)">   help</div>
-                    <div class="output-line info" style="color:var(--couleurSecondaire)">   cd parcours</div>
-                    <div class="output-line info" style="color:var(--couleurSecondaire)">   cd projets</div>
-                    <div class="output-line info" style="color:var(--couleurSecondaire)">   cd competences</div>
-                    <div class="output-line info" style="color:var(--couleurSecondaire)">   cd expériences</div>
-                    <div class="output-line info" style="color:var(--couleurSecondaire)">   cd connexion</div>
-                    <div class="output-line info" style="color:var(--couleurSecondaire)">   ./bio</div>
-                    <div class="output-line info" style="color:var(--couleurSecondaire)">   ./moi</div>
-                    <div class="output-line info" style="color:var(--couleurSecondaire)">   ./jeu</div>
+                    <div class="output-line info" style="color:#5dd62c">   help</div>
+                    <div class="output-line info" style="color:#5dd62c">   cd parcours</div>
+                    <div class="output-line info" style="color:#5dd62c">   cd projets</div>
+                    <div class="output-line info" style="color:#5dd62c">   cd competences</div>
+                    <div class="output-line info" style="color:#5dd62c">   cd expériences</div>
+                    <div class="output-line info" style="color:#5dd62c">   cd connexion</div>
+                    <div class="output-line info" style="color:#5dd62c">   ./bio</div>
+                    <div class="output-line info" style="color:#5dd62c">   ./moi</div>
+                    <div class="output-line info" style="color:#5dd62c">   ./jeu</div>
                     `;
 
                     LigneSuivante();
@@ -325,14 +326,17 @@ function accueil() {
                     <span class="cursor">_</span>
                 </div>
             </div>    
+            
             <div class="boutonDirec">
                 <div class="boiteDirec">
-                    <p class="boutonTitre"><i>Qui suis-je ?</i></p>
-                    <button class="boutonArrow" onclick="scrollToSection('body-profil')"><img src="../img/arrow-down.svg"></button>
+                        <p class="boutonTitre"><i>Qui suis-je ?</i></p>
+                        <button class="boutonArrow" onclick="scrollToSection('body-profil')"><img src="../img/arrow-down.svg"></button>
                 </div>
                 <div class="boiteDirec2">
-                    <p class="boutonTitre"><i>Contactez moi</i></p>
-                    <button class="boutonArrow" onclick="scrollToSection('body-contact')"><img src="../img/arrow-down.svg"><img src="../img/arrow-down.svg"></button>
+                    <div>
+                        <p class="boutonTitre"><i>Contactez moi</i></p>
+                        <button class="boutonArrow" onclick="scrollToSection('body-contact')"><img src="../img/arrow-down.svg"><img src="../img/arrow-down.svg"></button>
+                    </div>
                 </div>
             </div>
         </section>    
