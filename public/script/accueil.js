@@ -380,7 +380,7 @@ function accueil() {
                     iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfsyshviyshivhs
                     iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfsyshviyshivhs
                     iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfsyshviyshivhs
-                    iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfsyshviyshivhs</p>
+                    iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfshviyshivhs</p>
                 </div>
                 <div class="actu">
                     <h2><span class="success">ACTUELLEMENT_</span></h2>

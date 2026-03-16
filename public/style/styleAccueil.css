@@ -569,6 +569,7 @@ header.is-pinned {
 
 
 #body-profil{
+    margin-top: 25vh;
     height: auto;
     display: flex;
     align-items: center;
@@ -589,7 +590,7 @@ header.is-pinned {
 
     padding: 50px 100px 50px 100px;
     width: 75vw;
-    height: 40em;
+    height: 85vh;
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -620,9 +621,9 @@ header.is-pinned {
 
 .profile{
     grid-area: profile;
-    border: 2px solid #6853dc;
-    background-color: #2b0e63;
-    border-radius: 48px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
 }
 
 .bio{
@@ -808,7 +809,11 @@ header.is-pinned {
 }
 
 
-
+.profile-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
 
 
 .profile-card {
@@ -816,6 +821,7 @@ header.is-pinned {
     border: 2px solid transparent;
     border-radius: 40px;
 
+    flex: 1;
     height: 100%;
 
     background-image: linear-gradient(to right bottom, #4718A5, #341278),

@@ -103,7 +103,7 @@
       <recent name="C:\Users\noahq\PycharmProjects\Site Portfolio\public\style" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html">
+  <component name="RunManager" selected="Node.js.server.js">
     <configuration name="database.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/site-api/database.sql" />
       <script-mode>FILE</script-mode>
@@ -126,8 +126,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="Node.js.server.js" />
+        <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="Node.js.accueil.js" />
         <item itemvalue="JavaScript Debug.accueil.html" />
         <item itemvalue="JavaScript Debug.teste.html" />
@@ -137,7 +137,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-WS-251.26094.131" />
+        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-WS-252.28238.10" />
       </set>
     </attachedChunks>
   </component>
@@ -208,8 +208,7 @@
       <workItem from="1770759534468" duration="619000" />
       <workItem from="1771275022995" duration="198000" />
       <workItem from="1771275226184" duration="3186000" />
-      <workItem from="1771321307682" duration="658000" />
-      <workItem from="1771322341464" duration="2862000" />
+      <workItem from="1772037046547" duration="2000" />
     </task>
     <task id="LOCAL-00001" summary="depot site portfolio">
       <option name="closed" value="true" />
