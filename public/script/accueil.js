@@ -1,639 +1,470 @@
 const API_MENU_URL = 'http://localhost:3000/api/v1/menus';
 
-
+/* ─────────────────────────────────────────
+   NAVIGATION — sliding indicator
+───────────────────────────────────────── */
 function navigation() {
     const navPills = document.getElementById('customNav');
     if (!navPills) return;
 
     const indicator = navPills.querySelector('.indicator');
-    const navItems = navPills.querySelectorAll('.nav-item');
     const navLinks = navPills.querySelectorAll('.nav-link');
 
-
-    const PADDING_VERTICAL = 10;
-    const PADDING_HORIZONTAL_START = 20;
-
     function updateIndicator(activeLink) {
+        if (!activeLink) activeLink = navPills.querySelector('.nav-link.active');
         if (!activeLink) {
-            activeLink = navPills.querySelector('.nav-link.active');
-        }
-
-        if (activeLink) {
-            const activeItem = activeLink.closest('.nav-item');
-            if (!activeItem) return;
-
-
-            const itemRect = activeItem.getBoundingClientRect();
-            const navRect = navPills.getBoundingClientRect();
-
-
-            const navHeight = navPills.offsetHeight;
-            const indicatorHeight = navHeight - (2 * PADDING_VERTICAL);
-
-
-            const width = activeItem.offsetWidth;
-
-
-            const leftOffset = itemRect.left - navRect.left - PADDING_HORIZONTAL_START;
-
-
-            indicator.style.width = `${width}px`;
-            indicator.style.height = `${indicatorHeight}px`;
-            indicator.style.transform = `translateX(${leftOffset}px)`;
-
-            indicator.style.opacity = '1';
-        } else {
             indicator.style.opacity = '0';
-        }
-    }
-
-    function handleNavClick(event) {
-        const clickedLink = event.currentTarget;
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-        });
-
-        clickedLink.classList.add('active');
-
-        updateIndicator(clickedLink);
-    }
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', handleNavClick);
-    });
-
-
-    setTimeout(() => {
-        updateIndicator();
-    }, 50);
-
-
-    window.addEventListener('resize', () => updateIndicator());
-}
-
-
-
-function changeContent(elementId, newContent, duration = 500) {
-        const element = document.getElementById(elementId);
-
-        if (!element) {
-            console.error(`Élément #${elementId} non trouvé`);
             return;
         }
 
+        const activeItem = activeLink.closest('.nav-item');
+        if (!activeItem) return;
 
-        element.classList.add('transitioning');
+        const itemRect = activeItem.getBoundingClientRect();
+        const navRect = navPills.getBoundingClientRect();
 
+        indicator.style.width = `${activeItem.offsetWidth}px`;
+        indicator.style.height = `${activeItem.offsetHeight - 10}px`;
+        indicator.style.transform = `translateY(-50%) translateX(${itemRect.left - navRect.left}px)`;
+        indicator.style.opacity = '1';
+    }
 
-        setTimeout(() => {
+    navLinks.forEach(link => {
+        link.addEventListener('click', function () {
+            navLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+            updateIndicator(this);
+        });
+    });
 
-            element.innerHTML = newContent;
-
-            element.classList.remove('transitioning');
-        }, duration);
+    setTimeout(() => updateIndicator(), 50);
+    window.addEventListener('resize', () => updateIndicator());
 }
 
-function LigneSuivante(){
+/* ─────────────────────────────────────────
+   TRANSITION DE CONTENU
+───────────────────────────────────────── */
+function changeContent(elementId, newContent, duration = 300) {
+    const element = document.getElementById(elementId);
+    if (!element) return;
+
+    // Phase 1 : fondu sortant
+    element.style.transition = `opacity ${duration}ms ease, transform ${duration}ms ease`;
+    element.style.opacity = '0';
+    element.style.transform = 'translateY(12px)';
+
+    setTimeout(() => {
+        // Injecter le nouveau contenu
+        element.innerHTML = newContent;
+
+        // Forcer un reflow pour que le navigateur prenne en compte opacity:0 avant d'animer
+        void element.offsetHeight;
+
+        // Phase 2 : fondu entrant
+        element.style.opacity = '1';
+        element.style.transform = 'translateY(0)';
+    }, duration);
+}
+
+/* ─────────────────────────────────────────
+   TERMINAL — ligne suivante
+───────────────────────────────────────── */
+function LigneSuivante() {
     const fenetre = document.getElementById('terminal-output');
+    if (!fenetre) return;
     fenetre.innerHTML += `
-                <div class="output-line" id="output-line"><br><span class="prompt">PS C:\\Users\\Noah&gt;</span><input type="text" id="terminal-input" autofocus autocomplete="off"></div>`;
-
+        <div class="output-line" id="output-line">
+            <br><span class="prompt">PS C:\\Users\\Noah&gt;</span>
+            <input type="text" id="terminal-input" autofocus autocomplete="off">
+        </div>`;
     fenetre.scrollTop = fenetre.scrollHeight;
-
-    const nouvelInput = document.getElementById('terminal-input');
-    if (nouvelInput) {
-        nouvelInput.addEventListener('keydown', validerSaisie);
-        nouvelInput.focus();
+    const input = document.getElementById('terminal-input');
+    if (input) {
+        input.addEventListener('keydown', validerSaisie);
+        input.focus();
     }
 }
 
+/* ─────────────────────────────────────────
+   TERMINAL — validation commande
+───────────────────────────────────────── */
+function validerSaisie(event) {
+    if (event.key !== 'Enter') return;
+    const valeur = event.target.value.toLowerCase().trim();
+    const fenetre = document.getElementById('terminal-output');
+    const ligneActuelle = document.getElementById('output-line');
+    if (!valeur) return;
 
-function validerSaisie(event)
-{
-    if (event.key === "Enter") {
-        const valeur = event.target.value.toLowerCase().trim();
-        const fenetre = document.getElementById('terminal-output');
-        const ligneActuelle = document.getElementById('output-line');
+    const cmdsNav = {
+        'cd parcours': {fn: parcours, name: 'parcours'},
+        'cd projets': {fn: projet, name: 'projet'},
+        'cd competences': {fn: comptence, name: 'competence'},
+        'cd expériences': {fn: experience, name: 'experience'},
+        'cd connexion': {fn: GoConnexion, name: null},
+    };
 
-        if (event.target.id === "terminal-input") {
-            if (valeur !== "") {
+    ligneActuelle.innerHTML = `<br><span class="prompt">PS C:\\Users\\Noah&gt; <span class="${cmdsNav[valeur] || valeur === 'help' || valeur === './bio' || valeur === './moi' || valeur === './jeu' ? 'success' : 'error'}">${valeur}</span></span>`;
+    ligneActuelle.id = '';
 
-                ligneActuelle.innerHTML = `<br><span class="prompt">PS C:\\Users\\Noah&gt; <span class="success">${valeur}</span></span>`;
-                ligneActuelle.id = "";
-
-                if (valeur === "cd parcours") {
-                    parcours();
-
-                    const navLinks = document.querySelectorAll('.nav-link');
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('data-name') === 'parcours' || link.textContent.includes('PARCOURS')) {
-                            link.classList.add('active');
-                        }
-                    });
-
-                    setTimeout(() => {
-                        navigation();
-                    }, 100);
-                    LigneSuivante();
-
-                } else if (valeur === "cd projets") {
-                    projet();
-
-                    const navLinks = document.querySelectorAll('.nav-link');
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('data-name') === 'projet' || link.textContent.includes('PROJETS')) {
-                            link.classList.add('active');
-                        }
-                    });
-
-                    setTimeout(() => {
-                        navigation();
-                    }, 100);
-
-                    LigneSuivante();
-
-                } else if (valeur === "cd competences") {
-                    comptence();
-
-                    const navLinks = document.querySelectorAll('.nav-link');
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('data-name') === 'competence' || link.textContent.includes('COMPETENCES')) {
-                            link.classList.add('active');
-                        }
-                    });
-
-                    setTimeout(() => {
-                        navigation();
-                    }, 100);
-
-                    LigneSuivante();
-
-                } else if (valeur === "cd expériences") {
-                    experience();
-
-                    const navLinks = document.querySelectorAll('.nav-link');
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('data-name') === 'experience' || link.textContent.includes('EXPÉRIENCE')) {
-                            link.classList.add('active');
-                        }
-                    });
-
-                    setTimeout(() => {
-                        navigation();
-                    }, 100);
-
-                    LigneSuivante();
-
-                } else if (valeur === "help") {
-
-
-                    fenetre.innerHTML += `
-                    <div class="output-line info"><br>LISTE DES COMMANDES DISPONIBLES</div>
-                    <div class="output-line info" style="color:#5dd62c">   help</div>
-                    <div class="output-line info" style="color:#5dd62c">   cd parcours</div>
-                    <div class="output-line info" style="color:#5dd62c">   cd projets</div>
-                    <div class="output-line info" style="color:#5dd62c">   cd competences</div>
-                    <div class="output-line info" style="color:#5dd62c">   cd expériences</div>
-                    <div class="output-line info" style="color:#5dd62c">   cd connexion</div>
-                    <div class="output-line info" style="color:#5dd62c">   ./bio</div>
-                    <div class="output-line info" style="color:#5dd62c">   ./moi</div>
-                    <div class="output-line info" style="color:#5dd62c">   ./jeu</div>
-                    `;
-
-                    LigneSuivante();
-                }else if (valeur === "cd connexion"){
-                    GoConnexion();
-                    LigneSuivante();
-
-                }else if (valeur === "./bio"){
-                    fenetre.innerHTML += `
-                    <div class="output-line info"><br>[ <span class="cyan">BIO</span> ] blablablablablablablablablablablablablablabla</div>
-                    `;
-                    LigneSuivante();
-                }else if (valeur === "./moi"){
-                    fenetre.innerHTML += `
-                        <div class="ascii-container">
-                <div class="ascii-art">
-     /$$   /$$  /$$$$$$   /$$$$$$  /$$   /$$
-    | $$$ | $$ /$$__  $$ /$$__  $$| $$  | $$
-    | $$$$| $$| $$  \\ $$| $$  \\ $$| $$  | $$
-    | $$ $$ $$| $$  | $$| $$$$$$$$| $$$$$$$$      
-    | $$  $$$$| $$  | $$| $$__  $$| $$__  $$      
-    | $$\\  $$$| $$  | $$| $$  | $$| $$  | $$      
-    | $$ \\  $$|  $$$$$$/| $$  | $$| $$  | $$      
-    |__/  \\__/ \\______/ |__/  |__/|__/  |__/       
-                                      
-                </div>
-            </div>
-        <p class="terminal-line">
-            <div class="ascii-container">
-                <div class="ascii-art">
-      /$$$$$$  /$$   /$$  /$$$$$$   /$$$$$$  /$$   /$$ /$$$$$$$$ /$$$$$$$  /$$$$$$$$ /$$   /$$ /$$$$$$$
-     /$$__  $$| $$  | $$ /$$__  $$ /$$__  $$| $$  | $$| $$_____/| $$__  $$| $$_____/| $$  | $$| $$__  $$
-    | $$  \\ $$| $$  | $$| $$  \\ $$| $$  \\__/| $$  | $$| $$      | $$  \\ $$| $$      | $$  | $$| $$  \\ $$
-    | $$  | $$| $$  | $$| $$$$$$$$| $$ /$$$$| $$$$$$$$| $$$$$   | $$$$$$$ | $$$$$   | $$  | $$| $$$$$$$/
-    | $$  | $$| $$  | $$| $$__  $$| $$|_  $$| $$__  $$| $$__/   | $$__  $$| $$__/   | $$  | $$| $$__  $$
-    | $$/$$ $$| $$  | $$| $$  | $$| $$  \\ $$| $$  | $$| $$      | $$  \\ $$| $$      | $$  | $$| $$  \\ $$
-    |  $$$$$$/|  $$$$$$/| $$  | $$|  $$$$$$/| $$  | $$| $$$$$$$$| $$$$$$$/| $$$$$$$$|  $$$$$$/| $$  | $$
-    \\____ $$$ \\______/ |__/  |__/ \\______/ |__/  |__/|________/|_______/ |________/ \\______/ |__/  |__/
-         \\__/
-                </div>
-            </div>
-        </p>
-                    `;
-                    LigneSuivante();
-                }else if (valeur === "./jeu"){
-                    fenetre.innerHTML += `
-                    <div class="output-line info"><br>[ <span class="cyan">INFO</span> ] Chargement du jeu ...</div>
-                    `;
-                    window.location.href = '../page/jeu.html';
-                    fenetre.innerHTML += `
-                    <div class="output-line info">[ <span class="cyan">INFO</span> ] Jeu lancé</div>
-                    `;
-                    LigneSuivante();
-                }else{
-
-                    ligneActuelle.innerHTML = `<br><span class="prompt">PS C:\\Users\\Noah&gt; <span class="error">${valeur}</span></span>`;
-                    ligneActuelle.id = "";
-
-                    fenetre.innerHTML += `
-                    <div class="output-line info">[ <span class="error">ERREUR</span> ] Le terme « <span class="error">${valeur}</span> » n'est pas reconnu comme nom de commande.</div>
-                    <div class="output-line info">[ <span class="warning">ATTENTION</span> ]  Vérifiez l'orthographe du nom et réessayez.</div>
-                    `;
-
-                    LigneSuivante();
-
-                }
-            }
+    if (cmdsNav[valeur]) {
+        cmdsNav[valeur].fn();
+        if (cmdsNav[valeur].name) {
+            document.querySelectorAll('.nav-link').forEach(l => {
+                l.classList.remove('active');
+                if (l.getAttribute('data-name') === cmdsNav[valeur].name) l.classList.add('active');
+            });
+            setTimeout(() => navigation(), 100);
         }
+        LigneSuivante();
+
+    } else if (valeur === 'help') {
+        fenetre.innerHTML += `
+            <div class="output-line info"><br>COMMANDES DISPONIBLES</div>
+            ${['help', 'cd parcours', 'cd projets', 'cd competences', 'cd expériences', 'cd connexion', './bio', './moi', './jeu']
+            .map(c => `<div class="output-line" style="color:#5dd62c">   ${c}</div>`).join('')}`;
+        LigneSuivante();
+
+    } else if (valeur === './bio') {
+        fenetre.innerHTML += `
+            <div class="output-line info"><br>[ <span class="cyan">BIO</span> ] Étudiant en BUT Informatique, passionné de développement web.</div>`;
+        LigneSuivante();
+
+    } else if (valeur === './moi') {
+        fenetre.innerHTML += asciiNoah();
+        LigneSuivante();
+
+    } else if (valeur === './jeu') {
+        fenetre.innerHTML += `
+            <div class="output-line info"><br>[ <span class="cyan">INFO</span> ] Chargement du jeu ...</div>`;
+        window.location.href = '../page/jeu.html';
+        LigneSuivante();
+
+    } else {
+        ligneActuelle.innerHTML = `<br><span class="prompt">PS C:\\Users\\Noah&gt; <span class="error">${valeur}</span></span>`;
+        ligneActuelle.id = '';
+        fenetre.innerHTML += `
+            <div class="output-line info">[ <span class="error">ERREUR</span> ] « <span class="error">${valeur}</span> » n'est pas reconnu.</div>
+            <div class="output-line info">[ <span class="warning">AIDE</span> ] Tapez <span class="success">help</span> pour la liste des commandes.</div>`;
+        LigneSuivante();
     }
 }
 
+function asciiNoah() {
+    return `
+        <div class="ascii-container">
+            <div class="ascii-art">
+ /$$   /$$  /$$$$$$   /$$$$$$  /$$   /$$
+| $$$ | $$ /$$__  $$ /$$__  $$| $$  | $$
+| $$$$| $$| $$  \\ $$| $$  \\ $$| $$  | $$
+| $$ $$ $$| $$  | $$| $$$$$$$$| $$$$$$$$
+| $$  $$$$| $$  | $$| $$__  $$| $$__  $$
+| $$\\  $$$| $$  | $$| $$  | $$| $$  | $$
+| $$ \\  $$|  $$$$$$/| $$  | $$| $$  | $$
+|__/  \\__/ \\______/ |__/  |__/|__/  |__/
+            </div>
+        </div>
+        <div class="ascii-container">
+            <div class="ascii-art">
+ /$$$$$$  /$$   /$$  /$$$$$$   /$$$$$$  /$$   /$$ /$$$$$$$$ /$$$$$$$  /$$$$$$$$ /$$   /$$ /$$$$$$$
+/$$__  $$| $$  | $$ /$$__  $$ /$$__  $$| $$  | $$| $$_____/| $$__  $$| $$_____/| $$  | $$| $$__  $$
+| $$  \\ $$| $$  | $$| $$  \\ $$| $$  \\__/| $$  | $$| $$      | $$  \\ $$| $$      | $$  | $$| $$  \\ $$
+| $$  | $$| $$  | $$| $$$$$$$$| $$ /$$$$| $$$$$$$$| $$$$$   | $$$$$$$ | $$$$$   | $$  | $$| $$$$$$$/
+| $$  | $$| $$  | $$| $$__  $$| $$|_  $$| $$__  $$| $$__/   | $$__  $$| $$__/   | $$  | $$| $$__  $$
+| $$/$$ $$| $$  | $$| $$  | $$| $$  \\ $$| $$  | $$| $$      | $$  \\ $$| $$      | $$  | $$| $$  \\ $$
+|  $$$$$$/|  $$$$$$/| $$  | $$|  $$$$$$/| $$  | $$| $$$$$$$$| $$$$$$$/| $$$$$$$$|  $$$$$$/| $$  | $$
+\\____ $$$ \\______/ |__/  |__/ \\______/ |__/  |__/|________/|_______/ |________/ \\______/ |__/  |__/
+     \\__/
+            </div>
+        </div>`;
+}
+
+/* ─────────────────────────────────────────
+   PAGE — ACCUEIL
+───────────────────────────────────────── */
 function accueil() {
     const content = `
-        <section class="body-accueil" id="body-accueil">
-            <div class="terminal">
-    <div class="terminal-header">
-    <img src="../img/terminal.svg" class="terminal-icon">
-    <span class="terminal-title">Terminal</span>
-    <span class="terminal-close" onclick="closeTerminal()">✕</span>
-    </div>
-    <div class="terminal-body" id="terminal-output">
-    <div class="output-line info">PS C:\\Users\\Noah&gt; <span class="success">./moi</span></div>
-            <div class="ascii-container">
-                <div class="ascii-art">
-     /$$   /$$  /$$$$$$   /$$$$$$  /$$   /$$
-    | $$$ | $$ /$$__  $$ /$$__  $$| $$  | $$
-    | $$$$| $$| $$  \\ $$| $$  \\ $$| $$  | $$
-    | $$ $$ $$| $$  | $$| $$$$$$$$| $$$$$$$$      
-    | $$  $$$$| $$  | $$| $$__  $$| $$__  $$      
-    | $$\\  $$$| $$  | $$| $$  | $$| $$  | $$      
-    | $$ \\  $$|  $$$$$$/| $$  | $$| $$  | $$      
-    |__/  \\__/ \\______/ |__/  |__/|__/  |__/       
-                                      
-                </div>
+        <!-- HERO -->
+        <section id="NomAccueil">
+            <div class="hero-accueil">
+                <div class="hero-kicker">Portfolio — Noah Quaghebeur</div>
+                <h1 class="hero-name">Noah<br><em>Quaghebeur</em></h1>
             </div>
-        <p class="terminal-line">
-            <div class="ascii-container">
-                <div class="ascii-art">
-      /$$$$$$  /$$   /$$  /$$$$$$   /$$$$$$  /$$   /$$ /$$$$$$$$ /$$$$$$$  /$$$$$$$$ /$$   /$$ /$$$$$$$
-     /$$__  $$| $$  | $$ /$$__  $$ /$$__  $$| $$  | $$| $$_____/| $$__  $$| $$_____/| $$  | $$| $$__  $$
-    | $$  \\ $$| $$  | $$| $$  \\ $$| $$  \\__/| $$  | $$| $$      | $$  \\ $$| $$      | $$  | $$| $$  \\ $$
-    | $$  | $$| $$  | $$| $$$$$$$$| $$ /$$$$| $$$$$$$$| $$$$$   | $$$$$$$ | $$$$$   | $$  | $$| $$$$$$$/
-    | $$  | $$| $$  | $$| $$__  $$| $$|_  $$| $$__  $$| $$__/   | $$__  $$| $$__/   | $$  | $$| $$__  $$
-    | $$/$$ $$| $$  | $$| $$  | $$| $$  \\ $$| $$  | $$| $$      | $$  \\ $$| $$      | $$  | $$| $$  \\ $$
-    |  $$$$$$/|  $$$$$$/| $$  | $$|  $$$$$$/| $$  | $$| $$$$$$$$| $$$$$$$/| $$$$$$$$|  $$$$$$/| $$  | $$
-    \\____ $$$ \\______/ |__/  |__/ \\______/ |__/  |__/|________/|_______/ |________/ \\______/ |__/  |__/
-         \\__/
-                </div>
-            </div>
-        </p>
-            <div class="output-line" style="margin-top: 15px;">[ <span style="color:darkcyan">INFO</span> ] Tapez <span class="success">help</span> pour voir les commandes disponibles.</div>
-            <div class="output-line" id="output-line"><br><span class="prompt">PS C:\\Users\\Noah&gt;</span><input type="text" id="terminal-input" autofocus autocomplete="off"></div>
-        </div>
-    </div>
-            <div class="Titre">   
-                 <div class="titre1" >
-                    <h1>Développeur</h1>
-                 </div>
-                 <div class="titre2" >
-                    <h1>Web</h1>
-                    <span class="cursor">_</span>
-                </div>
-            </div>    
-            
-            <div class="boutonDirec">
-                <div class="boiteDirec">
-                        <p class="boutonTitre"><i>Qui suis-je ?</i></p>
-                        <button class="boutonArrow" onclick="scrollToSection('body-profil')"><img src="../img/arrow-down.svg"></button>
-                </div>
-                <div class="boiteDirec2">
-                    <div>
-                        <p class="boutonTitre"><i>Contactez moi</i></p>
-                        <button class="boutonArrow" onclick="scrollToSection('body-contact')"><img src="../img/arrow-down.svg"><img src="../img/arrow-down.svg"></button>
+    
+            <!-- TERMINAL -->
+            <div class="terminal-wrap">
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <img src="../img/terminal.svg" class="terminal-icon">
+                        <span class="terminal-title">Terminal — PS C:\\Users\\Noah</span>
+                        <span class="terminal-close" onclick="closeTerminal()">✕</span>
                     </div>
-                </div>
-            </div>
-        </section>    
-        <section id="body-profil">
-            <div class="corpProfil">
-                <div class="profile">
-                    <div class="profile-column">
-                        <div class="profile-card">
-                            <div class="profile-image-container">
-                                <img src="../img/photoMoi.png" alt="Noah Quaghebeur" class="profile-image">
-                            </div>
-
-                            <h2 class="profile-name">NOAH QUAGHEBEUR</h2>
-                            <p class="profile-title">Développeur Web</p>
-
-                            <div class="profile-stats">
-                                <div class="stat-item">
-                                    <span class="stat-label">Localisation</span>
-                                    <span class="stat-value">6 rue Anton Tchekhov, Ifs</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">E-mail</span>
-                                    <span class="stat-value">noah.quaghebeur@laposte.net</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">Téléphone</span>
-                                    <span class="stat-value">07 67 86 47 57</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">Status</span>
-                                    <span class="stat-value">Etudiant</span>
-                                </div>
-                            </div>
+                    <div class="terminal-body" id="terminal-output">
+                        <div class="output-line info">PS C:\\Users\\Noah&gt; <span class="success">./moi</span></div>
+                        ${asciiNoah()}
+                        <div class="output-line" style="margin-top:12px;">
+                            [ <span style="color:darkcyan">INFO</span>] Tapez <span class="success">help</span> pour voir les commandes disponibles.
+                        </div>
+                        <div class="output-line" id="output-line">
+                            <br><span class="prompt">PS C:\\Users\\Noah&gt;</span>
+                            <input type="text" id="terminal-input" autofocus autocomplete="off">
                         </div>
                     </div>
                 </div>
-                <div class="bio">
-                    <h2><span class="success">A PROPOS DE MOI_</span></h2>
-                    <p>iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfsyshviyshivhs
-                    iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfsyshviyshivhs
-                    iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfsyshviyshivhs
-                    iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfsyshviyshivhs
-                    iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfsyshviyshivhs
-                    iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfshviyshivhs</p>
-                </div>
-                <div class="actu">
-                    <h2><span class="success">ACTUELLEMENT_</span></h2>
-                    <p>Étudiant en première années de BUT informatique à l'Université Caen Normandie</p>
-                </div>
             </div>
         </section>
-        <section id="body-contact">
-            <div id="corpContact">
-                <div class="boiteTitre"><h2 class="titreForme">.../ Contactez-moi \\...</h2></div>
-                <form class="contactMoi">
-                    <div class="input1">
-                        <label><b>Nom *</b></label>
-                        <br>
+
+        <!-- PROFIL -->
+        <div class="section-wrap">
+            <div class="chapter" id="body-profil">
+                <div class="chapter-header">
+                    <h2 class="chapter-title">Qui suis-je ?</h2>
+                </div>
+                <div class="profil-grid">
+                    <div class="profile-card">
+                        <div class="profile-image-container">
+                            <img src="../img/photoMoi.png" alt="Noah Quaghebeur" class="profile-image">
+                        </div>
+                        <div class="profile-name">NOAH QUAGHEBEUR</div>
+                        <div class="profile-title-badge">Étudiant</div>
+                        <div class="profile-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Localisation</span>
+                                <span class="stat-value">6 rue Anton Tchekhov, Ifs</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">E-mail</span>
+                                <span class="stat-value">noah.quaghebeur@laposte.net</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Téléphone</span>
+                                <span class="stat-value">07 67 86 47 57</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Statut</span>
+                                <span class="stat-value">Étudiant en BUT Informatique</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profil-right">
+                        <div class="bio-block">
+                            <div class="block-label">Biographie</div>
+                            <div class="block-title">À PROPOS DE MOI_</div>
+                            <p>iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfsyshviyshivhs
+                            iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfsyshviyshivhs
+                            iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfsyshviyshivhs
+                            iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfshviyshivhs</p>
+                        </div>
+                        <div class="actu-block">
+                            <div class="block-label">Actuellement</div>
+                            <div class="block-title">ACTUELLEMENT_</div>
+                            <p>Étudiant en première année de BUT Informatique à l'Université Caen Normandie.</p>
+                        </div>
+                        <div class="nav-arrows">
+                            <button class="arrow-btn" onclick="scrollToSection('body-contact')">
+                                Contactez-moi ↓
+                            </button>
+                            <button class="arrow-btn" onclick="parcours()">
+                                <img src="../img/arrow-down.svg"> Mon parcours
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTACT -->
+            <div class="chapter" id="body-contact" style="border-bottom:none; padding-bottom:4rem;">
+                <div class="chapter-header">
+                    <h2 class="chapter-title">Contactez-moi</h2>
+                </div>
+                <form class="contact-grid" onsubmit="return false;">
+                    <div class="form-field">
+                        <label>Nom *</label>
                         <input type="text" id="nomContact" required>
                     </div>
-                    <div class="input2">
-                        <label><b>Prénom</b></label>
-                        <br>
+                    <div class="form-field">
+                        <label>Prénom</label>
                         <input type="text" id="prenomContact">
                     </div>
-                    <div class="input3">
-                        <label><b>E-Mail *</b></label>
-                        <br>
+                    <div class="form-field">
+                        <label>E-Mail *</label>
                         <input type="email" id="emailContact" required>
-                    </div>    
-                    <div class="input4">   
-                        <label><b>Téléphone</b></label>
-                        <br>
+                    </div>
+                    <div class="form-field">
+                        <label>Téléphone</label>
                         <input type="tel" id="telContact">
-                    </div> 
-                    <div class="input5">
-                        <label><b>Objet *</b></label>
-                        <br>
+                    </div>
+                    <div class="form-field field-full">
+                        <label>Objet *</label>
                         <input type="text" id="objetContact" required>
-                    </div>    
-                    <div class="input6"> 
-                        <label><b>Message *</b></label>
-                        <br>
-                        <textarea id="messageContact" content="Votre message" required></textarea>
-                    </div>     
+                    </div>
+                    <div class="form-field field-full">
+                        <label>Message *</label>
+                        <textarea id="messageContact" required></textarea>
+                    </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="checkDefault" required>
-                        <label class="form-check-label" for="checkDefault" style="font-size: 10px">
-                            En soumettant ce formulaire, j'accepte que mes données personnelles soient utilisées pour me recontacter. Aucun autre traitement ne sera effectué avec mes informations. Pour connaître et exercer vos droits, veuillez consultez la Politique de confidentialité.
-                        </label>
-                    </div>    
-                    <div class="envoyer">
-                        <button class="boutonEnvoyer" type="submit">Envoyez</button>
-                    </div>                
+                        <input type="checkbox" id="checkDefault" required>
+                        <label for="checkDefault">En soumettant ce formulaire, j'accepte que mes données personnelles soient utilisées pour me recontacter. Aucun autre traitement ne sera effectué avec mes informations.</label>
+                    </div>
+                    <div style="grid-column:1/-1;">
+                        <button class="btn-submit" type="submit">Envoyer →</button>
+                    </div>
                 </form>
             </div>
-        </section>
+        </div>
     `;
+
+    changeContent('accueil', content);
+
     setTimeout(() => {
         const input = document.getElementById('terminal-input');
         if (input) {
             input.addEventListener('keydown', validerSaisie);
             input.focus();
         }
-    }, 600);
-
-    changeContent('accueil', content);
+    }, 350);
 }
 
+/* ─────────────────────────────────────────
+   PAGE — PARCOURS
+───────────────────────────────────────── */
 function parcours() {
+    const etapes = [
+        {
+            date: '2023 – 2024',
+            titre: 'Lycée — Première',
+            desc: 'Première étape de mon parcours avec une formation en développement web et découverte des technologies modernes.'
+        },
+        {
+            date: '2024 – 2025',
+            titre: 'Lycée — Terminale',
+            desc: 'Réalisation de mon premier projet professionnel complet, application web avec React et Node.js.'
+        },
+        {
+            date: '2025 – 2026',
+            titre: 'BUT Informatique — 1ère année',
+            desc: 'Étudiant à l\'IUT de Caen, spécialité développement web. Découverte de l\'architecture réseau, des bases de données et du développement applicatif.'
+        },
+        {
+            date: '2026 – 2027',
+            titre: 'BUT Informatique — 2ème année',
+            desc: 'Approfondissement full-stack et premières expériences en entreprise.'
+        },
+        {
+            date: '2027 – 2028',
+            titre: 'BUT Informatique — 3ème année',
+            desc: 'Stage longue durée et spécialisation en développement web avancé.'
+        },
+    ];
+
+    const items = etapes.map((e, i) => `
+        <div class="timeline-item" style="transition-delay:${i * 80}ms;">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <span class="timeline-date">${e.date}</span>
+                <h3 class="timeline-title">${e.titre}</h3>
+                <p class="timeline-description">${e.desc}</p>
+            </div>
+        </div>`).join('');
+
     const content = `
-        <section id="parcours">
-            <div class="BoiteTitre">
-                <h1>Mon Parcours</h1>
-            </div>
-            <div class="container">
-                <div class="timeline" id="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-date">2023-2024</span>
-                            <h3 class="timeline-title">Lycée - Première</h3>
-                            <p class="timeline-description">Première étape de mon parcours avec une formation en développement web et découverte des technologies modernes.</p>
-                        </div>
-                    </div>
-            
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-date">2024-2025</span>
-                            <h3 class="timeline-title">Lycée - Terminale</h3>
-                            <p class="timeline-description">Réalisation de mon premier projet professionnel complet, application web avec React et Node.js.</p>
-                        </div>
-                    </div>
-            
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-date">2025-2026</span>
-                            <h3 class="timeline-title">BUT Informatique - 1<sup>ère</sup> année</h3>
-                            <p class="timeline-description">Obtention de certifications en développement full-stack et spécialisation en JavaScript avancé.</p>
-                        </div>
-                    </div>
-            
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-date">2026-2027</span>
-                            <h3 class="timeline-title">BUT Informatique - 2<sup>ème</sup> année</h3>
-                            <p class="timeline-description">Obtention de certifications en développement full-stack et spécialisation en JavaScript avancé.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-date">2027-2028</span>
-                            <h3 class="timeline-title">BUT Informatique - 3<sup>ème</sup> année</h3>
-                            <p class="timeline-description">Obtention de certifications en développement full-stack et spécialisation en JavaScript avancé.</p>
-                        </div>
-                    </div>
+        <div class="section-wrap">
+            <div class="chapter" style="border-bottom:none; padding-bottom:4rem;">
+                <div class="chapter-header">
+                    <span class="chapter-num">parcours</span>
+                    <h2 class="chapter-title">Mon Parcours</h2>
                 </div>
+                <div class="timeline" id="timeline">${items}</div>
             </div>
-            <div class="selection"></div>
-        </section>
-    `;
+        </div>`;
 
     changeContent('accueil', content);
+
+    setTimeout(() => {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add('show');
+            });
+        }, {threshold: 0.15});
+        document.querySelectorAll('.timeline-item').forEach(el => observer.observe(el));
+    }, 300);
+}
+
+/* ─────────────────────────────────────────
+   PAGES PLACEHOLDER
+───────────────────────────────────────── */
+function _placeholderPage(num, label, title) {
+    changeContent('accueil', `
+        <div class="section-wrap">
+            <div class="chapter" style="border-bottom:none; padding-bottom:4rem;">
+                <div class="chapter-header">
+                    <span class="chapter-num">${num}</span>
+                    <h2 class="chapter-title">${title}</h2>
+                </div>
+                <div class="placeholder-block">
+                    <div class="ph-label">En construction</div>
+                    <h2>${label}_</h2>
+                </div>
+            </div>
+        </div>`);
 }
 
 function projet() {
-    const content = `
-        <div class="body-accueil-2">
-            <h2>Mes projets</h2>
-            <p>Contenu du profil...</p>
-        </div>
-    `;
-
-    changeContent('accueil', content);
+    _placeholderPage('projets', 'Mes Projets', 'Mes Projets');
 }
 
 function comptence() {
-    const content = `
-        <div class="body-accueil-2">
-            <h2>Mes competence</h2>
-            <p>Contenu du profil...</p>
-        </div>
-    `;
-
-    changeContent('accueil', content);
+    _placeholderPage('compétences', 'Mes Compétences', 'Mes Compétences');
 }
 
 function experience() {
-    const content = `
-        <div class="body-accueil-2">
-            <h2>Mon experience</h2>
-            <p>Contenu du profil...</p>
-        </div>
-    `;
-
-    changeContent('accueil', content);
+    _placeholderPage('expériences', 'Mes Expériences', 'Mes Expériences');
 }
 
-
-
+/* ─────────────────────────────────────────
+   UTILITAIRES
+───────────────────────────────────────── */
 function GoConnexion() {
     window.location.href = '../page/connexion.html';
 }
 
+function closeTerminal() {
+    const t = document.querySelector('.terminal');
+    if (t) t.style.display = 'none';
+}
+
+function scrollToSection(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({behavior: 'smooth', block: 'start'});
+}
+
 function activeDiv() {
-    const toutesLesDivs = document.querySelectorAll('*');
-
-    toutesLesDivs.forEach(div => {
-
-        div.style.border = '1px solid red';
-        div.style.boxSizing = 'border-box';
+    document.querySelectorAll('*').forEach(el => {
+        el.style.border = '1px solid red';
+        el.style.boxSizing = 'border-box';
     });
 }
 
 function desactiveDiv() {
-    const toutesLesDivs = document.querySelectorAll('*');
-
-    toutesLesDivs.forEach(div => {
-        div.style.border = '';
-    });
+    document.querySelectorAll('*').forEach(el => el.style.border = '');
 }
 
 function toggleDivBorders() {
-    const premiereDiv = document.querySelector('*');
-
-    const estActive = premiereDiv && premiereDiv.style.border.includes('red');
-
-    if (estActive) {
-        desactiveDiv();
-    } else {
-        activeDiv();
-    }
+    const first = document.querySelector('*');
+    (first && first.style.border.includes('red')) ? desactiveDiv() : activeDiv();
 }
 
-document.addEventListener('DOMContentLoaded',  () => {
+/* ─────────────────────────────────────────
+   INIT
+───────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
     navigation();
     accueil();
-});
 
-
-document.addEventListener('DOMContentLoaded', () => {
-    const header = document.querySelector('header');
-
-
+    // header sticky shadow
     const sentinel = document.createElement('div');
-    sentinel.style.position = 'absolute';
-    sentinel.style.top = '0';
-    header.parentNode.insertBefore(sentinel, header);
-
-    const observer = new IntersectionObserver((entries) => {
-
-        header.classList.toggle('is-pinned', !entries[0].isIntersecting);
-
-    }, {
-        threshold: [0]
-    });
-    observer.observe(sentinel);
-});
-
-function scrollToSection(sectionId) {
-    const element = document.getElementById(sectionId);
-    if (element) {
-        element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
-    }
-}
-
-//GESTION TIMELINE
-
-const timelineItems = document.querySelectorAll('.timeline-item');
-
-const observerOptions = {
-    threshold: 0.2,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-        }
-    });
-}, observerOptions);
-
-timelineItems.forEach(item => {
-    observer.observe(item);
-});
-
-document.querySelectorAll('.timeline-content').forEach(content => {
-    content.addEventListener('click', function() {
-        this.style.background = this.style.background === 'rgb(246, 246, 246)' ? 'white' : '#f6f6f6';
-    });
+    sentinel.style.cssText = 'position:absolute;top:0;height:1px;width:100%;';
+    document.body.prepend(sentinel);
+    new IntersectionObserver(entries => {
+        document.querySelector('header').classList.toggle('is-pinned', !entries[0].isIntersecting);
+    }).observe(sentinel);
 });
