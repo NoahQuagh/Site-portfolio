@@ -202,7 +202,7 @@ header {
 .doc-layout {
     width: 100%;
     margin: 0 auto;
-    padding: 3rem 2.5rem;
+    padding: 3rem 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -216,9 +216,12 @@ header {
     gap: 3rem
 }
 
+.doc-layout-presen {}
+
 .doc-layoutCommande {
+    width: 100%;
     display: grid;
-    grid-template-columns: 220px 1fr;
+    grid-template-columns: 350px 1fr;
     align-items: start;
     gap: 3rem;
 }
@@ -283,7 +286,7 @@ header {
     flex-direction: column;
     gap: 0;
     transition: opacity 2s ease, transform 2s ease;
-    width: clamp(220px, 80vw, 900px);
+    width: 100%;
 }
 
 /* ─── SECTION ─── */
@@ -378,7 +381,8 @@ header {
 
 .cmd-group-label {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 15px;
+    font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--ink3);
@@ -448,6 +452,20 @@ header {
     border: 1px solid rgba(88, 101, 242, 0.3);
 }
 
+.badge-capitaine {
+    background: rgba(255, 160, 0, 0.1);
+    color: #e6900a;
+    border: 1px solid rgba(255, 160, 0, 0.3);
+}
+
+.badge-adjoint {
+    background: rgba(0, 180, 120, 0.1);
+    color: #00a870;
+    border: 1px solid rgba(0, 180, 120, 0.3);
+}
+
+
+
 .cmd-toggle {
     font-family: var(--font-mono);
     font-size: 12px;
@@ -493,6 +511,13 @@ header {
     font-size: 13px;
     color: var(--ink2);
     display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.cmd-args li div {
+    display: flex;
+    justify-content: space-between;
     gap: 8px;
 }
 
@@ -530,6 +555,26 @@ header {
 
 .cmd-example span {
     color: var(--accent2);
+}
+
+.sidebar-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 14px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--ink2);
+    transition: color 0.15s;
+}
+.sidebar-group:hover { color: var(--ink); }
+.sidebar-arrow {
+    font-size: 10px;
+    transition: transform 0.2s ease;
+}
+.sidebar-submenu {
+    list-style: none;
+    padding-left: 8px;
 }
 
 /* ─── CHANGELOG ─── */
