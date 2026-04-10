@@ -20,6 +20,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    text-decoration: none;
 }
 
 html {
@@ -66,8 +67,15 @@ header {
     background: var(--ink);
     color: var(--bg);
     padding: 3px 10px;
-    border-radius: 3px;
+    border-radius: 5px;
     letter-spacing: 0.06em;
+    border: 1px solid var(--bg);
+}
+
+.brand-badge:hover {
+    background: var(--bg);
+    color: var(--ink);
+    border: 1px solid var(--ink);
 }
 
 .brand-sep {
@@ -192,14 +200,29 @@ header {
 
 /* ─── LAYOUT ─── */
 .doc-layout {
-    max-width: 1080px;
+    width: 100%;
     margin: 0 auto;
     padding: 3rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem
+}
+
+.doc-layout-presen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem
+}
+
+.doc-layoutCommande {
     display: grid;
     grid-template-columns: 220px 1fr;
-    gap: 3rem;
     align-items: start;
+    gap: 3rem;
 }
+
 
 /* ─── SIDEBAR ─── */
 .doc-sidebar {
@@ -259,11 +282,12 @@ header {
     display: flex;
     flex-direction: column;
     gap: 0;
+    transition: opacity 2s ease, transform 2s ease;
+    width: clamp(220px, 80vw, 900px);
 }
 
 /* ─── SECTION ─── */
 .doc-section {
-    padding: 3rem 0;
     border-bottom: 1.5px solid var(--ink);
 }
 
@@ -610,7 +634,7 @@ footer a:hover {
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
-    .doc-layout {
+    .doc-layoutCommande {
         grid-template-columns: 1fr;
     }
 

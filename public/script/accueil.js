@@ -614,7 +614,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }).observe(sentinel);
 });
 
-/* ─────────────────────────────────────────
-   INFO BOT
-───────────────────────────────────────── */
 
