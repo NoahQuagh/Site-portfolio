@@ -9,96 +9,100 @@ const commande = [
             {
                 nom: '/premier event',
                 description: 'Créer un événement de game Premier et envoie les invitations automatiquement aux membres de l\'équipe.',
-                acces:[
+                acces: [
                     {
-                        type:'CAPITAINE'
+                        type: 'CAPITAINE'
                     },
                     {
-                        type:'ADJOINT'
+                        type: 'ADJOINT'
                     }],
                 admin: false,
                 syntaxe: '/premier event &lt;jj&gt; &lt;mm&gt; &lt;aaaa&gt; &lt;hh&gt; &lt;mm&gt;',
                 arguments: [
-                    { nomArg: 'jour',   type: 'requis',    precision: 'Jour du match (format jj)' },
-                    { nomArg: 'mois',   type: 'requis',    precision: 'Mois du match (format mm)' },
-                    { nomArg: 'année',  type: 'requis',    precision: 'Année du match (format aaaa)' },
-                    { nomArg: 'heure',  type: 'requis',    precision: 'Heure du match (format hh)' },
-                    { nomArg: 'minute', type: 'requis',    precision: 'Minute du match (format mm)' },
+                    {nomArg: 'jour', type: 'requis', precision: 'Jour du match (format jj)'},
+                    {nomArg: 'mois', type: 'requis', precision: 'Mois du match (format mm)'},
+                    {nomArg: 'année', type: 'requis', precision: 'Année du match (format aaaa)'},
+                    {nomArg: 'heure', type: 'requis', precision: 'Heure du match (format hh)'},
+                    {nomArg: 'minute', type: 'requis', precision: 'Minute du match (format mm)'},
                 ],
                 action: 'Envoie une invitation en message privé sur Discord à tous les membres de votre équipe, avec des boutons Participer / Refuser. Un rappel est automatiquement créé après validation de la participation. Ce rappel est envoyé 30 min avant le match.'
             },
             {
                 nom: '/premier créerTeam',
                 description: 'Créer sa team Premier et en devenir capitaine',
-                acces:[
+                acces: [
                     {
-                        type:'PUBLIC'
+                        type: 'PUBLIC'
                     }],
                 admin: false,
                 syntaxe: '/premier créerTeam nom:&lt;nomEquipe&gt;',
                 arguments: [
-                    { nomArg: 'nom', type: 'requis', precision: 'Nom unique de l\'équipe Premier' },
+                    {nomArg: 'nom', type: 'requis', precision: 'Nom unique de l\'équipe Premier'},
                 ],
                 action: 'Vous devenez automatiquement capitaine. Un seul joueur peut être capitaine. Le nom d\'équipe doit être unique.'
             },
             {
                 nom: '/premier inviteJoueur',
                 description: 'Inviter jusqu\'à 6 joueurs dans sa team',
-                acces:[
+                acces: [
                     {
-                        type:'CAPITAINE'
+                        type: 'CAPITAINE'
                     }],
                 admin: false,
                 syntaxe: '/premier inviteJoueur joueur1:@user [joueur2..6]',
                 arguments: [
-                    { nomArg: 'joueur_1',   type: 'requis',    precision: 'Premier joueur à inviter (mention)' },
-                    { nomArg: 'joueur_2–6', type: 'optionnel', precision: 'Joueurs supplémentaires (jusqu\'à 6 au total)' },
+                    {nomArg: 'joueur_1', type: 'requis', precision: 'Premier joueur à inviter (mention)'},
+                    {
+                        nomArg: 'joueur_2–6',
+                        type: 'optionnel',
+                        precision: 'Joueurs supplémentaires (jusqu\'à 6 au total)'
+                    },
                 ],
                 action: 'Chaque joueur reçoit une invitation en DM. Réservé au capitaine. Maximum 7 joueurs par équipe.'
             },
             {
                 nom: '/premier supTeam',
                 description: 'Dissoudre son équipe Premier',
-                acces:[
+                acces: [
                     {
-                        type:'CAPITAINE'
+                        type: 'CAPITAINE'
                     }],
                 admin: false,
                 syntaxe: '/premier supTeam',
                 arguments: [
-                    { nomArg: 'aucune option', type: 'sans option', precision: 'Commande sans paramètres' },
+                    {nomArg: 'aucune option', type: 'sans option', precision: 'Commande sans paramètres'},
                 ],
                 action: 'Supprime définitivement l\'équipe. Le nom et les joueurs sont libérés. Réservé au capitaine.'
             },
             {
                 nom: '/premier supJoueur',
                 description: 'Exclure un joueur de l\'équipe',
-                acces:[
+                acces: [
                     {
-                        type:'CAPITAINE'
+                        type: 'CAPITAINE'
                     }],
                 admin: false,
                 syntaxe: '/premier supJoueur joueur:@user',
                 arguments: [
-                    { nomArg: 'joueur', type: 'requis', precision: 'Joueur à exclure (mention)' },
+                    {nomArg: 'joueur', type: 'requis', precision: 'Joueur à exclure (mention)'},
                 ],
                 action: 'Réservé au capitaine. Le joueur est retiré de l\'équipe immédiatement.'
             },
             {
                 nom: '/premier cancelEvent',
                 description: 'Annuler un événement de game planifié',
-                acces:[
+                acces: [
                     {
-                        type:'CAPITAINE'
+                        type: 'CAPITAINE'
                     },
                     {
-                        type:'ADJOINT'
+                        type: 'ADJOINT'
                     }],
                 admin: false,
                 syntaxe: '/premier cancelEvent jour:&lt;jj&gt; mois:&lt;mm&gt; année:&lt;aaaa&gt; heure:&lt;hh&gt; minute:&lt;mm&gt;',
                 arguments: [
-                    { nomArg: 'jour/mois/année', type: 'requis', precision: 'Date de l\'événement à annuler' },
-                    { nomArg: 'heure/minute',    type: 'requis', precision: 'Heure de l\'événement à annuler' },
+                    {nomArg: 'jour/mois/année', type: 'requis', precision: 'Date de l\'événement à annuler'},
+                    {nomArg: 'heure/minute', type: 'requis', precision: 'Heure de l\'événement à annuler'},
                 ],
                 action: 'Supprime le rappel planifié. Les joueurs ne recevront plus de notification.'
             },
@@ -111,28 +115,36 @@ const commande = [
             {
                 nom: '/valorant rank',
                 description: 'Obtenir le rang actuel d\'un joueur',
-                acces:[
+                acces: [
                     {
-                        type:'PUBLIC'
+                        type: 'PUBLIC'
                     }],
                 admin: false,
                 syntaxe: '/valorant rank pseudotag:&lt;Pseudo#Tag&gt;',
                 arguments: [
-                    { nomArg: 'pseudotag', type: 'requis', precision: 'Pseudo et tag Valorant (ex: TenZ#NA1) — autocomplétion disponible' },
+                    {
+                        nomArg: 'pseudotag',
+                        type: 'requis',
+                        precision: 'Pseudo et tag Valorant (ex: TenZ#NA1) — autocomplétion disponible'
+                    },
                 ],
                 action: 'Astuce : l\'autocomplétion propose les pseudos déjà recherchés. Tapez quelques lettres pour filtrer.'
             },
             {
                 nom: '/valorant stats',
                 description: 'Obtenir les statistiques détaillées d\'un joueur',
-                acces:[
+                acces: [
                     {
-                        type:'PUBLIC'
+                        type: 'PUBLIC'
                     }],
                 admin: false,
                 syntaxe: '/valorant stats pseudotag:&lt;Pseudo#Tag&gt;',
                 arguments: [
-                    { nomArg: 'pseudotag', type: 'requis', precision: 'Pseudo et tag Valorant (ex: Shroud#NA1) — autocomplétion disponible' },
+                    {
+                        nomArg: 'pseudotag',
+                        type: 'requis',
+                        precision: 'Pseudo et tag Valorant (ex: Shroud#NA1) — autocomplétion disponible'
+                    },
                 ],
                 action: 'A remplir'
             },
@@ -145,9 +157,9 @@ const commande = [
             {
                 nom: '/bot',
                 description: 'Affiche les informations sur le bot',
-                acces:[
+                acces: [
                     {
-                        type:'PUBLIC'
+                        type: 'PUBLIC'
                     }],
                 admin: false,
                 syntaxe: '/bot',
@@ -157,51 +169,59 @@ const commande = [
             {
                 nom: '/help',
                 description: 'Liste des commandes disponibles',
-                acces:[
+                acces: [
                     {
-                        type:'PUBLIC'
+                        type: 'PUBLIC'
                     }],
                 admin: false,
                 syntaxe: '/help [option:all]',
                 arguments: [
-                    { nomArg: 'option', type: 'optionnel', precision: '<code>all</code> pour lister toutes les commandes' },
+                    {
+                        nomArg: 'option',
+                        type: 'optionnel',
+                        precision: '<code>all</code> pour lister toutes les commandes'
+                    },
                 ],
                 action: 'a remplir'
             },
             {
                 nom: '/man',
                 description: 'Manuel détaillé d\'une commande spécifique',
-                acces:[
+                acces: [
                     {
-                        type:'PUBLIC'
+                        type: 'PUBLIC'
                     }],
                 admin: false,
                 syntaxe: '/man commande:&lt;nomCommande&gt;',
                 arguments: [
-                    { nomArg: 'commande', type: 'requis', precision: 'Nom de la commande dont vous voulez le manuel' },
+                    {nomArg: 'commande', type: 'requis', precision: 'Nom de la commande dont vous voulez le manuel'},
                 ],
                 action: 'a remplir'
             },
             {
                 nom: '/nouveauté',
                 description: 'Voir les nouveautés et mises à jour du bot',
-                acces:[
+                acces: [
                     {
-                        type:'PUBLIC'
+                        type: 'PUBLIC'
                     }],
                 admin: false,
                 syntaxe: '/nouveauté [version:&lt;x.x.x&gt;]',
                 arguments: [
-                    { nomArg: 'version', type: 'optionnel', precision: 'Version spécifique (ex: 1.0.3). Sans argument : dernière version.' },
+                    {
+                        nomArg: 'version',
+                        type: 'optionnel',
+                        precision: 'Version spécifique (ex: 1.0.3). Sans argument : dernière version.'
+                    },
                 ],
                 action: 'a remplir'
             },
             {
                 nom: '/log',
                 description: 'Récupérer le fichier de logs du bot',
-                acces:[
+                acces: [
                     {
-                        type:'ADMIN'
+                        type: 'ADMIN'
                     }],
                 admin: true,
                 syntaxe: '/log',
@@ -217,20 +237,20 @@ const commande = [
 ═══════════════════════════════════════════ */
 const presentation = [
     {
-        titre: 'Inviter le bot sur votre serveur',
-        content: 'Utilisez le lien d\'invitation OAuth2 avec les scopes <span class="inline-code">bot</span> et <span class="inline-code">applications.commands</span>. Le bot nécessite les permissions <em>Envoyer des messages</em>, <em>Lire les messages</em> et <em>Envoyer des messages en DM</em>.',
+        titre: 'Présentation Générale',
+        content: 'Ce projet consiste en l\'élaboration d\'un bot Discord polyvalent conçu pour améliorer l\'expérience des utilisateurs au sein d\'une communauté compétitive et étudiante. Le bot automatise la gestion d\'événements sportifs (mode Premier de Valorant), assure le suivi des performances des joueurs et facilite l\'accès aux emplois du temps universitaires.',
     },
     {
-        titre: 'Activer le mode développeur Discord',
-        content: 'Paramètres → Avancé → <em>Mode développeur</em>. Cela vous permettra de copier des IDs si nécessaire pour configurer certaines fonctionnalités.',
+        titre: 'Architecture Technique',
+        content: 'Le bot est développé en Java en utilisant la bibliothèque Javacord pour l\'interaction avec l\'API Discord. Il repose sur une architecture asynchrone robuste utilisant des <span class="inline-code">CompletableFuture</span> pour garantir une fluidité d\'utilisation, même lors de requêtes API intensives.',
     },
     {
-        titre: 'Utiliser les slash commands',
-        content: 'Tapez <span class="inline-code">/</span> dans n\'importe quel salon pour voir la liste des commandes disponibles. Discord propose l\'autocomplétion sur les noms et les options.',
+        titre: 'Objectifs du Projet',
+        content: '<b>Automatisation</b> : Réduire la charge mentale des capitaines d\'équipe pour l\'organisation des matchs sur Discord.<br><b>Accessibilité</b> : Centraliser les informations utiles (sportives et scolaires) sur une plateforme unique (Discord).<br><b>Réactivité</b> : Offrir un système de notification instantané pour les événements importants.'
     },
     {
-        titre: 'Créer votre équipe Premier',
-        content: 'Commencez par <span class="inline-code">/premier créerTeam nom:NomEquipe</span> pour enregistrer votre équipe dont vous serez automatiquement le capitaine. Invitez ensuite vos coéquipiers avec <span class="inline-code">/premier inviteJoueur</span>.',
+        titre: 'Commencez avec GigaBot !',
+        content: 'Commencez par <span class="inline-code">/</span> puis Discord vous proposera la liste des commandes disponibles ou à lire la rubrique <em>Commande</em>.',
     },
 ];
 
@@ -238,11 +258,11 @@ const presentation = [
    UTILITAIRES UI
 ═══════════════════════════════════════════ */
 const badgeClass = {
-    'ADMIN':     'badge-admin',
-    'SLASH':     'badge-slash',
-    'PUBLIC':    'badge-slash',
+    'ADMIN': 'badge-admin',
+    'SLASH': 'badge-slash',
+    'PUBLIC': 'badge-slash',
     'CAPITAINE': 'badge-capitaine',
-    'ADJOINT':   'badge-adjoint',
+    'ADJOINT': 'badge-adjoint',
 };
 
 function toggleCmd(card) {
@@ -262,13 +282,13 @@ function changeContent(elementId, newContent, duration = 300) {
     if (!element) return;
 
     element.style.transition = `opacity ${duration}ms ease, transform ${duration}ms ease`;
-    element.style.opacity    = '0';
-    element.style.transform  = 'translateY(12px)';
+    element.style.opacity = '0';
+    element.style.transform = 'translateY(12px)';
 
     setTimeout(() => {
         element.innerHTML = newContent;
         void element.offsetHeight;
-        element.style.opacity   = '1';
+        element.style.opacity = '1';
         element.style.transform = 'translateY(0)';
         initScrollSpy();
     }, duration);
@@ -383,43 +403,61 @@ function demarage() {
 }
 
 function commandeBot() {
-    // Génère tous les groupes depuis la constante commande[]
     const groupes = commande.map(genCmdGroup).join('');
 
-    // Génère les liens sidebar depuis commande[]
-    const sidebarLinks = commande.map(g => `
-    <li>
-        <div class="sidebar-group" onclick="toggleSidebarGroup(this)">
-            <span>/${g.ancre.split(' ')[0]}</span>
-            <span class="sidebar-arrow">▾</span>
-        </div>
-        <ul class="sidebar-submenu" style="display:none">
-            ${g.cmds.map(cmd => `
-                <li><a href="#" onclick="scrollToCmd('${cmd.nom.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '')}'); return false;" class="sub">→ ${cmd.nom}</a></li>
-            `).join('')}
-        </ul>
-    </li>`).join('');
-
     const content = `
-    <div class="doc-layoutCommande">
-        <aside class="doc-sidebar">
-            <div class="sidebar-label">// navigation</div>
-            <ul class="sidebar-nav">
-                ${sidebarLinks}
-            </ul>
-        </aside>
-        <div class="doc-content">
-            <section class="doc-section" id="commands">
-                <div class="section-header">
-                    <span class="section-num">02 —</span>
-                    <h2 class="section-title">Commandes</h2>
-                </div>
-                ${groupes}
-            </section>
-        </div>
-    </div>`;
+        <div class="doc-layoutCommande">
+            <div class="doc-content">
+                <section class="doc-section" id="commands">
+                    <div class="section-header">
+                        <span class="section-num">02 —</span>
+                        <h2 class="section-title">Commandes</h2>
+                        <div class="cmd-search-wrap">
+                            <input 
+                                type="text" 
+                                id="cmd-search" 
+                                class="cmd-search" 
+                                placeholder="Rechercher une commande..."
+                                oninput="filterCommandes(this.value)"
+                                autocomplete="off"
+                            >
+                            <span class="cmd-search-icon">⌕</span>
+                            <span class="cmd-search-count" id="cmd-search-count"></span>
+                        </div>
+                    </div>
+                    <div id="cmd-results">${groupes}</div>
+                </section>
+            </div>
+        </div>`;
 
     changeContent('doc-content', content);
+}
+
+function filterCommandes(query) {
+    const q = query.toLowerCase().trim();
+    const count = document.getElementById('cmd-search-count');
+    let total = 0;
+
+    document.querySelectorAll('.cmd-group').forEach(group => {
+        let groupVisible = false;
+
+        group.querySelectorAll('.cmd-card').forEach(card => {
+            const nom = card.querySelector('.cmd-name')?.textContent.toLowerCase() ?? '';
+            const desc = card.querySelector('.cmd-desc')?.textContent.toLowerCase() ?? '';
+            const match = q === '' || nom.includes(q) || desc.includes(q);
+
+            card.style.display = match ? '' : 'none';
+            if (match) {
+                groupVisible = true;
+                total++;
+            }
+        });
+
+        // Cacher le groupe entier si aucune de ses commandes ne correspond
+        group.style.display = groupVisible ? '' : 'none';
+    });
+
+    count.textContent = q ? `${total} résultat${total > 1 ? 's' : ''}` : '';
 }
 
 function toggleSidebarGroup(el) {
@@ -431,7 +469,7 @@ function toggleSidebarGroup(el) {
 
     if (!isOpen) {
         setTimeout(() => {
-            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            el.scrollIntoView({behavior: 'smooth', block: 'center'});
         }, 50);
     }
 }
@@ -439,10 +477,92 @@ function toggleSidebarGroup(el) {
 function scrollToCmd(id) {
     const el = document.getElementById(id);
     if (!el) return;
-    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    el.scrollIntoView({behavior: 'smooth', block: 'center'});
 }
 
+const changelog_data = [
+    {
+        version: 'v1.0.4',
+        date: '2025',
+        actuelle: true,
+        entrees: [
+            {
+                type: 'nouveaute',
+                texte: 'Nouvelle commande <span class="inline-code">/premier supJoueur</span> — exclure un joueur de l\'équipe'
+            },
+            {
+                type: 'nouveaute',
+                texte: 'Nouvelle commande <span class="inline-code">/premier cancelEvent</span> — annulation d\'un événement planifié'
+            },
+        ]
+    },
+    {
+        version: 'v1.0.3',
+        date: '2025',
+        actuelle: false,
+        entrees: [
+            {type: 'nouveaute', texte: 'Migration complète vers les Slash Commands natives Discord'},
+            {
+                type: 'nouveaute',
+                texte: 'Système d\'autocomplétion dynamique sur <span class="inline-code">/valorant rank</span> et <span class="inline-code">/valorant stats</span>'
+            },
+            {
+                type: 'nouveaute',
+                texte: 'Nouvelle commande <span class="inline-code">/premier inviteJoueur</span> — invitation simultanée jusqu\'à 6 joueurs'
+            },
+            {type: 'bug', texte: 'Correction du crash au démarrage quand le fichier de données est vide'},
+        ]
+    },
+    {
+        version: 'v1.0.2',
+        date: '2025',
+        actuelle: false,
+        entrees: [
+            {
+                type: 'nouveaute',
+                texte: 'Nouvelle commande <span class="inline-code">/premier créerTeam</span> — création d\'équipe avec capitaine automatique'
+            },
+            {
+                type: 'nouveaute',
+                texte: 'Nouvelle commande <span class="inline-code">/premier inviteJoueur</span> — invitations en DM avec boutons Accepter/Refuser'
+            },
+            {
+                type: 'nouveaute',
+                texte: 'Nouvelle commande <span class="inline-code">!premier supTeam</span> — dissolution d\'équipe par le capitaine'
+            },
+            {type: 'bug', texte: 'Correction de l\'affichage du rang Valorant pour les joueurs non classés'},
+        ]
+    },
+];
+
+const entreeIcon = {
+    'nouveaute': {icon: '✦', class: 'entry-nouveaute'},
+    'bug': {icon: '⚑', class: 'entry-bug'},
+};
+
 function changelog() {
+    const items = changelog_data.map((v, i) => {
+        const entrees = v.entrees.map(e => {
+            const cfg = entreeIcon[e.type] ?? entreeIcon['nouveaute'];
+            return `<div class="changelog-entry ${cfg.class}">
+                        <span class="entry-icon">${cfg.icon}</span>
+                        ${e.texte}
+                    </div>`;
+        }).join('');
+
+        return `
+        <div class="changelog-item">
+            <div class="changelog-header" onclick="toggleChangelog(this)">
+                <div class="changelog-version">${v.version}</div>
+                <div class="changelog-date">${v.date}</div>
+                <span class="changelog-tag ${v.actuelle ? 'tag-current' : 'tag-old'}">${v.actuelle ? 'ACTUELLE' : 'ARCHIVÉE'}</span>
+            </div>
+            <div class="changelog-body" ${i > 0 ? 'style="display:none"' : ''}>
+                ${entrees}
+            </div>
+        </div>`;
+    }).join('');
+
     const content = `
         <div class="doc-layout-presen">
             <div class="doc-content">
@@ -451,43 +571,7 @@ function changelog() {
                         <span class="section-num">03 —</span>
                         <h2 class="section-title">Changelog</h2>
                     </div>
-                    <div class="changelog">
-                        <div class="changelog-item">
-                            <div class="changelog-header" onclick="toggleChangelog(this)">
-                                <div class="changelog-version">v1.0.4</div>
-                                <div class="changelog-date">2025</div>
-                                <span class="changelog-tag tag-current">ACTUELLE</span>
-                            </div>
-                            <div class="changelog-body">
-                                <div class="changelog-entry"><span class="entry-icon">✦</span> Nouvelle commande <span class="inline-code">/premier supJoueur</span> — exclure un joueur de l'équipe</div>
-                                <div class="changelog-entry"><span class="entry-icon">✦</span> Nouvelle commande <span class="inline-code">/premier cancelEvent</span> — annulation d'un événement planifié</div>
-                            </div>
-                        </div>
-                        <div class="changelog-item">
-                            <div class="changelog-header" onclick="toggleChangelog(this)">
-                                <div class="changelog-version">v1.0.3</div>
-                                <div class="changelog-date">2025</div>
-                                <span class="changelog-tag tag-old">ARCHIVÉE</span>
-                            </div>
-                            <div class="changelog-body" style="display:none">
-                                <div class="changelog-entry"><span class="entry-icon">✦</span> Migration complète vers les Slash Commands natives Discord</div>
-                                <div class="changelog-entry"><span class="entry-icon">✦</span> Système d'autocomplétion dynamique sur <span class="inline-code">/valorant rank</span> et <span class="inline-code">/valorant stats</span></div>
-                                <div class="changelog-entry"><span class="entry-icon">✦</span> Nouvelle commande <span class="inline-code">/premier inviteJoueur</span> — invitation simultanée jusqu'à 6 joueurs</div>
-                            </div>
-                        </div>
-                        <div class="changelog-item">
-                            <div class="changelog-header" onclick="toggleChangelog(this)">
-                                <div class="changelog-version">v1.0.2</div>
-                                <div class="changelog-date">2025</div>
-                                <span class="changelog-tag tag-old">ARCHIVÉE</span>
-                            </div>
-                            <div class="changelog-body" style="display:none">
-                                <div class="changelog-entry"><span class="entry-icon">✦</span> Nouvelle commande <span class="inline-code">/premier créerTeam</span> — création d'équipe avec capitaine automatique</div>
-                                <div class="changelog-entry"><span class="entry-icon">✦</span> Nouvelle commande <span class="inline-code">/premier inviteJoueur</span> — invitations en DM avec boutons Accepter/Refuser</div>
-                                <div class="changelog-entry"><span class="entry-icon">✦</span> Nouvelle commande <span class="inline-code">!premier supTeam</span> — dissolution d'équipe par le capitaine</div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="changelog">${items}</div>
                 </section>
             </div>
         </div>`;
@@ -501,7 +585,7 @@ function changelog() {
 document.addEventListener('DOMContentLoaded', () => {
     const main = document.getElementById('doc-content');
     if (main) {
-        main.style.opacity   = '1';
+        main.style.opacity = '1';
         main.style.transform = 'translateY(0)';
     }
     demarage();
@@ -512,4 +596,11 @@ function activeDiv() {
         el.style.border = '1px solid red';
         el.style.boxSizing = 'border-box';
     });
+}
+
+function toggleMenu() {
+    const sidebar = document.getElementById('sidebar');
+    const body = document.querySelector('body');
+    body.classList.toggle('menu-open');
+    sidebar.classList.toggle('open');
 }

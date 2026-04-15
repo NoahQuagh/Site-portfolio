@@ -90,6 +90,8 @@ header.is-pinned {
 .nav-item {
     position: relative;
     z-index: 1;
+    height: 32px;
+    padding: 2px;
 }
 
 .nav-link {
@@ -700,7 +702,7 @@ main {
 /* ─── FOOTER ─── */
 footer {
     background: var(--ink);
-    color: rgba(255, 255, 255, 0.35);
+    color: var(--bg2);
     text-align: center;
     padding: 1.25rem 2rem;
     font-family: var(--font-mono);
@@ -709,7 +711,7 @@ footer {
 }
 
 footer a {
-    color: rgba(255, 255, 255, 0.45);
+    color: var(--bg2);
     text-decoration: none;
 }
 
@@ -784,7 +786,6 @@ code {
     display: grid;
     grid-template-columns: 48px 1fr;
     gap: 0 1.5rem;
-    margin-bottom: 0;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s, transform 0.5s;
@@ -802,7 +803,7 @@ code {
     margin-bottom: 16px;
     cursor: pointer;
     transition: border-color 0.15s, box-shadow 0.15s;
-    width: clamp(220px, 80vw, 900px);
+    width: clamp(220px, 100vw, 900px);
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
@@ -1017,3 +1018,238 @@ code {
     justify-content: flex-start;
     gap: 1rem;
 }
+
+/* ─── EXPÉRIENCES ─── */
+.exp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.exp-card {
+    border: 1.5px solid var(--ink);
+    background: var(--bg2);
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s, box-shadow 0.15s, border-color 0.15s;
+    overflow: hidden;
+}
+
+.exp-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.exp-card:hover {
+    box-shadow: 3px 3px 0 var(--ink);
+    border-color: var(--accent);
+}
+
+.exp-card-top {
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.exp-card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.exp-poste {
+    font-family: var(--font-head);
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.exp-entreprise {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent2);
+}
+
+.exp-toggle {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink3);
+    margin-top: 4px;
+    transition: color 0.15s;
+}
+
+.exp-card:hover .exp-toggle {
+    color: var(--ink);
+}
+
+.exp-detail {
+    display: none;
+    border-top: 1px solid var(--rule);
+    padding: 0.75rem 1.25rem;
+    font-size: 13px;
+    color: var(--ink2);
+    line-height: 1.7;
+    background: var(--bg3);
+}
+
+.exp-card.open .exp-detail {
+    display: block;
+}
+
+.exp-card.open .exp-toggle {
+    color: var(--accent);
+}
+
+.exp-card-footer {
+    border-top: 1px solid var(--rule);
+    padding: 10px 1.25rem;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.exp-tech {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 2px 8px;
+    background: var(--bg3);
+    border: 1px solid var(--rule);
+    color: var(--ink3);
+    border-radius: 2px;
+}
+
+.exp-dates {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.exp-badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.exp-badge-stage {
+    background: rgba(26, 95, 200, 0.1);
+    color: var(--accent2);
+    border: 1px solid rgba(26, 95, 200, 0.3);
+}
+
+.exp-badge-alternance {
+    background: rgba(0, 180, 120, 0.1);
+    color: #00a870;
+    border: 1px solid rgba(0, 180, 120, 0.3);
+}
+
+.exp-badge-cdi {
+    background: rgba(26, 140, 58, 0.1);
+    color: var(--accent3);
+    border: 1px solid rgba(26, 140, 58, 0.3);
+}
+
+.exp-badge-cdd {
+    background: rgba(245, 158, 11, 0.1);
+    color: #e6900a;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.exp-badge-freelance {
+    background: rgba(200, 64, 26, 0.1);
+    color: var(--accent);
+    border: 1px solid rgba(200, 64, 26, 0.3);
+}
+
+/* ─── COMPÉTENCES ─── */
+.comp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+.comp-card {
+    border: 1.5px solid var(--ink);
+    background: var(--bg2);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s, box-shadow 0.15s, border-color 0.15s;
+}
+
+.comp-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.comp-card:hover {
+    box-shadow: 3px 3px 0 var(--ink);
+    border-color: var(--accent);
+}
+
+.comp-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.9rem 1.25rem;
+    border-bottom: 1px solid var(--rule);
+    background: var(--bg3);
+}
+
+.comp-icone {
+    font-size: 16px;
+    color: var(--accent);
+    font-family: var(--font-mono);
+}
+
+.comp-categorie {
+    font-family: var(--font-head);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.comp-card-body {
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.skill-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule2);
+    transition: padding-left 0.15s;
+}
+
+.skill-item:last-child {
+    border-bottom: none;
+}
+
+.skill-item:hover {
+    padding-left: 6px;
+}
+
+.skill-logo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.skill-nom {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--ink);
+    font-weight: 500;
+}
+

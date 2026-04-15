@@ -7,27 +7,45 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
         rel="stylesheet">
   <link rel="stylesheet" href="../style/styleDocBot.css">
-</head>
-<body>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=menu"/>
+<body id="body">
 
-<!-- HEADER -->
+<aside id="sidebar">
+  <nav>
+    <ul class="header-nav">
+      <li>
+        <div class="iconmenu"><img src="../img/house.svg" alt="house" onclick="demarage()"></div>
+        <a onclick="demarage()">\Présentation</a></li>
+      <li>
+        <div class="iconmenu"><img src="../img/code-slash.svg" alt="commande" onclick="commandeBot()"></div>
+        <a onclick="commandeBot()">\Commande</a></li>
+      <li>
+        <div class="iconmenu"><img src="../img/construction.svg" alt="changelog" onclick="changelog()"></div>
+        <a onclick="changelog()">\Changelog</a></li>
+    </ul>
+  </nav>
+  <nav>
+    <ul class="header-nav">
+      <li><img src="../img/light_mode.svg" alt="mode" class="iconmenu"></li>
+    </ul>
+  </nav>
+</aside>
+
+<!-- HEADER-->
 <header>
   <div class="header-inner">
     <div class="header-brand">
-      <a href="accueil.html" class="brand-badge">← Retour</a>
-      <div class="brand-sep"></div>
-      <span class="brand-title">Noah Quaghebeur</span>
-    </div>
-    <nav>
       <ul class="header-nav">
-        <li><a onclick="activeDiv()">debug</a></li>
-        <li><a onclick="demarage()">Présentation</a></li>
-        <li><a onclick="commandeBot()">Commande</a></li>
-        <li><a onclick="changelog()">Changelog</a></li>
+        <li>
+          <img src="../img/menu.svg" alt="menu" id="menu" onclick="toggleMenu()">
+          <span class="doc-hero-title-header">Giga<em>Bot</em></span>
+        </li>
       </ul>
-    </nav>
+    </div>
   </div>
 </header>
+
 
 <!-- HERO -->
 <div class="doc-hero">
