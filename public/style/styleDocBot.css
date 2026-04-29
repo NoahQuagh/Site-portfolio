@@ -1,32 +1,3 @@
-:root {
-    --bg: #f7f5f0;
-    --bg2: #ffffff;
-    --bg3: #eeeae2;
-    --ink: #1a1510;
-    --ink2: #4a3f30;
-    --ink3: #8a7a65;
-    --accent: #c8401a;
-    --accent2: #1a5fc8;
-    --accent3: #1a8c3a;
-    --rule: rgba(26, 21, 16, 0.12);
-    --rule2: rgba(26, 21, 16, 0.06);
-    --font-head: 'Syne', sans-serif;
-    --font-body: 'DM Sans', sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
-    --discord: #5865F2;
-}
-
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     background: var(--bg);
     color: var(--ink);
@@ -36,7 +7,7 @@ body {
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    grid-template-columns: 80px 1fr;
+    grid-template-columns: 60px 1fr;
     grid-template-areas:
             "header header"
             "sidebar hero"
@@ -52,18 +23,17 @@ body.sidebar-open {
 /* ─── SIDEBAR ─── */
 
 #sidebar {
-    width: 80px;
+    width: 60px;
     z-index: 100;
     grid-area: sidebar;
     position: sticky;
     background: var(--bg2);
     border-right: 1.5px solid var(--ink);
     display: flex;
-    padding: 1rem 0 1rem 1.2rem;
+    padding: 1rem 0.6em 1rem 0.5rem;
     flex-direction: column;
     top: 71px;
     height: calc(100vh - 71px);
-    gap: 2rem;
     transition: all 0.3s cubic-bezier(.4, 0, .2, 1);
     justify-content: space-between;
 }
@@ -72,6 +42,7 @@ body.sidebar-open {
     transform: translateX(0);
     width: 300px;
     overflow-x: hidden;
+    padding: 1rem 1em 1rem 0.5rem;
 }
 
 /* ─── HEADER ─── */
@@ -88,10 +59,11 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 1.5rem;
+    padding: 0 1rem;
     height: 70px;
     gap: 1rem;
 }
+
 
 .doc-hero-title-header {
     font-family: var(--font-head);
@@ -103,7 +75,7 @@ header {
 
 .doc-hero-title-header em {
     font-style: normal;
-    color: #f0a060;
+    color: var(--title);
 }
 
 #menu {
@@ -160,14 +132,14 @@ header {
 .header-nav {
     display: flex;
     flex-direction: column;
-    gap: 4vh;
+    gap: 2vh;
     list-style: none;
     overflow: hidden;
 }
 
 .header-nav a {
     font-family: var(--font-mono);
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 800;
     letter-spacing: 0.06em;
     color: var(--ink2);
@@ -178,14 +150,14 @@ header {
     cursor: pointer;
 }
 
-.header-nav a:hover {
-    color: #f0a060;
+#header-nav li:hover{
+    background: var(--bghover);
 }
 
 .header-nav li {
     display: flex;
     align-items: center;
-    gap: 10px;
+    border-radius: 10px;
 }
 
 .iconmenu {
@@ -197,12 +169,6 @@ header {
     justify-content: center;
     transition: background-color 0.3s ease, border-radius 0.3s ease;
     border-radius: 0;
-}
-
-.iconmenu:hover {
-    background-color: rgba(43, 38, 38, 0.27);
-    border-radius: 50%; /* Devient un cercle parfait */
-    cursor: pointer;
 }
 
 .header-nav a.active {
@@ -256,7 +222,7 @@ header {
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--bghover);
     margin-bottom: 0.75rem;
 }
 
@@ -270,13 +236,13 @@ header {
 
 .doc-hero-title em {
     font-style: normal;
-    color: #f0a060;
+    color: var(--title);
 }
 
 .doc-hero-sub {
     margin-top: 1rem;
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--bghover);
     font-family: var(--font-mono);
     max-width: 480px;
 }
@@ -286,7 +252,7 @@ header {
     font-size: 12px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 6px 14px;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--bghover);
     white-space: nowrap;
     align-self: flex-start;
 }
@@ -546,27 +512,27 @@ header {
 }
 
 .badge-admin {
-    background: rgba(200, 64, 26, 0.1);
-    color: var(--accent);
-    border: 1px solid rgba(200, 64, 26, 0.3);
+    background: var(--badge-bg-red);
+    color: var(--badge-col-red);
+    border: 1px solid var(--badge-bor-red);
 }
 
 .badge-slash {
-    background: rgba(88, 101, 242, 0.1);
-    color: var(--discord);
-    border: 1px solid rgba(88, 101, 242, 0.3);
+    background: var(--badge-bg-blue);
+    color: var(--badge-col-blue);
+    border: 1px solid var(--badge-bor-blue);
 }
 
 .badge-capitaine {
-    background: rgba(255, 160, 0, 0.1);
-    color: #e6900a;
-    border: 1px solid rgba(255, 160, 0, 0.3);
+    background: var(--badge-bg-yellow);
+    color: var(--badge-col-yellow);
+    border: 1px solid var(--badge-bor-yellow);
 }
 
 .badge-adjoint {
-    background: rgba(0, 180, 120, 0.1);
-    color: #00a870;
-    border: 1px solid rgba(0, 180, 120, 0.3);
+    background: var(--badge-bg-green);
+    color: var(--badge-col-green);
+    border: 1px solid var(--badge-bor-green);
 }
 
 
@@ -595,8 +561,8 @@ header {
 .cmd-usage {
     font-family: var(--font-mono);
     font-size: 13px;
-    background: #373232;
-    color: #5dd62c;
+    background: var(--ink);
+    color: var(--code-color);
     padding: 10px 14px;
     margin-bottom: 1rem;
     display: inline-block;
@@ -749,9 +715,9 @@ header {
 }
 
 .tag-current {
-    background: rgba(26, 140, 58, 0.12);
-    color: var(--accent3);
-    border: 1px solid rgba(26, 140, 58, 0.3);
+    background: var(--badge-bg-green);
+    color: var(--badge-col-green);
+    border: 1px solid var(--badge-bor-green);
 }
 
 .tag-old {
@@ -798,7 +764,7 @@ footer a {
 }
 
 footer a:hover {
-    color: #f0a060;
+    color: var(--title);
 }
 
 /* ─── RESPONSIVE ─── */

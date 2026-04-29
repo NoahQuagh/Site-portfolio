@@ -1,0 +1,56 @@
+/* COULEUR */
+:root {
+    --bg: #f7f5f0;
+    --bg2: #ffffff;
+    --bg3: #eeeae2;
+    --ink: #1a1510;
+    --ink2: #4a3f30;
+    --ink3: #8a7a65;
+    --accent: #c8401a;
+    --accent2: #1a5fc8;
+    --accent3: #1a8c3a;
+    --rule: rgba(26, 21, 16, 0.12);
+    --rule2: rgba(26, 21, 16, 0.06);
+    --discord: #5865F2;
+    --title: #f0a060;
+    --bghover: rgba(211, 211, 211, 0.46);
+    --code-color:#5dd62c;
+}
+
+/* POLICE */
+:root{
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+}
+
+/* BADGE */
+:root{
+    /*ROUGE*/
+    --badge-bg-red:rgba(200, 64, 26, 0.1);
+    --badge-col-red:#c8401a;
+    --badge-bor-red:rgba(200, 64, 26, 0.3);
+    /*BLEU*/
+    --badge-bg-blue:rgba(88, 101, 242, 0.1);
+    --badge-col-blue:#5865F2;
+    --badge-bor-blue:rgba(88, 101, 242, 0.3);
+    /*JAUNE*/
+    --badge-bg-yellow:rgba(255, 160, 0, 0.1);
+    --badge-col-yellow:#e6900a;
+    --badge-bor-yellow:rgba(255, 160, 0, 0.3);
+    /*VERT*/
+    --badge-bg-green:rgba(0, 180, 120, 0.1);
+    --badge-col-green:#00a870;
+    --badge-bor-green:rgba(0, 180, 120, 0.3);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}

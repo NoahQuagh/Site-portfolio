@@ -1,32 +1,3 @@
-/* ─── VARIABLES  ─── */
-:root {
-    --bg: #f7f5f0;
-    --bg2: #ffffff;
-    --bg3: #eeeae2;
-    --ink: #1a1510;
-    --ink2: #4a3f30;
-    --ink3: #8a7a65;
-    --accent: #c8401a; /* rouge brique */
-    --accent2: #1a5fc8; /* bleu */
-    --accent3: #1a8c3a; /* vert */
-    --rule: rgba(26, 21, 16, 0.12);
-    --rule2: rgba(26, 21, 16, 0.06);
-    --font-head: 'Syne', sans-serif;
-    --font-body: 'DM Sans', sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
-}
-
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     background: var(--bg);
     color: var(--ink);
@@ -218,7 +189,7 @@ main {
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--bghover);
 }
 
 .hero-name {
@@ -232,7 +203,7 @@ main {
 
 .hero-name em {
     font-style: normal;
-    color: #f0a060;
+    color: var(--title);
 }
 
 
@@ -716,7 +687,7 @@ footer a {
 }
 
 footer a:hover {
-    color: #f0a060;
+    color: var(--title);
 }
 
 footer .debug-trigger {
@@ -1139,33 +1110,33 @@ code {
 }
 
 .exp-badge-stage {
-    background: rgba(26, 95, 200, 0.1);
-    color: var(--accent2);
-    border: 1px solid rgba(26, 95, 200, 0.3);
+    background: var(--badge-bg-blue);
+    color: var(--badge-col-blue);
+    border: 1px solid var(--badge-bor-blue);
 }
 
 .exp-badge-alternance {
-    background: rgba(0, 180, 120, 0.1);
-    color: #00a870;
-    border: 1px solid rgba(0, 180, 120, 0.3);
+    background: var(--badge-bg-green);
+    color: var(--badge-col-green);
+    border: 1px solid var(--badge-bor-green);
 }
 
 .exp-badge-cdi {
-    background: rgba(26, 140, 58, 0.1);
-    color: var(--accent3);
-    border: 1px solid rgba(26, 140, 58, 0.3);
+    background: var(--badge-bg-green);
+    color: var(--badge-col-green);
+    border: 1px solid var(--badge-bor-green);
 }
 
 .exp-badge-cdd {
-    background: rgba(245, 158, 11, 0.1);
-    color: #e6900a;
-    border: 1px solid rgba(245, 158, 11, 0.3);
+    background: var(--badge-bg-yellow);
+    color: var(--badge-col-yellow);
+    border: 1px solid var(--badge-bor-yellow);
 }
 
 .exp-badge-freelance {
-    background: rgba(200, 64, 26, 0.1);
-    color: var(--accent);
-    border: 1px solid rgba(200, 64, 26, 0.3);
+    background: var(--badge-bg-red);
+    color: var(--badge-col-red);
+    border: 1px solid var(--badge-bor-red);
 }
 
 /* ─── COMPÉTENCES ─── */
