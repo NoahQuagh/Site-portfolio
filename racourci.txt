@@ -1,5 +1,0 @@
-Tout plier (tous les blocs du fichier) : Ctrl + Shift + NumPad -.
-
-Tout déplier : Ctrl + Shift + NumPad +.
-
-Ctrl + Alt + L
