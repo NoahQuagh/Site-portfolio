@@ -1,5 +1,5 @@
 ┌─────────────────────────────────────────────────────────────────┐
-│                    1. LOGIN (Première connexion)                 │
+│                    1. LOGIN (Première connexion)                │
 └─────────────────────────────────────────────────────────────────┘
 
 Client envoie : { email: "admin@...", password: "Admin123!" }
@@ -14,7 +14,7 @@ Client stocke le token (localStorage)
 
 
 ┌─────────────────────────────────────────────────────────────────┐
-│           2. REQUÊTES SUIVANTES (Routes protégées)               │
+│           2. REQUÊTES SUIVANTES (Routes protégées)              │
 └─────────────────────────────────────────────────────────────────┘
 
 Client envoie requête avec :

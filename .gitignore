@@ -1,4 +1,7 @@
 **/.idea
 **/.metadata
 **/.recommenders
+/node_modules
+racourci.txt
+shema flux authentification
 .env
