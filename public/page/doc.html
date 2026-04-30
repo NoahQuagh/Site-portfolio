@@ -17,25 +17,44 @@
 <aside id="sidebar">
   <nav>
     <ul class="header-nav" id="header-nav">
-      <li>
-        <div class="iconmenu"><img src="../img/house.svg" alt="house" onclick="demarage()"></div>
-        <a onclick="demarage()">Présentation</a></li>
-      <li>
-        <div class="iconmenu"><img src="../img/code-slash.svg" alt="commande" onclick="commandeBot()"></div>
-        <a onclick="commandeBot()">Commande</a></li>
-      <li>
-        <div class="iconmenu"><img src="../img/journal-bookmark.svg" alt="changelog" onclick="changelog()"></div>
-        <a onclick="changelog()">Changelog</a></li>
+      <li onclick="demarage()">
+        <div class="iconmenu"><img src="../img/house.svg" alt="house"></div>
+        <a>Présentation</a></li>
+      <li onclick="commandeBot()">
+        <div class="iconmenu"><img src="../img/code-slash.svg" alt="commande"></div>
+        <a>Commande</a></li>
+      <li onclick="changelog()">
+        <div class="iconmenu"><img src="../img/journal-bookmark.svg" alt="changelog"></div>
+        <a>Changelog</a></li>
     </ul>
   </nav>
   <nav>
     <ul class="header-nav" id="header-nav-2">
+      <li onclick="dashbord()">
+        <div class="iconmenu"><img src="../img/columns-gap.svg" alt="house"></div>
+        <a>Tableau de bord</a></li>
+      <li onclick="report()">
+        <div class="iconmenu"><img src="../img/exclamation-triangle.svg" alt="house"></div>
+        <a>Report</a></li>
+      <li onclick="projet()">
+        <div class="iconmenu"><img src="../img/folder2.svg" alt="house"></div>
+        <a>Projets</a></li>
+      <li onclick="contributeur()">
+        <div class="iconmenu"><img src="../img/people.svg" alt="house"></div>
+        <a>Contributeur</a></li>
+    </ul>
+  </nav>
+  <nav>
+    <ul class="header-nav" id="header-nav-3">
       <li>
-        <div class="iconmenu"><img src="../img/exclamation-triangle.svg" alt="house" onclick=""></div>
-        <a onclick="">Report</a></li>
+        <div class="iconmenu"><img src="../img/gear.svg" alt="house" onclick=""></div>
+        <a onclick="">Paramètres</a></li>
       <li>
-        <div class="iconmenu"><img src="../img/folder2.svg" alt="house" onclick=""></div>
-        <a onclick="">Projets</a></li>
+        <button id="theme-toggle-btn" onclick="toggleTheme()">
+          <div class="iconmenu" id="light_mode"><img src="../img/light_mode.svg" alt="theme"></div>
+          <span class="theme-label">Light Mode</span>
+        </button>
+      </li>
     </ul>
   </nav>
 </aside>
@@ -47,7 +66,7 @@
       <ul class="header-nav">
         <li>
           <img src="../img/menu.svg" alt="menu" id="menu" onclick="toggleMenu()">
-          <span class="doc-hero-title-header">Giga<em>Bot</em></span>
+          <span class="doc-hero-title-header">Giga<em>Doc</em></span>
         </li>
       </ul>
     </div>
@@ -61,9 +80,9 @@
     <div>
       <div class="doc-hero-kicker">// documentation technique</div>
       <h1 class="doc-hero-title">Giga<em>Bot</em></h1>
-      <p class="doc-hero-sub">Bot Discord développé en Java avec Javacord.</p>
+      <p class="doc-hero-sub">Bot Discord développé en Java avec JDA.</p>
     </div>
-    <div class="version-tag">v1.0.4 — STABLE</div>
+    <div class="version-tag" style="color: var(--badge-col-green)">v1.0.6 — STABLE</div>
   </div>
 </div>
 

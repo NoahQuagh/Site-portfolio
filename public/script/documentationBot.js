@@ -1,6 +1,108 @@
 /* ═══════════════════════════════════════════
-   DONNÉES — Toutes les commandes du bot
+   THÈME — light / dark
 ═══════════════════════════════════════════ */
+const themes = {
+    light: {
+        '--bg':                 '#f7f5f0',
+        '--bg2':                '#ffffff',
+        '--bg3':                '#eeeae2',
+        '--ink':                '#1a1510',
+        '--ink2':               '#4a3f30',
+        '--ink3':               '#8a7a65',
+        '--accent':             '#c8401a',
+        '--accent2':            '#1a5fc8',
+        '--accent3':            '#1a8c3a',
+        '--rule':               'rgba(26,21,16,0.12)',
+        '--rule2':              'rgba(26,21,16,0.06)',
+        '--title':              '#f0a060',
+        '--bghover':            'rgba(211,211,211,0.46)',
+        '--code-color':         '#2d7a3a',
+        '--badge-bg-red':       'rgba(200,64,26,0.1)',
+        '--badge-col-red':      '#c8401a',
+        '--badge-bor-red':      'rgba(200,64,26,0.3)',
+        '--badge-bg-blue':      'rgba(88,101,242,0.1)',
+        '--badge-col-blue':     '#5865F2',
+        '--badge-bor-blue':     'rgba(88,101,242,0.3)',
+        '--badge-bg-yellow':    'rgba(255,160,0,0.1)',
+        '--badge-col-yellow':   '#e6900a',
+        '--badge-bor-yellow':   'rgba(255,160,0,0.3)',
+        '--badge-bg-green':     'rgba(0,180,120,0.1)',
+        '--badge-col-green':    '#00a870',
+        '--badge-bor-green':    'rgba(0,180,120,0.3)',
+    },
+    dark: {
+        '--bg':                 '#202020',
+        '--bg2':                '#0d0e14',
+        '--bg3':                '#1c1e2e',
+        '--ink':                '#ffffff',
+        '--ink2':               '#aaabaf',
+        '--ink3':               '#ececec',
+        '--accent':             '#7c6fe0',
+        '--accent2':            '#818cf8',
+        '--accent3':            '#4caf50',
+        '--rule':               'rgba(200,204,224,0.1)',
+        '--rule2':              'rgba(209,209,209,0.24)',
+        '--title':              '#f0a060',
+        '--border':             'gray',
+        '--bghover':            'rgba(255,255,255,0.4)',
+        '--code-color':         '#5dd62c',
+        '--badge-bg-red':       'rgba(232,64,64,0.15)',
+        '--badge-col-red':      '#e84040',
+        '--badge-bor-red':      'rgba(232,64,64,0.35)',
+        '--badge-bg-blue':      'rgba(88,101,242,0.15)',
+        '--badge-col-blue':     '#818cf8',
+        '--badge-bor-blue':     'rgba(88,101,242,0.35)',
+        '--badge-bg-yellow':    'rgba(212,134,10,0.15)',
+        '--badge-col-yellow':   '#d4860a',
+        '--badge-bor-yellow':   'rgba(212,134,10,0.35)',
+        '--badge-bg-green':     'rgba(76,175,80,0.15)',
+        '--badge-col-green':    '#4caf50',
+        '--badge-bor-green':    'rgba(76,175,80,0.35)',
+    }
+};
+
+// SVG soleil (light) et lune (dark)
+const themeIcons = {
+    light: `<img src="../img/light_mode.svg" alt="light" style="width:25px;height:25px;filter:invert(0)">`,
+    dark:  `<img src="../img/moon-stars.svg"  alt="dark"  style="width:25px;height:25px;filter:invert(1)">`
+};
+
+// Labels sidebar
+const themeLabels = {
+    light: 'Light Mode',
+    dark:  'Dark Mode'
+};
+
+let currentTheme = localStorage.getItem('theme') ?? 'light';
+
+function applyTheme(theme) {
+    const root = document.documentElement;
+    Object.entries(themes[theme]).forEach(([k, v]) => root.style.setProperty(k, v));
+    currentTheme = theme;
+    localStorage.setItem('theme', theme);
+    updateThemeBtn();
+
+    // Adapte les icônes de la sidebar (qui peuvent être blanches ou noires)
+    const isDark = theme === 'dark';
+    document.querySelectorAll('#sidebar .iconmenu img').forEach(img => {
+        img.style.filter = isDark ? 'invert(1)' : 'invert(0)';
+    });
+    document.getElementById('menu').style.filter = isDark ? 'invert(1)' : 'invert(0)';
+}
+
+function updateThemeBtn() {
+    const btn = document.getElementById('theme-toggle-btn');
+    if (!btn) return;
+    const icon  = btn.querySelector('#light_mode');
+    const label = btn.querySelector('.theme-label');
+    if (icon)  icon.innerHTML  = themeIcons[currentTheme];
+    if (label) label.textContent = themeLabels[currentTheme];
+}
+
+function toggleTheme() {
+    applyTheme(currentTheme === 'light' ? 'dark' : 'light');
+}
+
 const commande = [
     {
         categorie: '/premier — Mode Premier Valorant',
@@ -232,9 +334,6 @@ const commande = [
     },
 ];
 
-/* ═══════════════════════════════════════════
-   DONNÉES — Présentation
-═══════════════════════════════════════════ */
 const presentation = [
     {
         titre: 'Présentation Générale',
@@ -254,9 +353,6 @@ const presentation = [
     },
 ];
 
-/* ═══════════════════════════════════════════
-   UTILITAIRES UI
-═══════════════════════════════════════════ */
 const badgeClass = {
     'ADMIN': 'badge-admin',
     'SLASH': 'badge-slash',
@@ -264,6 +360,7 @@ const badgeClass = {
     'CAPITAINE': 'badge-capitaine',
     'ADJOINT': 'badge-adjoint',
 };
+
 
 function toggleCmd(card) {
     card.classList.toggle('open');
@@ -368,11 +465,6 @@ function genCmdGroup(groupe) {
         </div>`;
 }
 
-// Génère les liens de sidebar dynamiquement depuis commande[]
-function genSidebarLinks() {
-    return commande.map(g => `<li><a href="#${g.ancre}" class="sub">→ ${g.cmds[0].nom.split(' ')[0]}</a></li>`).join('');
-}
-
 /* ─────────────────────────────────────────
    PAGES
 ───────────────────────────────────────── */
@@ -458,26 +550,6 @@ function filterCommandes(query) {
     });
 
     count.textContent = q ? `${total} résultat${total > 1 ? 's' : ''}` : '';
-}
-
-function toggleSidebarGroup(el) {
-    const submenu = el.nextElementSibling;
-    const arrow = el.querySelector('.sidebar-arrow');
-    const isOpen = submenu.style.display !== 'none';
-    submenu.style.display = isOpen ? 'none' : 'block';
-    arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
-
-    if (!isOpen) {
-        setTimeout(() => {
-            el.scrollIntoView({behavior: 'smooth', block: 'center'});
-        }, 50);
-    }
-}
-
-function scrollToCmd(id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.scrollIntoView({behavior: 'smooth', block: 'center'});
 }
 
 const changelog_data = [
@@ -578,6 +650,309 @@ function changelog() {
 
     changeContent('doc-content', content);
 }
+
+function dashbord() {
+    const content = `
+    <div class="doc-layout-presen" style="width:100%; flex-direction:column; align-items:stretch; padding: 2rem;">
+
+        <!-- HEADER DASHBOARD -->
+        <div class="dash-header">
+            <div>
+                <span class="section-num">// dashboard</span>
+                <h2 class="section-title" style="margin-top:4px;">Vue d'ensemble</h2>
+            </div>
+            <div class="dash-status">
+                <span class="dash-dot"></span>
+                <span class="dash-status-label">En ligne</span>
+                <span class="dash-uptime">uptime : 3j 14h 22m</span>
+            </div>
+        </div>
+
+        <!-- LIGNE 1 : STATS RAPIDES -->
+        <div class="dash-grid-4">
+            <div class="dash-stat-card">
+                <div class="dash-stat-label">Serveurs</div>
+                <div class="dash-stat-val">1</div>
+                <div class="dash-stat-sub">serveur actif</div>
+            </div>
+            <div class="dash-stat-card">
+                <div class="dash-stat-label">Équipes Premier</div>
+                <div class="dash-stat-val">4</div>
+                <div class="dash-stat-sub">équipes enregistrées</div>
+            </div>
+            <div class="dash-stat-card">
+                <div class="dash-stat-label">Joueurs enregistrés</div>
+                <div class="dash-stat-val">23</div>
+                <div class="dash-stat-sub">dans une équipe</div>
+            </div>
+            <div class="dash-stat-card">
+                <div class="dash-stat-label">Commandes exécutées</div>
+                <div class="dash-stat-val">142</div>
+                <div class="dash-stat-sub">depuis le dernier restart</div>
+            </div>
+        </div>
+
+        <!-- LIGNE 2 : BOT INFO + ÉQUIPES -->
+        <div class="dash-grid-2">
+
+            <!-- Infos bot -->
+            <div class="dash-card">
+                <div class="dash-card-header">
+                    <span class="dash-card-title">Informations bot</span>
+                    <span class="dash-badge" style="background:var(--badge-bg-green);color:var(--badge-col-green);border:1px solid var(--badge-bor-green);">STABLE</span>
+                </div>
+                <div class="dash-info-list">
+                    <div class="dash-info-row">
+                        <span class="dash-info-key">Version</span>
+                        <span class="dash-info-val">v1.0.6</span>
+                    </div>
+                    <div class="dash-info-row">
+                        <span class="dash-info-key">Langage</span>
+                        <span class="dash-info-val">Java + JDA</span>
+                    </div>
+                    <div class="dash-info-row">
+                        <span class="dash-info-key">Créateur</span>
+                        <span class="dash-info-val">Noah Quaghebeur</span>
+                    </div>
+                    <div class="dash-info-row">
+                        <span class="dash-info-key">Dernier déploiement</span>
+                        <span class="dash-info-val">2025-06-01</span>
+                    </div>
+                    <div class="dash-info-row">
+                        <span class="dash-info-key">Commandes slash</span>
+                        <span class="dash-info-val">11 enregistrées</span>
+                    </div>
+                    <div class="dash-info-row">
+                        <span class="dash-info-key">Ping API Discord</span>
+                        <span class="dash-info-val" style="color:var(--badge-col-green);">42 ms</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Équipes -->
+            <div class="dash-card">
+                <div class="dash-card-header">
+                    <span class="dash-card-title">Équipes Premier</span>
+                    <span class="dash-badge" style="background:var(--badge-bg-blue);color:var(--badge-col-blue);border:1px solid var(--badge-bor-blue);">4 équipes</span>
+                </div>
+                <div class="dash-team-list">
+                    <div class="dash-team-row">
+                        <span class="dash-team-name">TeamAlpha</span>
+                        <span class="dash-team-count">7 / 7</span>
+                        <span class="dash-badge" style="background:var(--badge-bg-red);color:var(--badge-col-red);border:1px solid var(--badge-bor-red);">FULL</span>
+                    </div>
+                    <div class="dash-team-row">
+                        <span class="dash-team-name">NovaFive</span>
+                        <span class="dash-team-count">5 / 7</span>
+                        <span class="dash-badge" style="background:var(--badge-bg-green);color:var(--badge-col-green);border:1px solid var(--badge-bor-green);">OUVERTE</span>
+                    </div>
+                    <div class="dash-team-row">
+                        <span class="dash-team-name">PhantomSquad</span>
+                        <span class="dash-team-count">3 / 7</span>
+                        <span class="dash-badge" style="background:var(--badge-bg-green);color:var(--badge-col-green);border:1px solid var(--badge-bor-green);">OUVERTE</span>
+                    </div>
+                    <div class="dash-team-row">
+                        <span class="dash-team-name">IronWolves</span>
+                        <span class="dash-team-count">6 / 7</span>
+                        <span class="dash-badge" style="background:var(--badge-bg-yellow);color:var(--badge-col-yellow);border:1px solid var(--badge-bor-yellow);">PRESQUE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LIGNE 3 : EVENTS + LOGS -->
+        <div class="dash-grid-2">
+
+            <!-- Prochains events -->
+            <div class="dash-card">
+                <div class="dash-card-header">
+                    <span class="dash-card-title">Prochains événements</span>
+                </div>
+                <div class="dash-event-list">
+                    <div class="dash-event-row">
+                        <div class="dash-event-date">Sam 07 Juin — 20:00</div>
+                        <div class="dash-event-team">TeamAlpha</div>
+                        <span class="dash-badge" style="background:var(--badge-bg-yellow);color:var(--badge-col-yellow);border:1px solid var(--badge-bor-yellow);">Dans 2j</span>
+                    </div>
+                    <div class="dash-event-row">
+                        <div class="dash-event-date">Dim 08 Juin — 19:30</div>
+                        <div class="dash-event-team">NovaFive</div>
+                        <span class="dash-badge" style="background:var(--badge-bg-yellow);color:var(--badge-col-yellow);border:1px solid var(--badge-bor-yellow);">Dans 3j</span>
+                    </div>
+                    <div class="dash-event-row">
+                        <div class="dash-event-date">Mer 11 Juin — 21:00</div>
+                        <div class="dash-event-team">IronWolves</div>
+                        <span class="dash-badge" style="background:var(--badge-bg-green);color:var(--badge-col-green);border:1px solid var(--badge-bor-green);">Dans 6j</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Derniers logs -->
+            <div class="dash-card">
+                <div class="dash-card-header">
+                    <span class="dash-card-title">Derniers logs</span>
+                </div>
+                <div class="dash-log-list">
+                    <div class="dash-log-row">
+                        <span class="dash-log-time">14:32:01</span>
+                        <span class="dash-log-tag tag-ok">OK</span>
+                        <span class="dash-log-msg">NoahQ a rejoint TeamAlpha</span>
+                    </div>
+                    <div class="dash-log-row">
+                        <span class="dash-log-time">13:18:44</span>
+                        <span class="dash-log-tag tag-ok">OK</span>
+                        <span class="dash-log-msg">Événement créé pour IronWolves</span>
+                    </div>
+                    <div class="dash-log-row">
+                        <span class="dash-log-time">12:05:12</span>
+                        <span class="dash-log-tag tag-err">ERR</span>
+                        <span class="dash-log-msg">Invitation refusée par Valkyrie#2241</span>
+                    </div>
+                    <div class="dash-log-row">
+                        <span class="dash-log-time">11:50:03</span>
+                        <span class="dash-log-tag tag-ok">OK</span>
+                        <span class="dash-log-msg">PhantomSquad créée par Shadow#8821</span>
+                    </div>
+                    <div class="dash-log-row">
+                        <span class="dash-log-time">10:30:22</span>
+                        <span class="dash-log-tag tag-warn">WARN</span>
+                        <span class="dash-log-msg">bot start — reminders chargés (3)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>`;
+
+    changeContent('doc-content', content);
+}
+
+function report(){
+    const content=`<h1>vide</h1>`
+    changeContent('doc-content', content);
+}
+
+function projet(){
+    const content=`<h1>vide</h1>`
+    changeContent('doc-content', content);
+}
+
+function contributeur(){
+    const content = `
+    <div class="doc-layout-presen" style="width:100%; flex-direction:column; align-items:stretch; padding: 2rem; gap: 2rem;">
+
+        <!-- HEADER -->
+        <div class="dash-header">
+            <div>
+                <span class="section-num">// équipe</span>
+                <h2 class="section-title" style="margin-top:4px;">Contributeurs</h2>
+            </div>
+            <span class="dash-badge" style="background:var(--badge-bg-blue);color:var(--badge-col-blue);border:1px solid var(--badge-bor-blue);">3 membres</span>
+        </div>
+
+        <!-- BLOC 1 : LEAD DEV — grande carte horizontale -->
+        <div class="contrib-hero-card">
+            <div class="contrib-hero-left">
+                <div class="contrib-avatar contrib-avatar-xl">NQ</div>
+            </div>
+            <div class="contrib-hero-body">
+                <div class="contrib-hero-meta">
+                    <span class="contrib-role-tag" style="background:var(--badge-bg-red);color:var(--badge-col-red);border:1px solid var(--badge-bor-red);">LEAD DEV</span>
+                    <span class="contrib-since">depuis Fév 2026</span>
+                </div>
+                <h3 class="contrib-hero-name">Noah Quaghebeur</h3>
+                <p class="contrib-hero-desc">Développeur principal du projet. Architecture du bot, intégration JDA, système de commandes slash, gestion des données et déploiement.</p>
+                <div class="contrib-tech-row">
+                    <span class="contrib-tech">Java</span>
+                    <span class="contrib-tech">JDA</span>
+                    <span class="contrib-tech">JSON</span>
+                    <span class="contrib-tech">HTML/CSS/JS</span>
+                </div>
+            </div>
+            <div class="contrib-hero-stats">
+                <div class="contrib-mini-stat">
+                    <div class="contrib-mini-val">142</div>
+                    <div class="contrib-mini-lbl">commits</div>
+                </div>
+                <div class="contrib-mini-stat">
+                    <div class="contrib-mini-val">11</div>
+                    <div class="contrib-mini-lbl">commandes</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOC 2 : CONTRIBUTEURS — grille de cartes verticales -->
+        <div>
+            <div class="contrib-section-label">// contributeurs</div>
+            <div class="contrib-grid-3">
+
+                <div class="contrib-card contrib-card-dashed">
+                    <div class="contrib-card-top">
+                        <div class="contrib-avatar contrib-avatar-md" style="background:var(--bg3);color:var(--ink3);">?</div>
+                        <div class="contrib-card-info">
+                            <div class="contrib-card-name" style="color:var(--ink3);">Poste ouvert</div>
+                            <div class="contrib-card-pseudo">—</div>
+                        </div>
+                    </div>
+                    <span class="contrib-role-tag" style="background:var(--bg3);color:var(--ink3);border:1px solid var(--rule);">TESTEUR</span>
+                    <p class="contrib-card-desc" style="color:var(--ink3);">Une place est disponible pour un contributeur supplémentaire.</p>
+                    <div class="contrib-card-footer"></div>
+                </div>
+                               
+                <div class="contrib-card contrib-card-dashed">
+                    <div class="contrib-card-top">
+                        <div class="contrib-avatar contrib-avatar-md" style="background:var(--bg3);color:var(--ink3);">?</div>
+                        <div class="contrib-card-info">
+                            <div class="contrib-card-name" style="color:var(--ink3);">Poste ouvert</div>
+                            <div class="contrib-card-pseudo">—</div>
+                        </div>
+                    </div>
+                    <span class="contrib-role-tag" style="background:var(--bg3);color:var(--ink3);border:1px solid var(--rule);">DESIGN</span>
+                    <p class="contrib-card-desc" style="color:var(--ink3);">Une place est disponible pour un contributeur supplémentaire.</p>
+                    <div class="contrib-card-footer"></div>
+                </div>
+
+                <div class="contrib-card contrib-card-dashed">
+                    <div class="contrib-card-top">
+                        <div class="contrib-avatar contrib-avatar-md" style="background:var(--bg3);color:var(--ink3);">?</div>
+                        <div class="contrib-card-info">
+                            <div class="contrib-card-name" style="color:var(--ink3);">Poste ouvert</div>
+                            <div class="contrib-card-pseudo">—</div>
+                        </div>
+                    </div>
+                    <span class="contrib-role-tag" style="background:var(--bg3);color:var(--ink3);border:1px solid var(--rule);">À POURVOIR</span>
+                    <p class="contrib-card-desc" style="color:var(--ink3);">Une place est disponible pour un contributeur supplémentaire.</p>
+                    <div class="contrib-card-footer"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- BLOC 3 : REMERCIEMENTS — liste horizontale sobre -->
+        <div class="contrib-thanks-wrap">
+            <div class="contrib-section-label">// remerciements</div>
+            <div class="contrib-thanks-list">
+                <div class="contrib-thanks-item">
+                    <span class="contrib-thanks-name">Javacord</span>
+                    <span class="contrib-thanks-desc">Première librairie Discord utilisée pour prototyper le bot</span>
+                </div>
+                <div class="contrib-thanks-item">
+                    <span class="contrib-thanks-name">JDA</span>
+                    <span class="contrib-thanks-desc">Librairie Java utilisée en production</span>
+                </div>
+                <div class="contrib-thanks-item">
+                    <span class="contrib-thanks-name">IUT Grand Ouest</span>
+                    <span class="contrib-thanks-desc">Formation BUT Informatique 2025–2026</span>
+                </div>
+            </div>
+        </div>
+
+    </div>`;
+
+    changeContent('doc-content', content);
+}
+
+
 
 /* ─────────────────────────────────────────
    INIT

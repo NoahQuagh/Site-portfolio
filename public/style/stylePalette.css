@@ -15,6 +15,7 @@
     --title: #f0a060;
     --bghover: rgba(211, 211, 211, 0.46);
     --code-color:#5dd62c;
+    --border:gray;
 }
 
 /* POLICE */
@@ -44,6 +45,10 @@
     --badge-bor-green:rgba(0, 180, 120, 0.3);
 }
 
+:root{
+    --radiusBox:10px;
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -53,4 +58,37 @@
 
 html {
     scroll-behavior: smooth;
+}
+
+
+
+/* ─── TRANSITION THÈME ─── */
+*, *::before, *::after {
+    transition:
+            background-color 0.25s ease,
+            border-color 0.25s ease,
+            color 0.15s ease;
+}
+
+/* ─── BOUTON THÈME (sidebar) ─── */
+#theme-toggle-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    gap: 0;
+    border-radius: var(--radiusBox);
+}
+.theme-label {
+    font-family: sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--ink2);
+    padding: 10px 14px;
+    white-space: nowrap;
+    cursor: pointer;
 }
