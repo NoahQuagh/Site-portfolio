@@ -38,6 +38,7 @@ body.sidebar-open {
     transition: all 0.3s cubic-bezier(.4, 0, .2, 1);
     white-space: nowrap;
     overflow-x: visible;
+    justify-content: space-between;
 }
 
 #sidebar.open {
@@ -143,7 +144,7 @@ header {
     overflow: hidden;
 }
 
-#header-nav::after, #header-nav-2::after, #header-nav-3::after {
+#header-nav::after, #header-nav-2::after {
     content: "";
     border-bottom: 1px solid lightgray;
 }
@@ -176,7 +177,9 @@ header {
 
 #header-nav, #header-nav-2, #header-nav-3 {
     padding-left: 0.2rem;
+    margin-top: 10px;
 }
+
 
 .header-nav li {
     display: flex;
@@ -220,6 +223,7 @@ header {
 .back-link:hover {
     color: var(--accent);
 }
+
 
 /* ─── HERO DOC ─── */
 .doc-hero {
@@ -1335,6 +1339,528 @@ footer a:hover {
     font-size: 12px;
     color: var(--ink3);
     line-height: 1.5;
+}
+
+/* ─── REPORTS ─── */
+.report-badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Kanban */
+.report-kanban-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.report-kanban-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.report-kanban-col-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border-left: 3px solid;
+    background: var(--bg3);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--ink3);
+}
+
+.report-kanban-card {
+    border: 1.5px solid var(--ink);
+    background: var(--bg2);
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: box-shadow 0.15s, border-color 0.15s;
+    cursor: default;
+    border-radius: var(--radiusBox);
+}
+
+.report-kanban-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.report-kanban-id {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ink3);
+    letter-spacing: 0.08em;
+}
+
+.report-kanban-titre {
+    font-family: var(--font-head);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+}
+
+.report-kanban-desc {
+    font-size: 13px;
+    color: var(--ink2);
+    line-height: 1.6;
+}
+
+.report-kanban-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4px;
+    padding-top: 8px;
+    border-top: 1px solid var(--rule2);
+}
+
+.report-kanban-author {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent2);
+}
+
+.report-kanban-date {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink3);
+}
+
+.report-empty {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--ink3);
+    padding: 1.5rem;
+    text-align: center;
+    border: 1.5px dashed var(--rule);
+}
+
+/* Table résolus */
+.report-table-wrap {
+    border: 1.5px solid var(--ink);
+    border-radius: var(--radiusBox);
+    overflow: hidden;
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.report-table thead tr {
+    background: var(--bg3);
+    border-bottom: 1.5px solid var(--ink);
+}
+
+.report-table th {
+    padding: 9px 14px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink3);
+    text-align: left;
+    font-weight: 500;
+}
+
+.report-table-row {
+    cursor: pointer;
+    border-bottom: 1px solid var(--rule2);
+    transition: background 0.15s;
+}
+
+.report-table-row:last-child {
+    border-bottom: none;
+}
+
+.report-table-row:hover {
+    background: var(--bghover);
+}
+
+.report-table-row td {
+    padding: 10px 14px;
+    vertical-align: middle;
+}
+
+.report-td-id {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink3);
+    white-space: nowrap;
+}
+
+.report-td-meta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--ink3);
+    white-space: nowrap;
+}
+
+.report-date {
+    color: var(--ink3);
+}
+
+.report-titre {
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 0;
+}
+
+.report-desc-hidden {
+    display: none;
+    font-size: 12px;
+    color: var(--ink3);
+    margin-top: 4px;
+    line-height: 1.55;
+    font-style: italic;
+}
+
+.report-table-row.open .report-desc-hidden {
+    display: block;
+}
+
+.report-table-row.open {
+    background: var(--bg3);
+}
+
+.report-table-hint {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink3);
+    margin-top: 6px;
+    padding-left: 2px;
+}
+
+/* ═══════════════════════════════════════════
+   PROJET
+═══════════════════════════════════════════ */
+
+/* Bannière hero horizontale */
+.projet-banner {
+    border: 1.5px solid var(--ink);
+    background: var(--bg2);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 2rem;
+    padding: 2rem;
+    transition: box-shadow 0.15s;
+}
+
+.projet-banner-left {
+    display: flex;
+    align-items: flex-start;
+}
+
+.projet-banner-logo {
+    width: 72px;
+    height: 72px;
+    background: var(--ink);
+    color: var(--bg);
+    font-family: var(--font-head);
+    font-size: 22px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    letter-spacing: -0.03em;
+}
+
+.projet-banner-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.projet-banner-desc {
+    font-size: 14px;
+    color: var(--ink2);
+    line-height: 1.75;
+    max-width: 520px;
+}
+
+.projet-banner-desc strong {
+    color: var(--ink);
+    font-weight: 600;
+}
+
+.projet-banner-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.projet-banner-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    border-left: 1px solid var(--rule);
+    padding-left: 2rem;
+}
+
+/* Architecture 2 colonnes */
+.projet-archi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.projet-archi-block {
+    border-left: 2px solid var(--rule);
+    padding: 0.75rem 1rem;
+    transition: border-color 0.15s;
+}
+
+.projet-archi-block:hover {
+    border-left-color: var(--accent);
+}
+
+.projet-archi-title {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.projet-archi-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.projet-archi-desc {
+    font-size: 13px;
+    color: var(--ink2);
+    line-height: 1.65;
+}
+
+.projet-archi-desc code {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    background: var(--bg3);
+    color: var(--accent2);
+    padding: 1px 5px;
+    border-radius: 2px;
+}
+
+/* Arbre de fichiers */
+.projet-tree-wrap {
+    border: 1.5px solid var(--ink);
+    background: var(--bg2);
+    overflow: auto;
+    max-height: 520px;
+}
+
+.projet-tree {
+    padding: 1rem;
+    font-family: var(--font-mono);
+    font-size: 12px;
+}
+
+.tree-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 0;
+    cursor: default;
+    border-radius: 3px;
+    transition: background 0.1s;
+    white-space: nowrap;
+}
+
+.tree-row:hover {
+    background: var(--bghover);
+}
+
+.tree-folder-row {
+    cursor: pointer;
+}
+
+.tree-arrow {
+    font-size: 10px;
+    color: var(--ink3);
+    width: 10px;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+}
+
+.tree-folder.closed > .tree-row > .tree-arrow {
+    transform: rotate(-90deg);
+}
+
+.tree-folder.closed > .tree-children {
+    display: none;
+}
+
+.tree-icon {
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+.tree-icon-circle {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.tree-icon-mono {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.tree-name {
+    color: var(--ink2);
+}
+
+.tree-name-folder {
+    color: var(--ink);
+    font-weight: 500;
+}
+
+.tree-leaf {
+    padding-left: 20px;
+}
+
+.tree-tag {
+    font-size: 9px;
+    padding: 1px 5px;
+    background: var(--badge-bg-red);
+    color: var(--badge-col-red);
+    border: 1px solid var(--badge-bor-red);
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Flux horizontal */
+.projet-flow {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+}
+
+.projet-flow-step {
+    border: 1.5px solid var(--ink);
+    background: var(--bg2);
+    padding: 1.25rem;
+    min-width: 160px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: box-shadow 0.15s, border-color 0.15s;
+}
+
+.projet-flow-step:hover {
+    border-color: var(--accent);
+}
+
+.projet-flow-num {
+    font-family: var(--font-head);
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--rule);
+    line-height: 1;
+}
+
+.projet-flow-title {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+}
+
+.projet-flow-desc {
+    font-size: 12px;
+    color: var(--ink2);
+    line-height: 1.6;
+}
+
+.projet-flow-desc code {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    background: var(--bg3);
+    color: var(--accent2);
+    padding: 1px 4px;
+    border-radius: 2px;
+}
+
+.projet-flow-arrow {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    color: var(--ink3);
+    padding: 1.5rem 4px 0;
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+
+
+/* Responsive */
+@media (max-width: 900px) {
+    .projet-banner {
+        grid-template-columns: 1fr;
+    }
+
+    .projet-archi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projet-data-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projet-banner-stats {
+        flex-direction: row;
+        border-left: none;
+        border-top: 1px solid var(--rule);
+        padding-left: 0;
+        padding-top: 1rem;
+    }
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+    .report-kanban-cols {
+        grid-template-columns: 1fr;
+    }
+
+    .report-td-meta, .report-td-id {
+        display: none;
+    }
 }
 
 /* Responsive */

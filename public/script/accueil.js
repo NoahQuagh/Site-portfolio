@@ -178,6 +178,23 @@ function asciiNoah() {
         </div>`;
 }
 
+const terminal = `<div class="terminal-header">
+                        <img src="../img/terminal.svg" class="terminal-icon">
+                        <span class="terminal-title">Terminal — PS C:\\Users\\Noah</span>
+                        <span class="terminal-close" onclick="closeTerminal()">✕</span>
+                    </div>
+                    <div class="terminal-body" id="terminal-output">
+                        <div class="output-line info">PS C:\\Users\\Noah&gt; <span class="success">./moi</span></div>
+                        ${asciiNoah()}
+                        <div class="output-line" style="margin-top:12px;">
+                            [ <span style="color:darkcyan">INFO</span> ] Tapez <span class="success">help</span> pour voir les commandes disponibles.
+                        </div>
+                        <div class="output-line" id="output-line">
+                            <br><span class="prompt">PS C:\\Users\\Noah&gt;</span>
+                            <input type="text" id="terminal-input" autofocus autocomplete="off">
+                        </div>
+                    </div>`;
+
 /* ─────────────────────────────────────────
    PAGE — ACCUEIL
 ───────────────────────────────────────── */
@@ -193,22 +210,7 @@ function accueil() {
             <!-- TERMINAL -->
             <div class="terminal-wrap">
                 <div class="terminal">
-                    <div class="terminal-header">
-                        <img src="../img/terminal.svg" class="terminal-icon">
-                        <span class="terminal-title">Terminal — PS C:\\Users\\Noah</span>
-                        <span class="terminal-close" onclick="closeTerminal()">✕</span>
-                    </div>
-                    <div class="terminal-body" id="terminal-output">
-                        <div class="output-line info">PS C:\\Users\\Noah&gt; <span class="success">./moi</span></div>
-                        ${asciiNoah()}
-                        <div class="output-line" style="margin-top:12px;">
-                            [ <span style="color:darkcyan">INFO</span> ] Tapez <span class="success">help</span> pour voir les commandes disponibles.
-                        </div>
-                        <div class="output-line" id="output-line">
-                            <br><span class="prompt">PS C:\\Users\\Noah&gt;</span>
-                            <input type="text" id="terminal-input" autofocus autocomplete="off">
-                        </div>
-                    </div>
+                    ${terminal}
                 </div>
             </div>
         </section>
@@ -236,10 +238,6 @@ function accueil() {
                                 <span class="stat-value">noah.quaghebeur@laposte.net</span>
                             </div>
                             <div class="stat-item">
-                                <span class="stat-label">Téléphone</span>
-                                <span class="stat-value">07 67 86 47 57</span>
-                            </div>
-                            <div class="stat-item">
                                 <span class="stat-label">Statut</span>
                                 <span class="stat-value">Étudiant en BUT Informatique</span>
                             </div>
@@ -249,10 +247,7 @@ function accueil() {
                         <div class="bio-block">
                             <div class="block-label">Biographie</div>
                             <div class="block-title">À PROPOS DE MOI_</div>
-                            <p>iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfsyshviyshivhs
-                            iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfsyshviyshivhs
-                            iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfsyshviyshivhs
-                            iqsebfiysbefiyvsbiyvbsiyvhbisfesfdsfxcsfesdfshviyshivhs</p>
+                            <p>Jeune étudiant en BUT Informatique curieux, passionné et performant</p>
                         </div>
                         <div class="actu-block">
                             <div class="block-label">Actuellement</div>
@@ -755,6 +750,25 @@ function toggleDivBorders() {
     const first = document.querySelector('*');
     (first && first.style.border.includes('red')) ? desactiveDiv() : activeDiv();
 }
+
+window.addEventListener('resize', () => {
+    const largeur = window.innerWidth;
+    const t = document.querySelector('.terminal');
+
+    if (!t) return;
+
+    if (largeur < 800) {
+        // On cache au lieu de supprimer
+        t.style.display = 'none';
+    } else {
+        // On montre au lieu de réinjecter
+        if (window.getComputedStyle(t).display === 'none') {
+            t.style.display = 'flex';
+            // Plus besoin de t.innerHTML = terminal !
+            // Le terminal "survit" en mémoire.
+        }
+    }
+});
 
 /* ─────────────────────────────────────────
    INIT

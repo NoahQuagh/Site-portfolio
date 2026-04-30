@@ -31,10 +31,10 @@ const themes = {
         '--badge-bor-green': 'rgba(0,180,120,0.3)',
     },
     dark: {
-        '--bg': '#202020',
+        '--bg': '#0b0b0b',
         '--bg2': '#0d0e14',
         '--bg3': '#1c1e2e',
-        '--ink': '#ffffff',
+        '--ink': '#ededed',
         '--ink2': '#aaabaf',
         '--ink3': '#ececec',
         '--accent': '#7c6fe0',
@@ -874,12 +874,501 @@ function dashbord() {
 }
 
 function report() {
-    const content = `<h1>vide</h1>`
+    const reports = [
+        {
+            id: 'BUG-001',
+            titre: 'Invitation DM non reçue',
+            desc: 'Certains joueurs ne reçoivent pas le DM d\'invitation lors d\'un /premier inviteJoueur. Semble lié aux paramètres de confidentialité Discord.',
+            auteur: 'TazerZ#4421',
+            date: '2025-05-28',
+            statut: 'resolu',
+            version: 'v1.0.5',
+            corrigeDans: 'v1.0.6',
+        },
+        {
+            id: 'BUG-002',
+            titre: 'Bot silencieux sur /premier teamInvite',
+            desc: 'La commande ne répond pas du tout après exécution. Aucun message visible, aucun log. Problème de routing slash command.',
+            auteur: 'NoahQ#0001',
+            date: '2025-05-30',
+            statut: 'resolu',
+            version: 'v1.0.5',
+            corrigeDans: 'v1.0.6',
+        },
+        {
+            id: 'BUG-003',
+            titre: '[OBJECT OBJECT] dans les badges',
+            desc: 'Les badges d\'accès affichent [object Object] au lieu du nom du rôle. Causé par un .map() sur un tableau d\'objets sans accéder à .type.',
+            auteur: 'NoahQ#0001',
+            date: '2025-06-01',
+            statut: 'resolu',
+            version: 'v1.0.6',
+            corrigeDans: 'v1.0.6',
+        },
+        {
+            id: 'BUG-004',
+            titre: 'Sidebar passe sous le header',
+            desc: 'La sidebar s\'affiche par-dessus le footer mais reste en-dessous du header et du hero malgré un z-index élevé. Problème de contexte d\'empilement CSS grid.',
+            auteur: 'NoahQ#0001',
+            date: '2025-06-02',
+            statut: 'en-cours',
+            version: 'v1.0.6',
+            corrigeDans: null,
+        },
+        {
+            id: 'BUG-005',
+            titre: 'Transition de page trop lente',
+            desc: 'La transition CSS sur .doc-content est à 2s ce qui rend la navigation lourde.',
+            auteur: 'MaxoR#1337',
+            date: '2025-06-03',
+            statut: 'en-attente',
+            version: 'v1.0.6',
+            corrigeDans: null,
+        },
+        {
+            id: 'BUG-006',
+            titre: 'Autocomplétion /valorant vide',
+            desc: 'Quand la base de données de pseudos est vide, l\'autocomplétion plante au lieu de retourner une liste vide.',
+            auteur: 'TazerZ#4421',
+            date: '2025-06-04',
+            statut: 'en-attente',
+            version: 'v1.0.6',
+            corrigeDans: null,
+        },
+    ];
+
+    const statutCfg = {
+        'resolu': {
+            label: 'RÉSOLU',
+            bg: 'var(--badge-bg-green)',
+            col: 'var(--badge-col-green)',
+            bor: 'var(--badge-bor-green)',
+            icon: '✓'
+        },
+        'en-cours': {
+            label: 'EN COURS',
+            bg: 'var(--badge-bg-yellow)',
+            col: 'var(--badge-col-yellow)',
+            bor: 'var(--badge-bor-yellow)',
+            icon: '◎'
+        },
+        'en-attente': {
+            label: 'EN ATTENTE',
+            bg: 'var(--badge-bg-red)',
+            col: 'var(--badge-col-red)',
+            bor: 'var(--badge-bor-red)',
+            icon: '○'
+        },
+    };
+
+    const resolved = reports.filter(r => r.statut === 'resolu');
+    const inProgress = reports.filter(r => r.statut === 'en-cours');
+    const pending = reports.filter(r => r.statut === 'en-attente');
+
+    // Génère une ligne de table (pour les résolus)
+    function genTableRow(r) {
+        const s = statutCfg[r.statut];
+        return `
+        <tr class="report-table-row" onclick="this.classList.toggle('open')">
+            <td class="report-td-id">${r.id}</td>
+            <td class="report-td-titre">
+                <div class="report-titre">${r.titre}</div>
+                <div class="report-desc-hidden">${r.desc}</div>
+            </td>
+            <td><span class="report-badge" style="background:${s.bg};color:${s.col};border:1px solid;${s.bor};">${s.icon} ${s.label}</span></td>
+            <td class="report-td-meta">${r.version}</td>
+            <td class="report-td-meta">${r.corrigeDans ?? '—'}</td>
+            <td class="report-td-meta report-date">${r.date}</td>
+        </tr>`;
+    }
+
+    // Génère une card kanban (pour en-cours et en-attente)
+    function genKanbanCard(r) {
+        const s = statutCfg[r.statut];
+        return `
+        <div class="report-kanban-card">
+            <div class="report-kanban-top">
+                <span class="report-kanban-id">${r.id}</span>
+                <span class="report-badge" style="background:${s.bg};color:${s.col};border:1px solid ${s.bor};">${s.icon} ${s.label}</span>
+            </div>
+            <div class="report-kanban-titre">${r.titre}</div>
+            <div class="report-kanban-desc">${r.desc}</div>
+            <div class="report-kanban-footer">
+                <span class="report-kanban-author">${r.auteur}</span>
+                <span class="report-kanban-date">${r.date}</span>
+            </div>
+        </div>`;
+    }
+
+    const content = `
+    <div class="doc-layout-presen" style="width:100%; flex-direction:column; align-items:stretch; padding:2rem; gap:2.5rem;">
+
+        <!-- HEADER + COMPTEURS -->
+        <div class="dash-header">
+            <div>
+                <span class="section-num">// reports</span>
+                <h2 class="section-title" style="margin-top:4px;">Bug Reports</h2>
+            </div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <span class="report-badge" style="background:var(--badge-bg-red);color:var(--badge-col-red);border:1px solid var(--badge-bor-red);">○ ${pending.length} en attente</span>
+                <span class="report-badge" style="background:var(--badge-bg-yellow);color:var(--badge-col-yellow);border:1px solid var(--badge-bor-yellow);">◎ ${inProgress.length} en cours</span>
+                <span class="report-badge" style="background:var(--badge-bg-green);color:var(--badge-col-green);border:1px solid var(--badge-bor-green);">✓ ${resolved.length} résolus</span>
+            </div>
+        </div>
+
+        <!-- BLOC 1 : EN ATTENTE + EN COURS — Kanban -->
+        <div>
+            <div class="contrib-section-label">// à traiter</div>
+            <div class="report-kanban-cols">
+
+                <div class="report-kanban-col">
+                    <div class="report-kanban-col-header" style="border-color:var(--badge-col-red);">
+                        <span>EN ATTENTE</span>
+                        <span class="report-badge" style="background:var(--badge-bg-red);color:var(--badge-col-red);border:1px solid var(--badge-bor-red);">${pending.length}</span>
+                    </div>
+                    ${pending.map(genKanbanCard).join('') || '<div class="report-empty">Aucun bug en attente ✓</div>'}
+                </div>
+
+                <div class="report-kanban-col">
+                    <div class="report-kanban-col-header" style="border-color:var(--badge-col-yellow);">
+                        <span>EN COURS</span>
+                        <span class="report-badge" style="background:var(--badge-bg-yellow);color:var(--badge-col-yellow);border:1px solid var(--badge-bor-yellow);">${inProgress.length}</span>
+                    </div>
+                    ${inProgress.map(genKanbanCard).join('') || '<div class="report-empty">Aucun bug en cours</div>'}
+                </div>
+
+            </div>
+        </div>
+
+        <!-- BLOC 2 : RÉSOLUS — Table cliquable -->
+        <div>
+            <div class="contrib-section-label">// résolus</div>
+            <div class="report-table-wrap">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Titre</th>
+                            <th>Statut</th>
+                            <th>Signalé en</th>
+                            <th>Corrigé en</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${resolved.map(genTableRow).join('')}
+                    </tbody>
+                </table>
+            </div>
+            <div class="report-table-hint">↑ Cliquer sur une ligne pour voir la description</div>
+        </div>
+
+    </div>`;
+
     changeContent('doc-content', content);
 }
 
 function projet() {
-    const content = `<h1>vide</h1>`
+    const arborescenceFichiers = [
+        {
+            nom: 'trackerValo.json', type: 'file-json',
+        },
+        {
+            nom: 'ValoDs.json', type: 'file-json',
+        },
+        {
+            nom: 'java', type: 'folder', open: true, children: [
+                {
+                    nom: 'bot.discordBot', type: 'folder', open: true, children: [
+                        {
+                            nom: 'commands', type: 'folder', open: true, children: [
+                                {
+                                    nom: 'Help', type: 'folder', children: [
+                                        {nom: 'CommandHelpAll', type: 'class'},
+                                    ]
+                                },
+                                {
+                                    nom: 'Premier', type: 'folder', children: [
+                                        {nom: 'CommandPremierAddTeam', type: 'class'},
+                                        {nom: 'CommandPremierCancelEvent', type: 'class'},
+                                        {nom: 'CommandPremierEvent', type: 'class'},
+                                        {nom: 'CommandPremierNewCapitaine', type: 'class'},
+                                        {nom: 'CommandPremierStratAgent', type: 'class'},
+                                        {nom: 'CommandPremierSuprimerJoueur', type: 'class'},
+                                        {nom: 'CommandPremierSuprimerTeam', type: 'class'},
+                                        {nom: 'CommandPremierTeamInvite', type: 'class'},
+                                    ]
+                                },
+                                {
+                                    nom: 'Valo', type: 'folder', children: [
+                                        {nom: 'CommandBot', type: 'class'},
+                                        {nom: 'CommandDoc', type: 'class'},
+                                        {nom: 'CommandEdtDev', type: 'class'},
+                                        {nom: 'CommandHelp', type: 'class'},
+                                        {nom: 'CommandNew', type: 'class'},
+                                        {nom: 'CommandPremier', type: 'class'},
+                                        {nom: 'CommandRegistery', type: 'class'},
+                                        {nom: 'CommandReport', type: 'class'},
+                                        {nom: 'CommandValo', type: 'class'},
+                                    ]
+                                },
+                                {
+                                    nom: 'System', type: 'folder', children: [
+                                        {nom: 'GameConfigRole', type: 'class'},
+                                        {nom: 'RankScheduler', type: 'class'},
+                                        {nom: 'ServeurDs', type: 'class'},
+                                    ]
+                                },
+                            ]
+                        },
+                        {
+                            nom: 'utils', type: 'folder', children: [
+                                {
+                                    nom: 'commands', type: 'folder', children: [
+                                        {
+                                            nom: 'datamanager', type: 'folder', children: [
+                                                {
+                                                    nom: 'DataStructure', type: 'folder', children: [
+                                                        {nom: 'Bug', type: 'class'},
+                                                        {nom: 'CompteValoDiscord', type: 'class'},
+                                                        {nom: 'Equipe', type: 'class'},
+                                                        {nom: 'Games', type: 'class'},
+                                                        {nom: 'Nouveaute', type: 'class'},
+                                                        {nom: 'Rappel', type: 'class'},
+                                                        {nom: 'StrucNew', type: 'class'},
+                                                        {nom: 'TrackedPlayer', type: 'class'},
+                                                    ]
+                                                },
+                                                {nom: 'CommandLog', type: 'class'},
+                                                {nom: 'DataManager', type: 'class'},
+                                                {nom: 'Fichier', type: 'class'},
+                                                {nom: 'logManager', type: 'class'},
+                                            ]
+                                        },
+                                        {nom: 'Code', type: 'enum'},
+                                        {nom: 'Command', type: 'class'},
+                                        {nom: 'CommandContext', type: 'class'},
+                                        {nom: 'CommandExecutor', type: 'interface'},
+                                        {nom: 'CommandRegistry', type: 'class'},
+                                        {nom: 'MessageManager', type: 'class'},
+                                    ]
+                                },
+                                {
+                                    nom: 'Exception', type: 'folder', children: [
+                                        {nom: 'ApiException', type: 'exception'},
+                                        {nom: 'CapitaineException', type: 'exception'},
+                                        {nom: 'DateException', type: 'exception'},
+                                        {nom: 'DefaultException', type: 'class'},
+                                        {nom: 'EquipeException', type: 'exception'},
+                                        {nom: 'JoueurException', type: 'exception'},
+                                        {nom: 'NoDataFoundException', type: 'exception'},
+                                        {nom: 'RappelException', type: 'exception'},
+                                        {nom: 'SyntaxeException', type: 'exception'},
+                                    ]
+                                },
+                                {
+                                    nom: 'Procedure', type: 'folder', children: [
+                                        {nom: 'ApiProcedure', type: 'class'},
+                                        {nom: 'BotProcedure', type: 'class'},
+                                        {nom: 'ValoDisProcedure', type: 'class'},
+                                    ]
+                                },
+                                {
+                                    nom: 'Success', type: 'folder', children: [
+                                        {nom: 'success', type: 'class'},
+                                    ]
+                                },
+                                {nom: 'ConfigManager', type: 'class'},
+                            ]
+                        },
+                        {nom: 'Main', type: 'class-main'},
+                    ]
+                }
+            ]
+        }
+    ];
+
+    const typeIcon = {
+        'folder': {icon: '📁', col: '#e6900a'},
+        'file-json': {icon: '{ }', col: '#818cf8', mono: true},
+        'class': {icon: 'C', col: '#4caf50', circle: true},
+        'class-main': {icon: 'C', col: '#e84040', circle: true},
+        'interface': {icon: 'I', col: '#4dd0e1', circle: true},
+        'enum': {icon: 'E', col: '#f0a060', circle: true},
+        'exception': {icon: '⚡', col: '#e6900a'},
+    };
+
+    function genNode(node, depth = 0) {
+        const cfg = typeIcon[node.type] ?? typeIcon['class'];
+        const indent = depth * 16;
+
+        if (node.type === 'folder') {
+            const childrenHtml = (node.children ?? []).map(c => genNode(c, depth + 1)).join('');
+            return `
+                <div class="tree-folder" style="--indent:${indent}px">
+                    <div class="tree-row tree-folder-row" onclick="this.parentElement.classList.toggle('closed')">
+                        <span class="tree-indent"></span>
+                        <span class="tree-arrow">▾</span>
+                        <span class="tree-icon" style="color:${cfg.col}">📁</span>
+                        <span class="tree-name tree-name-folder">${node.nom}</span>
+                    </div>
+                    <div class="tree-children">${childrenHtml}</div>
+                </div>`;
+        }
+
+        const iconEl = cfg.circle
+            ? `<span class="tree-icon-circle" style="background:${cfg.col}20;color:${cfg.col};border-color:${cfg.col}40">${cfg.icon}</span>`
+            : cfg.mono
+                ? `<span class="tree-icon-mono" style="color:${cfg.col}">${cfg.icon}</span>`
+                : `<span class="tree-icon">${cfg.icon}</span>`;
+
+        return `
+            <div class="tree-row tree-leaf" style="--indent:${indent}px">
+                <span class="tree-indent"></span>
+                ${iconEl}
+                <span class="tree-name" style="color:${cfg.col}">${node.nom}</span>
+                ${node.type === 'class-main' ? '<span class="tree-tag">entry point</span>' : ''}
+            </div>`;
+    }
+
+    const treeHtml = arborescenceFichiers.map(n => genNode(n, 0)).join('');
+
+    const content = `
+    <div class="doc-layout-presen" style="width:100%;flex-direction:column;align-items:stretch;padding:2rem;gap:2.5rem;">
+
+        <!-- HEADER -->
+        <div class="dash-header">
+            <div>
+                <span class="section-num">// projet</span>
+                <h2 class="section-title" style="margin-top:4px;">GigaBot</h2>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+                <span class="report-badge" style="background:var(--badge-bg-green);color:var(--badge-col-green);border:1px solid var(--badge-bor-green);">v1.0.6 STABLE</span>
+                <span class="report-badge" style="background:var(--badge-bg-blue);color:var(--badge-col-blue);border:1px solid var(--badge-bor-blue);">Java + JDA</span>
+            </div>
+        </div>
+
+        <!-- BLOC 1 : PRÉSENTATION — grande bannière sobre -->
+        <div class="projet-banner">
+            <div class="projet-banner-left">
+                <div class="projet-banner-logo">GB</div>
+            </div>
+            <div class="projet-banner-body">
+                <div class="contrib-section-label" style="margin-bottom:6px;">// description</div>
+                <p class="projet-banner-desc">Bot Discord développé en Java avec la librairie JDA. Il centralise la gestion des équipes <strong>Premier Valorant</strong> d'un serveur : création d'équipes, invitations, événements planifiés avec rappels automatiques, et suivi des statistiques Valorant via l'API Henrik.</p>
+                <div class="projet-banner-tags">
+                    <span class="contrib-tech">Java 17</span>
+                    <span class="contrib-tech">JDA 5</span>
+                    <span class="contrib-tech">JSON</span>
+                    <span class="contrib-tech">Henrik API</span>
+                    <span class="contrib-tech">Discord Slash Commands</span>
+                    <span class="contrib-tech">Scheduler</span>
+                </div>
+            </div>
+            <div class="projet-banner-stats">
+                <div class="contrib-mini-stat"><div class="contrib-mini-val">11</div><div class="contrib-mini-lbl">commandes</div></div>
+                <div class="contrib-mini-stat"><div class="contrib-mini-val">9</div><div class="contrib-mini-lbl">exceptions</div></div>
+                <div class="contrib-mini-stat"><div class="contrib-mini-val">8</div><div class="contrib-mini-lbl">data structs</div></div>
+            </div>
+        </div>
+
+        <!-- BLOC 2 : ARCHITECTURE — 2 colonnes texte + arbre -->
+        <div class="projet-archi-grid">
+
+            <!-- Colonne gauche : explication -->
+            <div style="display:flex;flex-direction:column;gap:1.5rem;">
+
+                <div class="contrib-section-label">// architecture</div>
+
+                <div class="projet-archi-block">
+                    <div class="projet-archi-title">
+                        <span class="projet-archi-dot" style="background:var(--badge-col-blue)"></span>
+                        commands/
+                    </div>
+                    <p class="projet-archi-desc">Toutes les commandes slash, organisées en sous-dossiers thématiques : <code>Premier</code> pour la gestion d'équipe, <code>Valo</code> pour les commandes générales et utilitaires, <code>System</code> pour la configuration serveur.</p>
+                </div>
+
+                <div class="projet-archi-block">
+                    <div class="projet-archi-title">
+                        <span class="projet-archi-dot" style="background:var(--badge-col-green)"></span>
+                        utils/commands/
+                    </div>
+                    <p class="projet-archi-desc">Infrastructure des commandes : <code>CommandContext</code> unifie slash et message, <code>MessageManager</code> route les événements Discord, <code>CommandRegistry</code> enregistre les commandes au démarrage.</p>
+                </div>
+
+                <div class="projet-archi-block">
+                    <div class="projet-archi-title">
+                        <span class="projet-archi-dot" style="background:var(--badge-col-yellow)"></span>
+                        datamanager/
+                    </div>
+                    <p class="projet-archi-desc">Persistance JSON : <code>DataManager</code> lit/écrit les fichiers, <code>DataStructure</code> contient les classes de données (Equipe, Rappel, CompteValoDiscord…), <code>logManager</code> gère les logs.</p>
+                </div>
+
+                <div class="projet-archi-block">
+                    <div class="projet-archi-title">
+                        <span class="projet-archi-dot" style="background:var(--badge-col-red)"></span>
+                        Exception/ + Procedure/
+                    </div>
+                    <p class="projet-archi-desc">Exceptions typées pour chaque cas métier (CapitaineException, JoueurException…). Les Procedures centralisent la logique métier réutilisée entre commandes (ex: vérifier si un joueur est déjà en équipe).</p>
+                </div>
+
+                <div class="projet-archi-block">
+                    <div class="projet-archi-title">
+                        <span class="projet-archi-dot" style="background:#e84040"></span>
+                        Main.java
+                    </div>
+                    <p class="projet-archi-desc">Point d'entrée. Connexion à l'API Discord, enregistrement global des slash commands, restauration des rappels planifiés au démarrage.</p>
+                </div>
+
+            </div>
+
+            <!-- Colonne droite : arbre de fichiers -->
+            <div>
+                <div class="contrib-section-label">// structure des fichiers</div>
+                <div class="projet-tree-wrap">
+                    <div class="projet-tree">${treeHtml}</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- BLOC 3 : FLUX — étapes horizontales -->
+        <div>
+            <div class="contrib-section-label">// fonctionnement — cycle d'une commande</div>
+            <div class="projet-flow">
+                <div class="projet-flow-step">
+                    <div class="projet-flow-num">01</div>
+                    <div class="projet-flow-title">Événement Discord</div>
+                    <div class="projet-flow-desc">L'utilisateur tape <code>/premier inviteJoueur</code>. JDA émet un <code>SlashCommandCreateEvent</code>.</div>
+                </div>
+                <div class="projet-flow-arrow">→</div>
+                <div class="projet-flow-step">
+                    <div class="projet-flow-num">02</div>
+                    <div class="projet-flow-title">MessageManager</div>
+                    <div class="projet-flow-desc">Reçoit l'event, crée un <code>CommandContext</code>, cherche la commande dans le <code>CommandRegistry</code>.</div>
+                </div>
+                <div class="projet-flow-arrow">→</div>
+                <div class="projet-flow-step">
+                    <div class="projet-flow-num">03</div>
+                    <div class="projet-flow-title">CommandPremier</div>
+                    <div class="projet-flow-desc">Route vers <code>CommandPremierTeamInvite</code> selon le sous-commande lu dans les options.</div>
+                </div>
+                <div class="projet-flow-arrow">→</div>
+                <div class="projet-flow-step">
+                    <div class="projet-flow-num">04</div>
+                    <div class="projet-flow-title">Logique métier</div>
+                    <div class="projet-flow-desc">Vérifie via <code>EquipeProcedure</code>, charge les données JSON via <code>DataManager</code>, envoie les DM.</div>
+                </div>
+                <div class="projet-flow-arrow">→</div>
+                <div class="projet-flow-step">
+                    <div class="projet-flow-num">05</div>
+                    <div class="projet-flow-title">Réponse</div>
+                    <div class="projet-flow-desc"><code>ctx.replyDeferred()</code> envoie la réponse Discord. Les erreurs sont catchées et loggées.</div>
+                </div>
+            </div>
+        </div>
+    </div>`;
+
     changeContent('doc-content', content);
 }
 
@@ -996,6 +1485,10 @@ function contributeur() {
     </div>`;
 
     changeContent('doc-content', content);
+}
+
+function compte() {
+    window.location.href = "../page/login.html";
 }
 
 /* ─────────────────────────────────────────
