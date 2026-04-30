@@ -3,74 +3,74 @@
 ═══════════════════════════════════════════ */
 const themes = {
     light: {
-        '--bg':                 '#f7f5f0',
-        '--bg2':                '#ffffff',
-        '--bg3':                '#eeeae2',
-        '--ink':                '#1a1510',
-        '--ink2':               '#4a3f30',
-        '--ink3':               '#8a7a65',
-        '--accent':             '#c8401a',
-        '--accent2':            '#1a5fc8',
-        '--accent3':            '#1a8c3a',
-        '--rule':               'rgba(26,21,16,0.12)',
-        '--rule2':              'rgba(26,21,16,0.06)',
-        '--title':              '#f0a060',
-        '--bghover':            'rgba(211,211,211,0.46)',
-        '--code-color':         '#2d7a3a',
-        '--badge-bg-red':       'rgba(200,64,26,0.1)',
-        '--badge-col-red':      '#c8401a',
-        '--badge-bor-red':      'rgba(200,64,26,0.3)',
-        '--badge-bg-blue':      'rgba(88,101,242,0.1)',
-        '--badge-col-blue':     '#5865F2',
-        '--badge-bor-blue':     'rgba(88,101,242,0.3)',
-        '--badge-bg-yellow':    'rgba(255,160,0,0.1)',
-        '--badge-col-yellow':   '#e6900a',
-        '--badge-bor-yellow':   'rgba(255,160,0,0.3)',
-        '--badge-bg-green':     'rgba(0,180,120,0.1)',
-        '--badge-col-green':    '#00a870',
-        '--badge-bor-green':    'rgba(0,180,120,0.3)',
+        '--bg': '#f7f5f0',
+        '--bg2': '#ffffff',
+        '--bg3': '#eeeae2',
+        '--ink': '#1a1510',
+        '--ink2': '#4a3f30',
+        '--ink3': '#8a7a65',
+        '--accent': '#c8401a',
+        '--accent2': '#1a5fc8',
+        '--accent3': '#1a8c3a',
+        '--rule': 'rgba(26,21,16,0.12)',
+        '--rule2': 'rgba(26,21,16,0.06)',
+        '--title': '#f0a060',
+        '--bghover': 'rgba(211,211,211,0.46)',
+        '--code-color': '#2d7a3a',
+        '--badge-bg-red': 'rgba(200,64,26,0.1)',
+        '--badge-col-red': '#c8401a',
+        '--badge-bor-red': 'rgba(200,64,26,0.3)',
+        '--badge-bg-blue': 'rgba(88,101,242,0.1)',
+        '--badge-col-blue': '#5865F2',
+        '--badge-bor-blue': 'rgba(88,101,242,0.3)',
+        '--badge-bg-yellow': 'rgba(255,160,0,0.1)',
+        '--badge-col-yellow': '#e6900a',
+        '--badge-bor-yellow': 'rgba(255,160,0,0.3)',
+        '--badge-bg-green': 'rgba(0,180,120,0.1)',
+        '--badge-col-green': '#00a870',
+        '--badge-bor-green': 'rgba(0,180,120,0.3)',
     },
     dark: {
-        '--bg':                 '#202020',
-        '--bg2':                '#0d0e14',
-        '--bg3':                '#1c1e2e',
-        '--ink':                '#ffffff',
-        '--ink2':               '#aaabaf',
-        '--ink3':               '#ececec',
-        '--accent':             '#7c6fe0',
-        '--accent2':            '#818cf8',
-        '--accent3':            '#4caf50',
-        '--rule':               'rgba(200,204,224,0.1)',
-        '--rule2':              'rgba(209,209,209,0.24)',
-        '--title':              '#f0a060',
-        '--border':             'gray',
-        '--bghover':            'rgba(255,255,255,0.4)',
-        '--code-color':         '#5dd62c',
-        '--badge-bg-red':       'rgba(232,64,64,0.15)',
-        '--badge-col-red':      '#e84040',
-        '--badge-bor-red':      'rgba(232,64,64,0.35)',
-        '--badge-bg-blue':      'rgba(88,101,242,0.15)',
-        '--badge-col-blue':     '#818cf8',
-        '--badge-bor-blue':     'rgba(88,101,242,0.35)',
-        '--badge-bg-yellow':    'rgba(212,134,10,0.15)',
-        '--badge-col-yellow':   '#d4860a',
-        '--badge-bor-yellow':   'rgba(212,134,10,0.35)',
-        '--badge-bg-green':     'rgba(76,175,80,0.15)',
-        '--badge-col-green':    '#4caf50',
-        '--badge-bor-green':    'rgba(76,175,80,0.35)',
+        '--bg': '#202020',
+        '--bg2': '#0d0e14',
+        '--bg3': '#1c1e2e',
+        '--ink': '#ffffff',
+        '--ink2': '#aaabaf',
+        '--ink3': '#ececec',
+        '--accent': '#7c6fe0',
+        '--accent2': '#818cf8',
+        '--accent3': '#4caf50',
+        '--rule': 'rgba(200,204,224,0.1)',
+        '--rule2': 'rgba(209,209,209,0.24)',
+        '--title': '#f0a060',
+        '--border': 'gray',
+        '--bghover': 'rgba(255,255,255,0.4)',
+        '--code-color': '#5dd62c',
+        '--badge-bg-red': 'rgba(232,64,64,0.15)',
+        '--badge-col-red': '#e84040',
+        '--badge-bor-red': 'rgba(232,64,64,0.35)',
+        '--badge-bg-blue': 'rgba(88,101,242,0.15)',
+        '--badge-col-blue': '#818cf8',
+        '--badge-bor-blue': 'rgba(88,101,242,0.35)',
+        '--badge-bg-yellow': 'rgba(212,134,10,0.15)',
+        '--badge-col-yellow': '#d4860a',
+        '--badge-bor-yellow': 'rgba(212,134,10,0.35)',
+        '--badge-bg-green': 'rgba(76,175,80,0.15)',
+        '--badge-col-green': '#4caf50',
+        '--badge-bor-green': 'rgba(76,175,80,0.35)',
     }
 };
 
 // SVG soleil (light) et lune (dark)
 const themeIcons = {
     light: `<img src="../img/light_mode.svg" alt="light" style="width:25px;height:25px;filter:invert(0)">`,
-    dark:  `<img src="../img/moon-stars.svg"  alt="dark"  style="width:25px;height:25px;filter:invert(1)">`
+    dark: `<img src="../img/moon-stars.svg"  alt="dark"  style="width:25px;height:25px;filter:invert(1)">`
 };
 
 // Labels sidebar
 const themeLabels = {
     light: 'Light Mode',
-    dark:  'Dark Mode'
+    dark: 'Dark Mode'
 };
 
 let currentTheme = localStorage.getItem('theme') ?? 'light';
@@ -93,9 +93,9 @@ function applyTheme(theme) {
 function updateThemeBtn() {
     const btn = document.getElementById('theme-toggle-btn');
     if (!btn) return;
-    const icon  = btn.querySelector('#light_mode');
+    const icon = btn.querySelector('#light_mode');
     const label = btn.querySelector('.theme-label');
-    if (icon)  icon.innerHTML  = themeIcons[currentTheme];
+    if (icon) icon.innerHTML = themeIcons[currentTheme];
     if (label) label.textContent = themeLabels[currentTheme];
 }
 
@@ -479,6 +479,16 @@ function demarage() {
         </div>`).join('');
 
     const content = `
+        <div class="doc-hero">
+          <div class="doc-hero-inner">
+            <div>
+              <div class="doc-hero-kicker">// documentation technique</div>
+              <h1 class="doc-hero-title">Giga<em>Bot</em></h1>
+              <p class="doc-hero-sub">Bot Discord développé en Java avec JDA.</p>
+            </div>
+            <div class="version-tag" style="color: var(--badge-col-green)">v1.0.6 — STABLE</div>
+          </div>
+        </div>
         <div class="doc-layout-presen">
             <div class="doc-content">
                 <section class="doc-section" id="start">
@@ -690,7 +700,14 @@ function dashbord() {
                 <div class="dash-stat-val">142</div>
                 <div class="dash-stat-sub">depuis le dernier restart</div>
             </div>
+            <div class="dash-stat-card">
+                <div class="dash-stat-label">Bug Résolu</div>
+                <div class="dash-stat-val">25</div>
+            </div>
         </div>
+        
+        <!--<canvas id="myChart" class="chart-container"></canvas>-->
+        
 
         <!-- LIGNE 2 : BOT INFO + ÉQUIPES -->
         <div class="dash-grid-2">
@@ -825,19 +842,48 @@ function dashbord() {
     </div>`;
 
     changeContent('doc-content', content);
+
+    requestAnimationFrame(() => {
+        const ctx = document.getElementById('monGraphique');
+
+        if (!ctx) {
+            console.error("Canvas introuvable même après attente !");
+            return;
+        }
+
+        // 4. On crée le graphique
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                datasets: [{
+                    label: 'Utilisations',
+                    data: [10, 25, 45, 30, 60],
+                    borderColor: '#1a5fc8',
+                    tension: 0.3,
+                    fill: true,
+                    backgroundColor: 'rgba(26, 95, 200, 0.1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // Très important pour remplir le div
+            }
+        });
+    });
 }
 
-function report(){
-    const content=`<h1>vide</h1>`
+function report() {
+    const content = `<h1>vide</h1>`
     changeContent('doc-content', content);
 }
 
-function projet(){
-    const content=`<h1>vide</h1>`
+function projet() {
+    const content = `<h1>vide</h1>`
     changeContent('doc-content', content);
 }
 
-function contributeur(){
+function contributeur() {
     const content = `
     <div class="doc-layout-presen" style="width:100%; flex-direction:column; align-items:stretch; padding: 2rem; gap: 2rem;">
 
@@ -952,7 +998,43 @@ function contributeur(){
     changeContent('doc-content', content);
 }
 
+/* ─────────────────────────────────────────
+   GRAPH
+───────────────────────────────────────── */
 
+function initChart() {
+    const ctx = document.getElementById('myChart');
+
+    // On vérifie si l'élément existe bien dans le DOM
+    if (!ctx) return;
+
+    new Chart(ctx, {
+        type: 'line', // 'bar', 'pie', 'doughnut', 'radar'
+        data: {
+            labels: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
+            datasets: [{
+                label: 'Commandes exécutées',
+                data: [12, 19, 3, 5, 2, 3, 10],
+                borderWidth: 2,
+                borderColor: '#1a5fc8', // Ton --accent2
+                backgroundColor: 'rgba(26, 95, 200, 0.2)',
+                tension: 0.4 // Pour des courbes lisses
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: {color: 'rgba(0,0,0,0.05)'}
+                },
+                x: {
+                    grid: {display: false}
+                }
+            }
+        }
+    });
+}
 
 /* ─────────────────────────────────────────
    INIT
