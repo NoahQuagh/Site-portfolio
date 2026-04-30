@@ -14,39 +14,39 @@
     --discord: #5865F2;
     --title: #f0a060;
     --bghover: rgba(211, 211, 211, 0.46);
-    --code-color:#5dd62c;
-    --border:gray;
+    --code-color: #5dd62c;
+    --border: gray;
 }
 
 /* POLICE */
-:root{
+:root {
     --font-head: 'Syne', sans-serif;
     --font-body: 'DM Sans', sans-serif;
     --font-mono: 'IBM Plex Mono', monospace;
 }
 
 /* BADGE */
-:root{
+:root {
     /*ROUGE*/
-    --badge-bg-red:rgba(200, 64, 26, 0.1);
-    --badge-col-red:#c8401a;
-    --badge-bor-red:rgba(200, 64, 26, 0.3);
+    --badge-bg-red: rgba(200, 64, 26, 0.1);
+    --badge-col-red: #c8401a;
+    --badge-bor-red: rgba(200, 64, 26, 0.3);
     /*BLEU*/
-    --badge-bg-blue:rgba(88, 101, 242, 0.1);
-    --badge-col-blue:#5865F2;
-    --badge-bor-blue:rgba(88, 101, 242, 0.3);
+    --badge-bg-blue: rgba(88, 101, 242, 0.1);
+    --badge-col-blue: #5865F2;
+    --badge-bor-blue: rgba(88, 101, 242, 0.3);
     /*JAUNE*/
-    --badge-bg-yellow:rgba(255, 160, 0, 0.1);
-    --badge-col-yellow:#e6900a;
-    --badge-bor-yellow:rgba(255, 160, 0, 0.3);
+    --badge-bg-yellow: rgba(255, 160, 0, 0.1);
+    --badge-col-yellow: #e6900a;
+    --badge-bor-yellow: rgba(255, 160, 0, 0.3);
     /*VERT*/
-    --badge-bg-green:rgba(0, 180, 120, 0.1);
-    --badge-col-green:#00a870;
-    --badge-bor-green:rgba(0, 180, 120, 0.3);
+    --badge-bg-green: rgba(0, 180, 120, 0.1);
+    --badge-col-green: #00a870;
+    --badge-bor-green: rgba(0, 180, 120, 0.3);
 }
 
-:root{
-    --radiusBox:10px;
+:root {
+    --radiusBox: 10px;
 }
 
 *, *::before, *::after {
@@ -61,13 +61,11 @@ html {
 }
 
 
-
 /* ─── TRANSITION THÈME ─── */
 *, *::before, *::after {
-    transition:
-            background-color 0.25s ease,
-            border-color 0.25s ease,
-            color 0.15s ease;
+    transition: background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.15s ease;
 }
 
 /* ─── BOUTON THÈME (sidebar) ─── */
@@ -82,8 +80,8 @@ html {
     gap: 0;
     border-radius: var(--radiusBox);
 }
+
 .theme-label {
-    font-family: sans-serif;
     font-size: 15px;
     font-weight: 600;
     letter-spacing: 0.06em;
