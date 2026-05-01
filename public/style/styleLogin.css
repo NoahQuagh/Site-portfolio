@@ -20,13 +20,42 @@
     border-radius: 10px;
     letter-spacing: -0.03em;
     z-index: 1000;
+    box-shadow: 10px 10px 400px rgba(255, 255, 255, 0.5);
     animation: rotateSquare 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .logo-text {
     opacity: 0; /* Caché au début */
     /* Animation du texte : apparaît après la rotation (délai 0.6s) */
-    animation: fadeInText 0.5s ease-out 0.6s forwards;
+    animation: neonFlicker 1.5s ease-in-out 0.6s forwards;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    border: none;
+    z-index: 1001;
+    width: 10rem;
+}
+
+.back-button button:hover {
+    color: var(--title);
+    transform: scale(1.1);
+}
+
+.back-button button {
+    position: absolute;
+    font-family: var(--font-head);
+    top: 20px;
+    left: 20px;
+    background: transparent;
+    border: none;
+    color: var(--bg);
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 1001;
+    transition: all 0.3s ease;
 }
 
 /* Keyframes pour la rotation du carré */
@@ -42,14 +71,42 @@
 }
 
 /* Keyframes pour l'apparition des lettres */
-@keyframes fadeInText {
+@keyframes neonFlicker {
     0% {
         opacity: 0;
-        transform: translateY(5px);
+        text-shadow: none;
     }
-    100% {
+    /* Scintillement rapide (effet "allumage") */
+    5%, 15%, 25% {
+        opacity: 0.3;
+        text-shadow: none;
+    }
+    10%, 20% {
         opacity: 1;
-        transform: translateY(0);
+        text-shadow: 0 0 10px #fff, 0 0 10px var(--title), 0 0 40px var(--title);
+    }
+    /* État final stable et brillant */
+    30%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px var(--title),
+        0 0 40px var(--title),
+        0 0 80px var(--title);
+        transform: translateY(0) scale(1);
+    }
+}
+
+.logo:hover .logo-text {
+    animation: neonPulse 2s infinite alternate;
+}
+
+@keyframes neonPulse {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px var(--title), 0 0 40px var(--title);
+    }
+    to {
+        text-shadow: 0 0 15px #fff, 0 0 30px var(--title), 0 0 60px var(--title), 0 0 90px var(--title);
     }
 }
 
@@ -191,5 +248,9 @@ body.login-page {
         width: 100%;
         padding: 40px;
         border: none;
+    }
+
+    .back-button button {
+        color: var(--ink);
     }
 }

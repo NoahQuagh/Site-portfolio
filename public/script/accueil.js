@@ -1,5 +1,3 @@
-const API_MENU_URL = 'http://localhost:3000/api/v1/menus';
-
 /* ─────────────────────────────────────────
    NAVIGATION — sliding indicator
 ───────────────────────────────────────── */
@@ -39,6 +37,21 @@ function navigation() {
 
     setTimeout(() => updateIndicator(), 50);
     window.addEventListener('resize', () => updateIndicator());
+}
+
+function toggleMenu() {
+    const sidebar = document.getElementById('sidebar');
+    const body = document.querySelector('body');
+    body.classList.toggle('menu-open');
+    sidebar.classList.toggle('open');
+}
+
+function navigationMobile() {
+    const navPills = document.getElementById('customNav');
+    if (!navPills) return;
+
+    navPills.innerHTML = ``;
+    navPills.innerHTML = `<img src="../img/menu.svg" alt="menu" id="menu" onclick="toggleMenu()">`
 }
 
 /* ─────────────────────────────────────────
@@ -179,21 +192,21 @@ function asciiNoah() {
 }
 
 const terminal = `<div class="terminal-header">
-                        <img src="../img/terminal.svg" class="terminal-icon">
-                        <span class="terminal-title">Terminal — PS C:\\Users\\Noah</span>
-                        <span class="terminal-close" onclick="closeTerminal()">✕</span>
-                    </div>
-                    <div class="terminal-body" id="terminal-output">
-                        <div class="output-line info">PS C:\\Users\\Noah&gt; <span class="success">./moi</span></div>
-                        ${asciiNoah()}
-                        <div class="output-line" style="margin-top:12px;">
-                            [ <span style="color:darkcyan">INFO</span> ] Tapez <span class="success">help</span> pour voir les commandes disponibles.
+                            <img src="../img/terminal.svg" class="terminal-icon">
+                            <span class="terminal-title">Terminal — PS C:\\Users\\Noah</span>
+                            <span class="terminal-close" onclick="closeTerminal()">✕</span>
                         </div>
-                        <div class="output-line" id="output-line">
-                            <br><span class="prompt">PS C:\\Users\\Noah&gt;</span>
-                            <input type="text" id="terminal-input" autofocus autocomplete="off">
-                        </div>
-                    </div>`;
+                        <div class="terminal-body" id="terminal-output">
+                            <div class="output-line info">PS C:\\Users\\Noah&gt; <span class="success">./moi</span></div>
+                            ${asciiNoah()}
+                            <div class="output-line" style="margin-top:12px;">
+                                [ <span style="color:darkcyan">INFO</span> ] Tapez <span class="success">help</span> pour voir les commandes disponibles.
+                            </div>
+                            <div class="output-line" id="output-line">
+                                <br><span class="prompt">PS C:\\Users\\Noah&gt;</span>
+                                <input type="text" id="terminal-input" autofocus autocomplete="off">
+                            </div>
+                        </div>`;
 
 /* ─────────────────────────────────────────
    PAGE — ACCUEIL
@@ -209,7 +222,7 @@ function accueil() {
     
             <!-- TERMINAL -->
             <div class="terminal-wrap">
-                <div class="terminal">
+                <div class="terminal" style="display: ${window.innerWidth < 800 ? 'none' : 'flex'}">
                     ${terminal}
                 </div>
             </div>
@@ -753,20 +766,28 @@ function toggleDivBorders() {
 
 window.addEventListener('resize', () => {
     const largeur = window.innerWidth;
+    const hauteur = window.innerHeight;
+    //console.log(`Largeur : ${largeur}px, Hauteur : ${hauteur}px`);
     const t = document.querySelector('.terminal');
+    const c = document.querySelector('#sidebar');
 
     if (!t) return;
 
     if (largeur < 800) {
-        // On cache au lieu de supprimer
+
         t.style.display = 'none';
     } else {
-        // On montre au lieu de réinjecter
         if (window.getComputedStyle(t).display === 'none') {
             t.style.display = 'flex';
-            // Plus besoin de t.innerHTML = terminal !
-            // Le terminal "survit" en mémoire.
         }
+    }
+
+    if (largeur > 500) {
+        if (c) {
+            c.classList.remove('open');
+            c.style.display = '';
+        }
+        document.body.classList.remove('sidebar-open');
     }
 });
 
@@ -776,6 +797,8 @@ window.addEventListener('resize', () => {
 document.addEventListener('DOMContentLoaded', () => {
     navigation();
     accueil();
+
+    const displayMode = window.innerWidth < 800 ? 'none' : 'flex';
 
     // header sticky shadow
     const sentinel = document.createElement('div');

@@ -11,6 +11,40 @@
         rel="stylesheet">
 </head>
 <body>
+
+<aside id="sidebar">
+  <div>
+    <nav>
+      <ul class="header-nav" id="header-nav">
+        <li onclick="accueil()">
+          <div class="iconmenu"><img src="../img/house.svg" alt="house"></div>
+          <a>Accueil</a></li>
+        <li onclick="parcours()">
+          <div class="iconmenu"><img src="../img/school.svg" alt="commande"></div>
+          <a>Parcours</a></li>
+        <li onclick="projet()">
+          <div class="iconmenu"><img src="../img/folder2.svg" alt="changelog"></div>
+          <a>Projets</a></li>
+        <li onclick="comptence()">
+          <div class="iconmenu"><img src="../img/skill.svg" alt="changelog"></div>
+          <a>Compétence</a></li>
+        <li onclick="experience()">
+          <div class="iconmenu"><img src="../img/exp.svg" alt="changelog"></div>
+          <a>Expérience</a></li>
+      </ul>
+    </nav>
+  </div>
+  <nav>
+    <ul class="header-nav" id="header-nav-2">
+        <button id="theme-toggle-btn" onclick="toggleTheme()">
+          <div class="iconmenu" id="light_mode"><img src="../img/light_mode.svg" alt="theme"></div>
+          <span class="theme-label">Light Mode</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</aside>
+
 <header>
   <div class="contenuHeader">
     <div class="head-barre">
@@ -33,6 +67,13 @@
             <button class="nav-link" data-name="experience" onclick="experience()">\EXPÉRIENCES</button>
           </li>
         </ul>
+        <ul class="nav-pills-custom" id="customNav2">
+          <li class="nav-item">
+            <img src="../img/menu.svg" alt="menu" id="menu" onclick="toggleMenu()">
+          </li>
+          <li class="nav-item">
+          </li>
+        </ul>
       </nav>
     </div>
   </div>
@@ -47,5 +88,6 @@
 </footer>
 
 <script src="../script/accueil.js"></script>
+<script src="../script/theme.js"></script>
 </body>
 </html>

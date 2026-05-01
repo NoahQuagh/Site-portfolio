@@ -5,6 +5,144 @@ body {
     font-size: 15px;
     line-height: 1.65;
     min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 250px 1fr;
+    grid-template-areas:
+            "header header"
+            "content content"
+            "footer footer";
+}
+
+body.sidebar-open {
+    grid-template-columns: 250px 1fr;
+    grid-template-areas:
+            "header header"
+            "aside content"
+            "footer footer";
+}
+
+#sidebar {
+    position: fixed;
+    width: 200px;
+    display: none;
+    transition: all 0.3s cubic-bezier(.4, 0, .2, 1);
+    z-index: 100;
+    grid-area: sidebar;
+    background: var(--bg2);
+    border-right: 1.5px solid var(--ink);
+    display: none;
+    padding: 1rem 0.6em 1rem 0.5rem;
+    flex-direction: column;
+    top: 71px;
+    gap: 0.5rem;
+    height: calc(100vh - 71px);
+    transition: all 0.3s cubic-bezier(.4, 0, .2, 1);
+    white-space: nowrap;
+    overflow-x: visible;
+    justify-content: space-between;
+}
+
+#sidebar.open {
+    transform: translateX(0);
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+}
+
+
+@media (max-width: 800px) {
+    body {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+#customNav {
+    display: flex;
+}
+
+#customNav2 {
+    display: none;
+}
+
+@media (max-width: 500px) {
+    #customNav {
+        display: none;
+    }
+
+    #customNav2 {
+        display: flex;
+    }
+
+    /* On le cache en CSS, c'est plus fiable */
+}
+
+.header-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    list-style: none;
+    overflow: hidden;
+}
+
+.header-nav a {
+    font-family: sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--ink2);
+    padding: 10px 14px;
+    text-decoration: none;
+    transition: color 0.15s;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+#header-nav li, #header-nav-2 li {
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    margin-right: 10px;
+}
+
+
+#header-nav li:hover, #header-nav-2 li:hover {
+    transform: scale(1.02);
+    background: var(--rule2);
+    border: 1px solid black;
+}
+
+#header-nav, #header-nav-2 {
+    padding-left: 0.2rem;
+    margin-top: 10px;
+}
+
+
+.header-nav li {
+    display: flex;
+    align-content: center;
+    border-radius: 10px;
+}
+
+.iconmenu {
+    width: 30px;
+    height: 30px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, border-radius 0.3s ease;
+    border-radius: 0;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+}
+
+.header-nav a.active {
+    background: var(--ink);
+    color: var(--bg);
+    border-radius: 28px;
 }
 
 /* ─── HEADER / NAV ─── */
@@ -15,6 +153,7 @@ header {
     background: var(--bg2);
     border-bottom: 1.5px solid var(--ink);
     transition: box-shadow 0.25s;
+    grid-area: header;
 }
 
 header.is-pinned {
@@ -119,6 +258,7 @@ header.is-pinned {
 /* ─── MAIN ─── */
 main {
     min-height: calc(100vh - 52px - 56px);
+    grid-area: content;
 }
 
 #accueil {
@@ -189,7 +329,7 @@ main {
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--bghover);
+    color: var(--bg3);
 }
 
 .hero-name {
@@ -224,7 +364,6 @@ main {
     max-width: 650px;
     width: 100%;
     height: 480px;
-    display: flex;
     flex-direction: column;
 }
 
@@ -679,6 +818,7 @@ footer {
     font-family: var(--font-mono);
     font-size: 12px;
     letter-spacing: 0.04em;
+    grid-area: footer;
 }
 
 footer a {
@@ -1223,4 +1363,6 @@ code {
     color: var(--ink);
     font-weight: 500;
 }
+
+
 
