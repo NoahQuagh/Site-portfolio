@@ -136,12 +136,12 @@ body.login-page {
     z-index: 2;
 }
 
-/* Décoration de fond (liberté créative) */
+
 .login-visual::after {
-    content: "GIGABOT";
+    content: "CONNEXTION";
     position: absolute;
     font-family: 'Syne';
-    font-size: 13vw;
+    font-size: 8vw;
     color: rgba(255, 255, 255, 0.03);
     font-weight: 800;
     bottom: -5%;

@@ -1,3 +1,5 @@
+let chartInstance = null;
+
 const commande = [
     {
         categorie: '/premier — Mode Premier Valorant',
@@ -601,7 +603,7 @@ function dashbord() {
             </div>
         </div>
         
-        <!--<canvas id="myChart" class="chart-container"></canvas>-->
+        <canvas id="mon-chart" height="400"></canvas>
         
 
         <!-- LIGNE 2 : BOT INFO + ÉQUIPES -->
@@ -738,34 +740,97 @@ function dashbord() {
 
     changeContent('doc-content', content);
 
-    requestAnimationFrame(() => {
-        const ctx = document.getElementById('monGraphique');
-
-        if (!ctx) {
-            console.error("Canvas introuvable même après attente !");
-            return;
+    setTimeout(() => {
+        const ctx = document.getElementById('mon-chart');
+        if (!ctx) return;
+        if (chartInstance) {
+            chartInstance.destroy();
         }
 
-        // 4. On crée le graphique
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juillet', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'],
                 datasets: [{
-                    label: 'Utilisations',
-                    data: [10, 25, 45, 30, 60],
-                    borderColor: '#1a5fc8',
+                    label: 'Commandes exécutées',
+                    data: [0, 34, 28, 45, 19, 52, 20, 20, 20, 20, 20, 20],
+                    backgroundColor: 'rgba(124,111,224,0.2)',
+                    borderColor: '#7c6fe0',
+                    borderWidth: 1.5,
                     tension: 0.3,
                     fill: true,
-                    backgroundColor: 'rgba(26, 95, 200, 0.1)'
+                }, {
+                    label: 'Bugs signalés',
+                    data: [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+                    backgroundColor: 'rgba(232,64,64,0.1)',
+                    borderColor: '#e84040',
+                    borderWidth: 1.5,
+                    tension: 0.3,
+                    fill: true,
+                }, {
+                    label: 'Serveurs actifs',
+                    data: [0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+                    backgroundColor: 'rgba(76,175,80,0.1)',
+                    borderColor: '#4caf50',
+                    borderWidth: 1.5,
+                    tension: 0.3,
+                    fill: true,
+                }, {
+                    label: 'Équipes Premier',
+                    data: [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    backgroundColor: 'rgba(255, 160, 0, 0.1)',
+                    borderColor: '#e6900a',
+                    borderWidth: 1.5,
+                    tension: 0.3,
+                    fill: true,
+                }, {
+                    label: 'Bugs Résolu',
+                    data: [0, 0, 2, 5, 0, 0, 1, 1, 1, 1, 1, 1],
+                    backgroundColor: 'rgba(0,255,196,0.1)',
+                    borderColor: '#0ae6e6',
+                    borderWidth: 1.5,
+                    tension: 0.3,
+                    fill: true,
                 }]
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false, // Très important pour remplir le div
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: getComputedStyle(document.documentElement)
+                                .getPropertyValue('--ink').trim(),
+                            font: {family: 'IBM Plex Mono', size: 11}
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: getComputedStyle(document.documentElement)
+                                .getPropertyValue('--ink3').trim(),
+                            font: {family: 'IBM Plex Mono', size: 11}
+                        },
+                        grid: {
+                            color: getComputedStyle(document.documentElement)
+                                .getPropertyValue('--rule').trim()
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: getComputedStyle(document.documentElement)
+                                .getPropertyValue('--ink3').trim(),
+                            font: {family: 'IBM Plex Mono', size: 11}
+                        },
+                        grid: {
+                            color: getComputedStyle(document.documentElement)
+                                .getPropertyValue('--rule').trim()
+                        }
+                    }
+                }
             }
         });
-    });
+    }, 350);
 }
 
 function report() {
