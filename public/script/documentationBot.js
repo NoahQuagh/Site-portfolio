@@ -571,35 +571,6 @@ function dashbord() {
             <div class="dash-status">
                 <span class="dash-dot"></span>
                 <span class="dash-status-label">En ligne</span>
-                <span class="dash-uptime">uptime : 3j 14h 22m</span>
-            </div>
-        </div>
-
-        <!-- LIGNE 1 : STATS RAPIDES -->
-        <div class="dash-grid-4">
-            <div class="dash-stat-card">
-                <div class="dash-stat-label">Serveurs</div>
-                <div class="dash-stat-val">1</div>
-                <div class="dash-stat-sub">serveur actif</div>
-            </div>
-            <div class="dash-stat-card">
-                <div class="dash-stat-label">Équipes Premier</div>
-                <div class="dash-stat-val">4</div>
-                <div class="dash-stat-sub">équipes enregistrées</div>
-            </div>
-            <div class="dash-stat-card">
-                <div class="dash-stat-label">Joueurs enregistrés</div>
-                <div class="dash-stat-val">23</div>
-                <div class="dash-stat-sub">dans une équipe</div>
-            </div>
-            <div class="dash-stat-card">
-                <div class="dash-stat-label">Commandes exécutées</div>
-                <div class="dash-stat-val">142</div>
-                <div class="dash-stat-sub">depuis le dernier restart</div>
-            </div>
-            <div class="dash-stat-card">
-                <div class="dash-stat-label">Bug Résolu</div>
-                <div class="dash-stat-val">25</div>
             </div>
         </div>
         
@@ -636,10 +607,7 @@ function dashbord() {
                         <span class="dash-info-key">Commandes slash</span>
                         <span class="dash-info-val">11 enregistrées</span>
                     </div>
-                    <div class="dash-info-row">
-                        <span class="dash-info-key">Ping API Discord</span>
-                        <span class="dash-info-val" style="color:var(--badge-col-green);">42 ms</span>
-                    </div>
+                   
                 </div>
             </div>
 
@@ -753,7 +721,7 @@ function dashbord() {
                 labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juillet', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'],
                 datasets: [{
                     label: 'Commandes exécutées',
-                    data: [0, 34, 28, 45, 19, 52, 20, 20, 20, 20, 20, 20],
+                    data: [0, 34, 28, 45, 4, 0, 0, 0, 0, 0, 0, 0],
                     backgroundColor: 'rgba(124,111,224,0.2)',
                     borderColor: '#7c6fe0',
                     borderWidth: 1.5,
@@ -769,7 +737,7 @@ function dashbord() {
                     fill: true,
                 }, {
                     label: 'Serveurs actifs',
-                    data: [0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+                    data: [0, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0],
                     backgroundColor: 'rgba(76,175,80,0.1)',
                     borderColor: '#4caf50',
                     borderWidth: 1.5,
@@ -777,7 +745,7 @@ function dashbord() {
                     fill: true,
                 }, {
                     label: 'Équipes Premier',
-                    data: [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    data: [0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0],
                     backgroundColor: 'rgba(255, 160, 0, 0.1)',
                     borderColor: '#e6900a',
                     borderWidth: 1.5,
@@ -785,7 +753,7 @@ function dashbord() {
                     fill: true,
                 }, {
                     label: 'Bugs Résolu',
-                    data: [0, 0, 2, 5, 0, 0, 1, 1, 1, 1, 1, 1],
+                    data: [0, 0, 2, 5, 0, 0, 0, 0, 0, 0, 0, 0],
                     backgroundColor: 'rgba(0,255,196,0.1)',
                     borderColor: '#0ae6e6',
                     borderWidth: 1.5,

@@ -3,5 +3,6 @@
 **/.recommenders
 /node_modules
 racourci.txt
-shema flux authentification
+shema_flux_authentification.txt
 .env
+shema_projet.txt
