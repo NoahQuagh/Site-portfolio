@@ -256,17 +256,17 @@ body.login-page {
 }
 
 .error-container {
-    color: var(--badge-col-red); /* Rouge alerte */
+    color: var(--badge-col-red);
     background-color: var(--badge-bg-red);
     border-radius: 4px;
     padding: 10px;
     margin-bottom: 15px;
     font-size: 0.9em;
-    display: none; /* Caché par défaut */
-    border-left: 3px solid var(--badge-bor-red);
+    display: none;
+    border: 1px solid var(--badge-bor-red);
     font-family: 'IBM+Plex+Mono', monospace;
 }
 
 .error-container.show {
-    display: block; /* Affiché quand on ajoute la classe .show */
+    display: block;
 }
