@@ -254,3 +254,19 @@ body.login-page {
         color: var(--ink);
     }
 }
+
+.error-container {
+    color: var(--badge-col-red); /* Rouge alerte */
+    background-color: var(--badge-bg-red);
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+    display: none; /* Caché par défaut */
+    border-left: 3px solid var(--badge-bor-red);
+    font-family: 'IBM+Plex+Mono', monospace;
+}
+
+.error-container.show {
+    display: block; /* Affiché quand on ajoute la classe .show */
+}

@@ -1,3 +1,4 @@
+<?php require_once '../../includes/guard.php'; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,8 +8,10 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
         rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="../icon/gigabot.ico">
+
   <link rel="stylesheet" href="../style/stylePalette.css">
   <link rel="stylesheet" href="../style/StyleHeaderSidebar.css">
+  <link rel="stylesheet" href="../style/styleAdmin.css">
   <link rel="stylesheet" href="../style/styleAdmin.css">
 
   <link rel="stylesheet"
@@ -76,9 +79,9 @@
   </p>
 </footer>
 
-<script src="../script/sidebar.js"></script>
-<script src="../script/theme.js"></script>
-<script src="../script/admin.js"></script>
+<script src="../../public/script/sidebar.js"></script>
+<script src="../../public/script/theme.js"></script>
+<script src="../../public/script/admin.js"></script>
 
 </body>
 </html>

@@ -6,6 +6,6 @@ if (
     $_SESSION['logged_in'] !== true ||
     $_SESSION['role'] !== 'admin'
 ) {
-    header('Location: login.html');
+    header('Location: /public/page/login.html');
     exit;
 }

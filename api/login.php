@@ -43,8 +43,8 @@ try {
     $_SESSION['role']      = $user['role'];
     $_SESSION['logged_in'] = true;
 
-    // IMPORTANT : Rediriger vers admin.php (qui contient le guard) et non admin.html
-    echo json_encode(['success' => true, 'redirect' => 'admin.php']);
+    // IMPORTANT : Rediriger vers admin.php (qui contient le guard) et non admin.php
+    echo json_encode(['success' => true, 'redirect' => '../../public/page/admin.php']);
 
 } catch (Exception $e) {
     http_response_code(500);
