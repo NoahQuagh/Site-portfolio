@@ -1420,44 +1420,6 @@ function compte() {
 }
 
 /* ─────────────────────────────────────────
-   GRAPH
-───────────────────────────────────────── */
-
-function initChart() {
-    const ctx = document.getElementById('myChart');
-
-    // On vérifie si l'élément existe bien dans le DOM
-    if (!ctx) return;
-
-    new Chart(ctx, {
-        type: 'line', // 'bar', 'pie', 'doughnut', 'radar'
-        data: {
-            labels: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
-            datasets: [{
-                label: 'Commandes exécutées',
-                data: [12, 19, 3, 5, 2, 3, 10],
-                borderWidth: 2,
-                borderColor: '#1a5fc8', // Ton --accent2
-                backgroundColor: 'rgba(26, 95, 200, 0.2)',
-                tension: 0.4 // Pour des courbes lisses
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: {color: 'rgba(0,0,0,0.05)'}
-                },
-                x: {
-                    grid: {display: false}
-                }
-            }
-        }
-    });
-}
-
-/* ─────────────────────────────────────────
    INIT
 ───────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
@@ -1468,17 +1430,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     demarage();
 });
-
-function activeDiv() {
-    document.querySelectorAll('*').forEach(el => {
-        el.style.border = '1px solid red';
-        el.style.boxSizing = 'border-box';
-    });
-}
-
-function toggleMenu() {
-    const sidebar = document.getElementById('sidebar');
-    const body = document.querySelector('body');
-    body.classList.toggle('menu-open');
-    sidebar.classList.toggle('open');
-}
