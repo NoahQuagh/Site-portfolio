@@ -1,0 +1,92 @@
+/* COULEUR */
+:root {
+    --bg: #100f0f;
+    --bg2: #000000;
+    --bg3: #1e1e1c;
+    --ink: #e4dcd3;
+    --ink2: #4a3f30;
+    --ink3: #8a7a65;
+    --accent: #c8401a;
+    --accent2: #1a5fc8;
+    --accent3: #1a8c3a;
+    --rule: rgba(26, 21, 16, 0.12);
+    --rule2: rgba(26, 21, 16, 0.06);
+    --discord: #5865F2;
+    --title: #f0a060;
+    --bghover: rgba(211, 211, 211, 0.46);
+    --code-color: #5dd62c;
+    --border: gray;
+}
+
+/* POLICE */
+:root {
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+}
+
+/* BADGE */
+:root {
+    /*ROUGE*/
+    --badge-bg-red: rgba(200, 64, 26, 0.1);
+    --badge-col-red: #c8401a;
+    --badge-bor-red: rgba(200, 64, 26, 0.3);
+    /*BLEU*/
+    --badge-bg-blue: rgba(88, 101, 242, 0.1);
+    --badge-col-blue: #5865F2;
+    --badge-bor-blue: rgba(88, 101, 242, 0.3);
+    /*JAUNE*/
+    --badge-bg-yellow: rgba(255, 160, 0, 0.1);
+    --badge-col-yellow: #e6900a;
+    --badge-bor-yellow: rgba(255, 160, 0, 0.3);
+    /*VERT*/
+    --badge-bg-green: rgba(0, 180, 120, 0.1);
+    --badge-col-green: #00a870;
+    --badge-bor-green: rgba(0, 180, 120, 0.3);
+}
+
+:root {
+    --radiusBox: 10px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* ─── TRANSITION THÈME ─── */
+*, *::before, *::after {
+    transition: background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.15s ease;
+}
+
+/* ─── BOUTON THÈME (sidebar) ─── */
+#theme-toggle-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    gap: 0;
+    border-radius: var(--radiusBox);
+}
+
+.theme-label {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--ink2);
+    padding: 10px 14px;
+    white-space: nowrap;
+    cursor: pointer;
+}
