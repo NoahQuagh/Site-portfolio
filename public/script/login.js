@@ -7,14 +7,6 @@ async function handleSubmit(e) {
 
     const user = document.getElementById('user').value.trim();
     const pass = document.getElementById('password').value.trim();
-    //const errU = document.getElementById('err-user');
-    //const errP = document.getElementById('err-pass');
-
-    errU.classList.remove('show');
-    errP.classList.remove('show');
-
-    //if (!user) { errU.classList.add('show'); return; }
-    //if (!pass) { errP.classList.add('show'); return; }
 
     const formData = new FormData();
     formData.append('username', user);
@@ -26,14 +18,14 @@ async function handleSubmit(e) {
 
         if (data.success) {
             window.location.href = data.redirect;
-        } else {
-            // Afficher l'erreur retournée par le serveur
-            //errU.textContent = data.error;
-            //errU.classList.add('show');
         }
     } catch (err) {
-        //errU.textContent = 'Erreur serveur, réessaye.';
-        //errU.classList.add('show');
-        echo(err);
+        console.log(err);
     }
+}
+
+// On attache l'écouteur d'événement au formulaire
+const loginForm = document.querySelector('form');
+if (loginForm) {
+    loginForm.addEventListener('submit', handleSubmit);
 }

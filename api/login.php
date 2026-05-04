@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'db.php';
+require_once '../includes/db.php'; // Vérifie bien le chemin vers ta connexion BDD
 
 header('Content-Type: application/json');
 
@@ -10,8 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$username = trim($_POST['username'] ?? '');
-$password = trim($_POST['password'] ?? '');
+// Remplacement du ?? par isset pour la compatibilité ancienne version PHP
+$username = isset($_POST['username']) ? trim($_POST['username']) : '';
+$password = isset($_POST['password']) ? trim($_POST['password']) : '';
 
 if (empty($username) || empty($password)) {
     http_response_code(400);
@@ -19,29 +20,33 @@ if (empty($username) || empty($password)) {
     exit;
 }
 
-// Chercher l'utilisateur
-$stmt = $db->prepare("SELECT * FROM users WHERE username = ? LIMIT 1");
-$stmt->execute([$username]);
-$user = $stmt->fetch();
+try {
+    $stmt = $db->prepare("SELECT * FROM users WHERE username = ? LIMIT 1");
+    $stmt->execute([$username]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Vérifier le mot de passe hashé
-if (!$user || !password_verify($password, $user['password'])) {
-    http_response_code(401);
-    echo json_encode(['error' => 'Identifiant ou mot de passe incorrect']);
-    exit;
+    if (!$user || !password_verify($password, $user['password'])) {
+        http_response_code(401);
+        echo json_encode(['error' => 'Identifiant ou mot de passe incorrect']);
+        exit;
+    }
+
+    if ($user['role'] !== 'admin') {
+        http_response_code(403);
+        echo json_encode(['error' => 'Accès réservé aux administrateurs']);
+        exit;
+    }
+
+    // On remplit la session
+    $_SESSION['user_id']   = $user['id'];
+    $_SESSION['username']  = $user['username'];
+    $_SESSION['role']      = $user['role'];
+    $_SESSION['logged_in'] = true;
+
+    // IMPORTANT : Rediriger vers admin.php (qui contient le guard) et non admin.html
+    echo json_encode(['success' => true, 'redirect' => 'admin.php']);
+
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(['error' => 'Erreur BDD : ' . $e->getMessage()]);
 }
-
-// Vérifier le rôle
-if ($user['role'] !== 'admin') {
-    http_response_code(403);
-    echo json_encode(['error' => 'Accès réservé aux administrateurs']);
-    exit;
-}
-
-// Créer la session
-$_SESSION['user_id']  = $user['id'];
-$_SESSION['username'] = $user['username'];
-$_SESSION['role']     = $user['role'];
-$_SESSION['logged_in'] = true;
-
-echo json_encode(['success' => true, 'redirect' => 'admin.html']);
